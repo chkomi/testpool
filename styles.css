@@ -443,6 +443,18 @@ input[type="radio"]:checked + label:after {
     color: var(--black);
 }
 
+.explanation-content {
+    padding: 1rem 1.5rem;
+    background: var(--ivory);
+    border-top: 1px solid #E0E0E0;
+}
+
+.explanation-content p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--black);
+}
+
 /* 선택지 피드백 스타일 */
 ul li.selected-correct {
     border-color: #28a745 !important;
