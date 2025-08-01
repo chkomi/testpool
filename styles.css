@@ -3,8 +3,8 @@
 :root {
     --wine-red: #722F37;
     --ivory: #F5F5DC;
-    --black: #1A1A1A;
-    --light-wine: #8B3A42;
+    --black: #000000;
+    --light-wine: #D4A6A8;
     --dark-wine: #5A252A;
 }
 
@@ -97,11 +97,19 @@ h2 {
     box-shadow: 0 4px 15px rgba(114, 47, 55, 0.2);
 }
 
-.exam-btn:hover, .exam-btn:focus {
+.exam-btn:hover:not(:disabled), .exam-btn:focus:not(:disabled) {
     background: linear-gradient(135deg, var(--light-wine) 0%, var(--wine-red) 100%);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(114, 47, 55, 0.3);
     outline: none;
+}
+
+.exam-btn.disabled, .exam-btn:disabled {
+    background: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
 }
 
 #question {
@@ -161,14 +169,14 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked + label {
-    background: linear-gradient(135deg, var(--wine-red) 0%, var(--light-wine) 100%);
-    color: white;
+    background: var(--light-wine);
+    color: var(--black);
     font-weight: 500;
 }
 
 input[type="radio"]:checked + label:before {
-    background: white;
-    border-color: white;
+    background: var(--wine-red);
+    border-color: var(--wine-red);
 }
 
 input[type="radio"]:checked + label:after {
@@ -179,7 +187,7 @@ input[type="radio"]:checked + label:after {
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    color: var(--wine-red);
+    color: white;
     text-align: center;
     line-height: 16px;
     font-size: 12px;
@@ -389,8 +397,9 @@ ul li.selected-incorrect {
 }
 
 ul li.correct-answer {
-    border-color: #28a745 !important;
-    background: linear-gradient(135deg, rgba(40, 167, 69, 0.15) 0%, rgba(40, 167, 69, 0.08) 100%);
+    border-color: var(--wine-red) !important;
+    border-width: 3px !important;
+    background: linear-gradient(135deg, rgba(114, 47, 55, 0.15) 0%, rgba(114, 47, 55, 0.08) 100%);
     position: relative;
 }
 
@@ -399,7 +408,7 @@ ul li.correct-answer:after {
     position: absolute;
     top: 0.5rem;
     right: 1rem;
-    background: #28a745;
+    background: var(--wine-red);
     color: white;
     padding: 0.25rem 0.5rem;
     border-radius: 12px;
