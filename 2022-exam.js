@@ -430,8 +430,27 @@ const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
 const questionCounter = document.getElementById('question-counter');
 const result = document.getElementById('result');
+const progressBadge = document.getElementById('progress-badge');
 
 loadQuiz();
+
+// 진행률 뱃지 업데이트 함수
+function updateProgressBadge() {
+    let correctCount = 0;
+    let answeredCount = 0;
+    
+    for (let i = 0; i < shuffledQuizData.length; i++) {
+        if (userAnswers[i]) {
+            answeredCount++;
+            if (userAnswers[i] === shuffledQuizData[i].correct) {
+                correctCount++;
+            }
+        }
+    }
+    
+    const percentage = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+    progressBadge.textContent = `${correctCount}/${answeredCount} (${percentage}%)`;
+}
 
 function loadQuiz() {
     deselectAnswers();
@@ -455,7 +474,10 @@ function loadQuiz() {
     
     // 이전에 선택한 답안이 있으면 복원하고 피드백 표시
     if (userAnswers[currentQuiz]) {
-        const selectedAnswer = document.getElementById(userAnswers[currentQuiz]);
+        // 알파벳을 ID로 변환 (a->1, b->2, c->3, d->4)
+        const letterToId = {'a': '1', 'b': '2', 'c': '3', 'd': '4'};
+        const elementId = letterToId[userAnswers[currentQuiz]];
+        const selectedAnswer = document.getElementById(elementId);
         if (selectedAnswer) {
             selectedAnswer.checked = true;
             showFeedback(userAnswers[currentQuiz]);
@@ -470,6 +492,9 @@ function loadQuiz() {
     
     // 답변이 완료된 경우 다음 버튼 활성화
     updateNextButtonState();
+    
+    // 진행률 뱃지 업데이트
+    updateProgressBadge();
 }
 
 function deselectAnswers() {
@@ -482,7 +507,9 @@ function getSelected() {
     let answer;
     answerElements.forEach(answerEl => {
         if (answerEl.checked) {
-            answer = answerEl.id;
+            // ID를 알파벳으로 변환 (1->a, 2->b, 3->c, 4->d)
+            const idToLetter = {'1': 'a', '2': 'b', '3': 'c', '4': 'd'};
+            answer = idToLetter[answerEl.id];
         }
     });
     return answer;
@@ -570,6 +597,7 @@ document.addEventListener('change', (e) => {
             userAnswers[currentQuiz] = selectedAnswer;
             showFeedback(selectedAnswer);
             updateNextButtonState();
+            updateProgressBadge();
         }
     }
 });
