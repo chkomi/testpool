@@ -12,6 +12,18 @@
             <h1>직무역량 평가 문제풀이</h1>
             <div class="exam-selection">
                 <h2>시험 선택</h2>
+                <div class="mode-setting">
+                    <label class="mode-label-text">문제 출제 방식:</label>
+                    <div class="mode-toggle-container">
+                        <input type="checkbox" id="randomModeHome" class="mode-checkbox">
+                        <label for="randomModeHome" class="mode-toggle-switch">
+                            <span class="mode-slider">
+                                <span class="mode-text-left">일반</span>
+                                <span class="mode-text-right">랜덤</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
                 <div class="exam-buttons">
                     <button onclick="startExam('2021')" class="exam-btn">2021년 3급 승진 기초역량평가 필기시험 기출문제</button>
                     <button onclick="startExam('2022')" class="exam-btn">2022년 3급 승진 기초역량평가 필기시험 기출문제</button>

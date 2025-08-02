@@ -58,71 +58,107 @@ body {
     right: 1.5rem;
 }
 
-.mode-controls {
+/* 홈페이지 모드 설정 스타일 */
+.mode-setting {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--light-teal);
+    border-radius: 12px;
+    border: 2px solid var(--pastel-pink);
 }
 
-.mode-toggle {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+.mode-label-text {
+    color: var(--pure-black);
+    font-size: 1rem;
+    font-weight: 600;
 }
 
-.toggle-switch {
+.mode-toggle-container {
     position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 24px;
-    cursor: pointer;
 }
 
-.toggle-switch input {
+.mode-checkbox {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-.slider {
+.mode-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.mode-slider {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--pure-white);
-    border: 2px solid var(--mint-green);
-    transition: 0.3s;
-    border-radius: 24px;
+    background: linear-gradient(135deg, var(--deep-teal) 0%, var(--mint-green) 100%);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+    box-shadow: 0 4px 15px rgba(5, 79, 82, 0.2);
 }
 
-.slider:before {
-    position: absolute;
+.mode-slider:before {
     content: "";
-    height: 16px;
-    width: 16px;
-    left: 2px;
-    bottom: 2px;
-    background-color: var(--mint-green);
-    transition: 0.3s;
-    border-radius: 50%;
+    position: absolute;
+    height: 32px;
+    width: 56px;
+    left: 4px;
+    bottom: 4px;
+    background: var(--pure-white);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-input:checked + .slider {
-    background-color: var(--mint-green);
-    border-color: var(--mint-green);
+.mode-checkbox:checked + .mode-toggle-switch .mode-slider {
+    background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--mint-green) 100%);
 }
 
-input:checked + .slider:before {
-    background-color: var(--pure-white);
-    transform: translateX(26px);
+.mode-checkbox:checked + .mode-toggle-switch .mode-slider:before {
+    transform: translateX(60px);
 }
 
-.mode-label {
-    color: var(--pure-white);
-    font-size: 0.85rem;
+.mode-text-left,
+.mode-text-right {
+    position: absolute;
+    font-size: 0.8rem;
     font-weight: 600;
-    min-width: 60px;
+    color: var(--pure-white);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.mode-text-left {
+    left: 12px;
+}
+
+.mode-text-right {
+    right: 12px;
+}
+
+.mode-checkbox:not(:checked) + .mode-toggle-switch .mode-text-left {
+    opacity: 1;
+    color: var(--pure-black);
+}
+
+.mode-checkbox:checked + .mode-toggle-switch .mode-text-right {
+    opacity: 1;
+    color: var(--pure-black);
 }
 
 .progress-badge {
@@ -609,33 +645,39 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
         right: 1rem;
     }
     
-    .mode-controls {
-        gap: 0.5rem;
+    .mode-setting {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1rem;
     }
     
-    .mode-toggle {
-        gap: 0.3rem;
+    .mode-toggle-switch {
+        width: 100px;
+        height: 32px;
     }
     
-    .toggle-switch {
-        width: 40px;
-        height: 20px;
+    .mode-slider:before {
+        height: 24px;
+        width: 44px;
+        left: 4px;
+        bottom: 4px;
     }
     
-    .slider:before {
-        height: 12px;
-        width: 12px;
-        left: 2px;
-        bottom: 2px;
+    .mode-checkbox:checked + .mode-toggle-switch .mode-slider:before {
+        transform: translateX(48px);
     }
     
-    input:checked + .slider:before {
-        transform: translateX(20px);
+    .mode-text-left,
+    .mode-text-right {
+        font-size: 0.7rem;
     }
     
-    .mode-label {
-        font-size: 0.75rem;
-        min-width: 50px;
+    .mode-text-left {
+        left: 8px;
+    }
+    
+    .mode-text-right {
+        right: 8px;
     }
     
     .progress-badge,

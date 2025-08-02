@@ -26,7 +26,32 @@ document.addEventListener('DOMContentLoaded', async function() {
     // 로컬 스토리지에서 진행 상황 확인하여 표시
     updateProgressIndicators();
     
+    // 랜덤 모드 토글 초기화
+    initializeRandomModeToggle();
+    
 });
+
+// 랜덤 모드 토글 기능 초기화
+function initializeRandomModeToggle() {
+    const randomModeToggle = document.getElementById('randomModeHome');
+    
+    if (randomModeToggle) {
+        // 저장된 설정 불러오기 (기본값: true - 랜덤 모드)
+        const isRandomMode = localStorage.getItem('quizRandomMode') !== 'false';
+        randomModeToggle.checked = isRandomMode;
+        
+        // 토글 이벤트 리스너
+        randomModeToggle.addEventListener('change', function() {
+            const newRandomMode = this.checked;
+            localStorage.setItem('quizRandomMode', newRandomMode.toString());
+            
+            // 사용자에게 변경 안내
+            const modeText = newRandomMode ? '랜덤 모드' : '일반 모드';
+            // alert 대신 더 우아한 알림으로 대체할 수 있음
+            console.log(`문제 출제 방식이 ${modeText}로 변경되었습니다.`);
+        });
+    }
+}
 
 // 각 시험별 진행 상황을 버튼에 표시 (사용자별)
 function updateProgressIndicators() {
