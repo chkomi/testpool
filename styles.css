@@ -631,6 +631,7 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
     max-width: 500px;
     width: 90%;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
 .user-modal-content h2 {
@@ -697,6 +698,30 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
     background: #c82333;
 }
 
+.modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    background: #f0f0f0;
+    color: var(--wine-red);
+}
+
 /* 현재 사용자 정보 표시 */
 .current-user-info {
     background: rgba(255, 255, 255, 0.9);
@@ -724,6 +749,30 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
 .current-user-info button:hover {
     background: var(--wine-red);
     color: white;
+}
+
+/* Powered by 뱃지 스타일 */
+.powered-by-badge {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background: rgba(114, 47, 55, 0.9);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.powered-by-badge:hover {
+    background: rgba(114, 47, 55, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* 관리자 대시보드 스타일 */

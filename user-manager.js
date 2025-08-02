@@ -32,12 +32,12 @@ class UserManager {
         modal.className = 'user-modal';
         modal.innerHTML = `
             <div class="user-modal-content">
+                <button class="modal-close-btn" onclick="this.closest('.user-modal').remove(); userManager.updateUserDisplay();">&times;</button>
                 <h2>사용자 정보</h2>
                 <div class="user-options">
                     <div class="new-user-section">
                         <h3>새 사용자로 시작</h3>
-                        <input type="text" id="user-name" placeholder="이름 (예: 홍길동)" required>
-                        <input type="text" id="user-dept" placeholder="부서 (예: 총무팀)" required>
+                        <input type="text" id="user-name" placeholder="닉네임 (예: 홍길동)" required>
                         <button id="create-user-btn">시작하기</button>
                     </div>
                     <div class="existing-user-section">
@@ -46,7 +46,6 @@ class UserManager {
                             <option value="">사용자 선택...</option>
                         </select>
                         <button id="select-user-btn">선택</button>
-                        <button id="clear-users-btn" class="danger-btn">전체 기록 삭제</button>
                     </div>
                 </div>
             </div>
@@ -62,8 +61,6 @@ class UserManager {
     addModalEventListeners(modal) {
         const createBtn = modal.querySelector('#create-user-btn');
         const selectBtn = modal.querySelector('#select-user-btn');
-        const clearBtn = modal.querySelector('#clear-users-btn');
-
         createBtn.addEventListener('click', () => {
             this.createNewUser(modal);
         });
@@ -71,19 +68,14 @@ class UserManager {
         selectBtn.addEventListener('click', () => {
             this.selectExistingUser(modal);
         });
-
-        clearBtn.addEventListener('click', () => {
-            this.clearAllUsers(modal);
-        });
     }
 
     // 새 사용자 생성
     createNewUser(modal) {
         const name = modal.querySelector('#user-name').value.trim();
-        const dept = modal.querySelector('#user-dept').value.trim();
 
-        if (!name || !dept) {
-            alert('이름과 부서를 모두 입력해주세요.');
+        if (!name) {
+            alert('닉네임을 입력해주세요.');
             return;
         }
 
@@ -91,7 +83,6 @@ class UserManager {
         const user = {
             id: userId,
             name: name,
-            department: dept,
             createdAt: Date.now(),
             lastAccess: Date.now()
         };
@@ -159,24 +150,20 @@ class UserManager {
         users.forEach(user => {
             const option = document.createElement('option');
             option.value = user.id;
-            option.textContent = `${user.name} (${user.department})`;
+            option.textContent = user.name;
             select.appendChild(option);
         });
     }
 
-    // 전체 사용자 기록 삭제
-    clearAllUsers(modal) {
-        if (confirm('모든 사용자의 기록을 삭제하시겠습니까?\n이 작업은 되돌릴 수 없습니다.')) {
-            localStorage.clear();
-            alert('모든 기록이 삭제되었습니다.');
-            location.reload();
-        }
-    }
 
     // 모달 닫기
     closeModal(modal) {
         document.body.removeChild(modal);
         this.updateUserDisplay();
+        // 사용자 변경 시 페이지 새로고침하여 새로운 사용자의 진행 상황 표시
+        if (typeof updateProgressIndicators === 'function') {
+            updateProgressIndicators();
+        }
     }
 
     // 현재 사용자 표시 업데이트
@@ -185,7 +172,7 @@ class UserManager {
             const userInfo = document.createElement('div');
             userInfo.className = 'current-user-info';
             userInfo.innerHTML = `
-                <span>현재 사용자: <strong>${this.currentUser.name}</strong> (${this.currentUser.department})</span>
+                <span>현재 사용자: <strong>${this.currentUser.name}</strong></span>
                 <button onclick="userManager.changeUser()">사용자 변경</button>
             `;
             
@@ -203,6 +190,13 @@ class UserManager {
     // 사용자 변경
     changeUser() {
         this.setupUser();
+    }
+    
+    // 사용자 변경 후 진행 상황 새로고침
+    refreshUserProgress() {
+        if (typeof updateProgressIndicators === 'function') {
+            updateProgressIndicators();
+        }
     }
 
     // 사용자별 진행상황 키 생성

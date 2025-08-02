@@ -1,4 +1,4 @@
-// 메인 페이지 기능
+// 사전공개문제 페이지 기능
 document.addEventListener('DOMContentLoaded', async function() {
     // 사용자 설정이 없으면 사용자 선택 모달 표시
     if (!userManager.currentUser) {
@@ -24,20 +24,17 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
 
     // 로컬 스토리지에서 진행 상황 확인하여 표시
-    updateProgressIndicators();
-    
+    updatePreviewProgressIndicators();
 });
 
-// 각 시험별 진행 상황을 버튼에 표시 (사용자별)
-function updateProgressIndicators() {
+// 각 사전공개문제별 진행 상황을 버튼에 표시 (사용자별)
+function updatePreviewProgressIndicators() {
     if (!userManager.currentUser) return;
     
-    const years = ['2021', '2022', '2023', '2024'];
-    
-    years.forEach(year => {
-        const progressKey = userManager.getUserProgressKey(year);
+    for (let i = 1; i <= 8; i++) {
+        const progressKey = userManager.getUserProgressKey(`preview_${i}`);
         const progress = localStorage.getItem(progressKey);
-        const button = document.querySelector(`button[onclick="startExam('${year}')"]`);
+        const button = document.querySelector(`button[onclick="startPreviewQuestion(${i})"]`);
         
         if (progress && button) {
             const progressData = JSON.parse(progress);
@@ -61,66 +58,36 @@ function updateProgressIndicators() {
                 button.appendChild(progressSpan);
             }
         }
-    });
+    }
 }
 
-// 사전공개문제 페이지로 이동
-function startPreviewExam() {
-    location.href = 'preview-exam.html';
-}
-
-// 시험 시작 전 확인 및 이어하기 옵션 (사용자별)
-function startExam(year) {
+// 사전공개문제 시작 전 확인 및 이어하기 옵션 (사용자별)
+function startPreviewQuestion(questionNumber) {
     if (!userManager.currentUser) {
         alert('사용자를 먼저 선택해주세요.');
         return;
     }
     
-    const progressKey = userManager.getUserProgressKey(year);
+    const progressKey = userManager.getUserProgressKey(`preview_${questionNumber}`);
     const progress = localStorage.getItem(progressKey);
     
     if (progress) {
         const progressData = JSON.parse(progress);
         if (progressData.answered > 0) {
-            const resumeChoice = confirm(`${year}년 시험에 진행 중인 내용이 있습니다.\n\n이어서 풀기: 확인\n처음부터 시작: 취소`);
+            const resumeChoice = confirm(`사전공개문제 ${questionNumber}번에 진행 중인 내용이 있습니다.\\n\\n이어서 풀기: 확인\\n처음부터 시작: 취소`);
             
             if (resumeChoice) {
                 // 이어하기
-                location.href = `${year}-exam.html?resume=true`;
+                location.href = `preview-${questionNumber}-exam.html?resume=true`;
             } else {
                 // 처음부터 시작 - 진행 상황 삭제
                 localStorage.removeItem(progressKey);
-                location.href = `${year}-exam.html`;
+                location.href = `preview-${questionNumber}-exam.html`;
             }
             return;
         }
     }
     
     // 첫 시작
-    location.href = `${year}-exam.html`;
-}
-
-
-// 결과 내보내기 (CSV 형식)
-function exportResults() {
-    const results = userManager.getAllResults();
-    
-    let csv = '사용자명,부서,시험년도,점수,총문제수,정답률,완료일시\n';
-    
-    results.forEach(result => {
-        const percentage = Math.round((result.score / result.total) * 100);
-        const completedDate = new Date(result.completedAt).toLocaleString('ko-KR');
-        csv += `${result.user.name},${result.user.department},2024년,${result.score},${result.total},${percentage}%,${completedDate}\n`;
-    });
-    
-    // CSV 파일 다운로드
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    const url = URL.createObjectURL(blob);
-    link.setAttribute('href', url);
-    link.setAttribute('download', `시험결과_${new Date().toISOString().split('T')[0]}.csv`);
-    link.style.visibility = 'hidden';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    location.href = `preview-${questionNumber}-exam.html`;
 }
