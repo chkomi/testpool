@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
 
 :root {
-    --wine-red: #722F37;
-    --ivory: #F5F5DC;
-    --black: #000000;
-    --light-wine: #D4A6A8;
-    --dark-wine: #5A252A;
+    --primary-teal: #1B6B67;
+    --accent-pink: #F5C6CB;
+    --bright-teal: #4ECDC4;
+    --cream-white: #F8F8F6;
+    --dark-navy: #2C3E50;
+    --light-teal: #7DD3C9;
+    --pale-pink: #FCE8EA;
+    --deep-teal: #155A56;
 }
 
 * {
@@ -15,9 +18,9 @@
 }
 
 body {
-    background: linear-gradient(135deg, var(--ivory) 0%, #E8E8D0 100%);
+    background: linear-gradient(135deg, var(--cream-white) 0%, var(--pale-pink) 100%);
     font-family: 'Noto Sans KR', sans-serif;
-    color: var(--black);
+    color: var(--dark-navy);
     min-height: 100vh;
     line-height: 1.6;
     padding: 1rem;
@@ -26,18 +29,18 @@ body {
 .quiz-container {
     background: white;
     border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(114, 47, 55, 0.15);
+    box-shadow: 0 8px 32px rgba(27, 107, 103, 0.15);
     max-width: 100%;
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
     overflow: hidden;
-    border: 2px solid var(--ivory);
+    border: 2px solid var(--cream-white);
 }
 
 .quiz-header {
     padding: 2rem 1.5rem;
-    background: linear-gradient(135deg, var(--wine-red) 0%, var(--dark-wine) 100%);
+    background: linear-gradient(135deg, var(--primary-teal) 0%, var(--deep-teal) 100%);
     color: white;
     text-align: center;
     position: relative;
@@ -56,7 +59,7 @@ body {
 
 .progress-badge {
     background: rgba(255, 255, 255, 0.9);
-    color: var(--wine-red);
+    color: var(--primary-teal);
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.85rem;
@@ -67,7 +70,7 @@ body {
 
 .home-btn {
     background: rgba(255, 255, 255, 0.9);
-    color: var(--wine-red);
+    color: var(--primary-teal);
     border: 2px solid white;
     border-radius: 20px;
     padding: 0.5rem 1rem;
@@ -96,7 +99,7 @@ h2 {
     font-size: 1.25rem;
     font-weight: 500;
     margin-bottom: 1.5rem;
-    color: var(--black);
+    color: var(--dark-navy);
     line-height: 1.4;
     text-align: left;
     padding: 0;
@@ -115,7 +118,7 @@ h2 {
 }
 
 .exam-selection h2 {
-    color: var(--wine-red);
+    color: var(--primary-teal);
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
@@ -128,7 +131,7 @@ h2 {
 }
 
 .exam-btn {
-    background: linear-gradient(135deg, var(--wine-red) 0%, var(--light-wine) 100%);
+    background: linear-gradient(135deg, var(--primary-teal) 0%, var(--light-teal) 100%);
     color: white;
     border: none;
     border-radius: 12px;
@@ -137,13 +140,13 @@ h2 {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(114, 47, 55, 0.2);
+    box-shadow: 0 4px 15px rgba(27, 107, 103, 0.2);
 }
 
 .exam-btn:hover:not(:disabled), .exam-btn:focus:not(:disabled) {
-    background: linear-gradient(135deg, var(--light-wine) 0%, var(--wine-red) 100%);
+    background: linear-gradient(135deg, var(--bright-teal) 0%, var(--primary-teal) 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(114, 47, 55, 0.3);
+    box-shadow: 0 6px 20px rgba(27, 107, 103, 0.3);
     outline: none;
 }
 
@@ -157,27 +160,27 @@ h2 {
 
 #question {
     padding: 2rem 1.5rem;
-    background: var(--ivory);
-    border: 2px solid var(--wine-red);
+    background: var(--cream-white);
+    border: 2px solid var(--primary-teal);
     border-radius: 16px;
     margin: 1.5rem;
     font-size: 1rem;
     line-height: 1.8;
-    color: var(--wine-red);
+    color: var(--primary-teal);
     font-weight: 500;
     text-align: justify;
     text-justify: inter-word;
-    box-shadow: 0 4px 15px rgba(114, 47, 55, 0.1);
+    box-shadow: 0 4px 15px rgba(27, 107, 103, 0.1);
 }
 
 ul {
     list-style-type: none;
     padding: 1.5rem;
-    background: var(--ivory);
+    background: var(--cream-white);
     margin: 1.5rem;
     border-radius: 16px;
-    border: 2px solid var(--light-wine);
-    box-shadow: 0 2px 10px rgba(114, 47, 55, 0.08);
+    border: 2px solid var(--accent-pink);
+    box-shadow: 0 2px 10px rgba(27, 107, 103, 0.08);
 }
 
 ul li {
@@ -189,8 +192,8 @@ ul li {
 }
 
 ul li:hover {
-    border-color: var(--wine-red);
-    box-shadow: 0 2px 8px rgba(114, 47, 55, 0.1);
+    border-color: var(--primary-teal);
+    box-shadow: 0 2px 8px rgba(27, 107, 103, 0.1);
 }
 
 ul li label {
@@ -202,7 +205,7 @@ ul li label {
     transition: all 0.3s ease;
     position: relative;
     padding-left: 3rem;
-    color: var(--black);
+    color: var(--dark-navy);
     background: white;
     text-align: justify;
     text-justify: inter-word;
@@ -217,7 +220,7 @@ ul li label:before {
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    border: 2px solid var(--wine-red);
+    border: 2px solid var(--primary-teal);
     border-radius: 50%;
     background: white;
 }
@@ -227,14 +230,14 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked + label {
-    background: var(--light-wine);
-    color: var(--black);
+    background: var(--accent-pink);
+    color: var(--dark-navy);
     font-weight: 500;
 }
 
 input[type="radio"]:checked + label:before {
-    background: var(--wine-red);
-    border-color: var(--wine-red);
+    background: var(--primary-teal);
+    border-color: var(--primary-teal);
 }
 
 input[type="radio"]:checked + label:after {
@@ -256,12 +259,12 @@ input[type="radio"]:checked + label:after {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
-    background: var(--ivory);
+    background: var(--cream-white);
     border-top: 1px solid #E0E0E0;
 }
 
 .quiz-controls button {
-    background: var(--wine-red);
+    background: var(--primary-teal);
     color: white;
     border: none;
     border-radius: 8px;
@@ -274,7 +277,7 @@ input[type="radio"]:checked + label:after {
 }
 
 .quiz-controls button:hover:not(:disabled) {
-    background: var(--light-wine);
+    background: var(--bright-teal);
     transform: translateY(-1px);
 }
 
@@ -286,12 +289,12 @@ input[type="radio"]:checked + label:after {
 
 #question-counter {
     font-weight: 500;
-    color: var(--wine-red);
+    color: var(--primary-teal);
     font-size: 1rem;
 }
 
 #submit {
-    background: linear-gradient(135deg, var(--wine-red) 0%, var(--dark-wine) 100%);
+    background: linear-gradient(135deg, var(--primary-teal) 0%, var(--deep-teal) 100%);
     color: white;
     border: none;
     padding: 1.2rem;
@@ -301,13 +304,13 @@ input[type="radio"]:checked + label:after {
     transition: all 0.3s ease;
     margin: 1.5rem;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(114, 47, 55, 0.2);
+    box-shadow: 0 4px 15px rgba(27, 107, 103, 0.2);
 }
 
 #submit:hover, #submit:focus {
-    background: linear-gradient(135deg, var(--light-wine) 0%, var(--wine-red) 100%);
+    background: linear-gradient(135deg, var(--bright-teal) 0%, var(--primary-teal) 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(114, 47, 55, 0.3);
+    box-shadow: 0 6px 20px rgba(27, 107, 103, 0.3);
     outline: none;
 }
 
@@ -318,7 +321,7 @@ input[type="radio"]:checked + label:after {
 }
 
 .result h2 {
-    color: var(--wine-red);
+    color: var(--primary-teal);
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
 }
@@ -326,7 +329,7 @@ input[type="radio"]:checked + label:after {
 .result p {
     font-size: 1.1rem;
     margin-bottom: 1rem;
-    color: var(--black);
+    color: var(--dark-navy);
 }
 
 .detailed-results {
@@ -334,13 +337,13 @@ input[type="radio"]:checked + label:after {
     text-align: left;
     max-height: 60vh;
     overflow-y: auto;
-    border: 2px solid var(--ivory);
+    border: 2px solid var(--cream-white);
     border-radius: 12px;
     padding: 1rem;
 }
 
 .detailed-results h3 {
-    color: var(--wine-red);
+    color: var(--primary-teal);
     margin-bottom: 1rem;
     text-align: center;
     font-size: 1.2rem;
@@ -350,7 +353,7 @@ input[type="radio"]:checked + label:after {
     margin: 1rem 0;
     padding: 1rem;
     border-radius: 8px;
-    border-left: 4px solid var(--wine-red);
+    border-left: 4px solid var(--primary-teal);
 }
 
 .question-result.correct {
@@ -370,7 +373,7 @@ input[type="radio"]:checked + label:after {
 }
 
 .result button {
-    background: var(--wine-red);
+    background: var(--primary-teal);
     color: white;
     border: none;
     border-radius: 8px;
@@ -383,7 +386,7 @@ input[type="radio"]:checked + label:after {
 }
 
 .result button:hover {
-    background: var(--light-wine);
+    background: var(--bright-teal);
     transform: translateY(-1px);
 }
 
@@ -396,7 +399,7 @@ input[type="radio"]:checked + label:after {
     background: white;
     margin: 1rem 1.5rem;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(114, 47, 55, 0.1);
+    box-shadow: 0 4px 15px rgba(27, 107, 103, 0.1);
     animation: slideDown 0.3s ease-out;
 }
 
@@ -440,19 +443,19 @@ input[type="radio"]:checked + label:after {
 .feedback-text {
     font-weight: 500;
     font-size: 1rem;
-    color: var(--black);
+    color: var(--dark-navy);
 }
 
 .explanation-content {
     padding: 1rem 1.5rem;
-    background: var(--ivory);
+    background: var(--cream-white);
     border-top: 1px solid #E0E0E0;
 }
 
 .explanation-content p {
     font-size: 0.9rem;
     line-height: 1.6;
-    color: var(--black);
+    color: var(--dark-navy);
 }
 
 /* 선택지 피드백 스타일 */
@@ -467,9 +470,9 @@ ul li.selected-incorrect {
 }
 
 ul li.correct-answer {
-    border-color: var(--wine-red) !important;
+    border-color: var(--primary-teal) !important;
     border-width: 3px !important;
-    background: linear-gradient(135deg, rgba(114, 47, 55, 0.15) 0%, rgba(114, 47, 55, 0.08) 100%);
+    background: linear-gradient(135deg, rgba(27, 107, 103, 0.15) 0%, rgba(27, 107, 103, 0.08) 100%);
     position: relative;
 }
 
@@ -478,7 +481,7 @@ ul li.correct-answer:after {
     position: absolute;
     top: 0.5rem;
     right: 1rem;
-    background: var(--wine-red);
+    background: var(--primary-teal);
     color: white;
     padding: 0.25rem 0.5rem;
     border-radius: 12px;
@@ -489,13 +492,13 @@ ul li.correct-answer:after {
 ul li.selected-correct label,
 ul li.selected-incorrect label,
 ul li.correct-answer label {
-    color: var(--black) !important;
+    color: var(--dark-navy) !important;
     background: transparent !important;
 }
 
 ul li.selected-correct input[type="radio"]:checked + label:before,
 ul li.selected-incorrect input[type="radio"]:checked + label:before {
-    border-color: var(--black) !important;
+    border-color: var(--dark-navy) !important;
 }
 
 ul li.selected-correct input[type="radio"]:checked + label:after {
@@ -635,7 +638,7 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
 }
 
 .user-modal-content h2 {
-    color: var(--wine-red);
+    color: var(--primary-teal);
     text-align: center;
     margin-bottom: 1.5rem;
 }
@@ -647,13 +650,13 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
 
 .new-user-section, .existing-user-section {
     padding: 1.5rem;
-    border: 2px solid var(--ivory);
+    border: 2px solid var(--cream-white);
     border-radius: 12px;
-    background: var(--ivory);
+    background: var(--cream-white);
 }
 
 .new-user-section h3, .existing-user-section h3 {
-    color: var(--wine-red);
+    color: var(--primary-teal);
     margin-bottom: 1rem;
     font-size: 1.1rem;
 }
@@ -669,11 +672,11 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
 
 .user-modal input:focus, .user-modal select:focus {
     outline: none;
-    border-color: var(--wine-red);
+    border-color: var(--primary-teal);
 }
 
 .user-modal button {
-    background: var(--wine-red);
+    background: var(--primary-teal);
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -685,7 +688,7 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
 }
 
 .user-modal button:hover {
-    background: var(--dark-wine);
+    background: var(--deep-teal);
     transform: translateY(-1px);
 }
 
@@ -719,13 +722,13 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
 
 .modal-close-btn:hover {
     background: #f0f0f0;
-    color: var(--wine-red);
+    color: var(--primary-teal);
 }
 
 /* 현재 사용자 정보 표시 */
 .current-user-info {
     background: rgba(255, 255, 255, 0.9);
-    color: var(--wine-red);
+    color: var(--primary-teal);
     padding: 0.75rem 1rem;
     border-radius: 8px;
     margin-bottom: 1rem;
@@ -737,8 +740,8 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
 
 .current-user-info button {
     background: transparent;
-    color: var(--wine-red);
-    border: 1px solid var(--wine-red);
+    color: var(--primary-teal);
+    border: 1px solid var(--primary-teal);
     padding: 0.25rem 0.75rem;
     border-radius: 6px;
     font-size: 0.8rem;
@@ -747,7 +750,7 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
 }
 
 .current-user-info button:hover {
-    background: var(--wine-red);
+    background: var(--primary-teal);
     color: white;
 }
 
@@ -756,7 +759,7 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
     position: fixed;
     bottom: 1rem;
     right: 1rem;
-    background: rgba(114, 47, 55, 0.9);
+    background: rgba(27, 107, 103, 0.9);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 20px;
@@ -770,7 +773,7 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
 }
 
 .powered-by-badge:hover {
-    background: rgba(114, 47, 55, 1);
+    background: rgba(27, 107, 103, 1);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
@@ -782,11 +785,11 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
     padding: 2rem;
     background: white;
     border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(114, 47, 55, 0.15);
+    box-shadow: 0 8px 32px rgba(27, 107, 103, 0.15);
 }
 
 .admin-dashboard h2 {
-    color: var(--wine-red);
+    color: var(--primary-teal);
     margin-bottom: 2rem;
     text-align: center;
 }
@@ -799,21 +802,21 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
 }
 
 .stat-card {
-    background: var(--ivory);
+    background: var(--cream-white);
     padding: 1.5rem;
     border-radius: 12px;
     text-align: center;
-    border: 2px solid var(--light-wine);
+    border: 2px solid var(--accent-pink);
 }
 
 .stat-number {
     font-size: 2rem;
     font-weight: bold;
-    color: var(--wine-red);
+    color: var(--primary-teal);
 }
 
 .stat-label {
-    color: var(--black);
+    color: var(--dark-navy);
     margin-top: 0.5rem;
 }
 
@@ -831,12 +834,12 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
 }
 
 .results-table th {
-    background: var(--wine-red);
+    background: var(--primary-teal);
     color: white;
 }
 
 .results-table tr:hover {
-    background: var(--ivory);
+    background: var(--cream-white);
 }
 
 @media (max-width: 480px) {
