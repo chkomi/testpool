@@ -9,13 +9,78 @@ function shuffleArray(array) {
     return shuffled;
 }
 
-// 문제 순서를 랜덤으로 섞어서 저장
-const shuffledQuizData = shuffleArray(quizData.map((q, index) => ({...q, originalIndex: index + 1})));
+// 현재 년도 추출 (파일명에서)  
+const currentYear = window.location.pathname.match(/(\d{4})-exam/)?.[1] || '2024';
 
-let currentQuiz = 0;
-let score = 0;
-let userAnswers = [];
-let questionAnswered = false;
+// 사용자별 저장 키 생성
+function getStorageKey() {
+    if (typeof userManager !== 'undefined' && userManager.currentUser) {
+        return userManager.getUserProgressKey(currentYear);
+    }
+    return `exam_${currentYear}_progress`; // fallback
+}
+
+// 저장된 진행 상황 불러오기
+function loadProgress() {
+    const saved = localStorage.getItem(getStorageKey());
+    if (saved) {
+        const data = JSON.parse(saved);
+        return {
+            shuffledQuizData: data.shuffledQuizData || shuffleArray(quizData.map((q, index) => ({...q, originalIndex: index + 1}))),
+            currentQuiz: data.currentQuiz || 0,
+            userAnswers: data.userAnswers || [],
+            score: data.score || 0
+        };
+    }
+    return null;
+}
+
+// 진행 상황 저장하기
+function saveProgress() {
+    const progressData = {
+        shuffledQuizData,
+        currentQuiz,
+        userAnswers,
+        score,
+        total: shuffledQuizData.length,
+        answered: userAnswers.filter(answer => answer).length,
+        correct: userAnswers.filter((answer, index) => answer === shuffledQuizData[index]?.correct).length,
+        lastUpdated: Date.now()
+    };
+    localStorage.setItem(getStorageKey(), JSON.stringify(progressData));
+}
+
+// 진행 상황 초기화
+let shuffledQuizData, currentQuiz, score, userAnswers, questionAnswered;
+
+// URL 파라미터 확인하여 이어하기 또는 새로 시작
+const urlParams = new URLSearchParams(window.location.search);
+const shouldResume = urlParams.get('resume') === 'true';
+
+if (shouldResume) {
+    const progress = loadProgress();
+    if (progress) {
+        shuffledQuizData = progress.shuffledQuizData;
+        currentQuiz = progress.currentQuiz;
+        userAnswers = progress.userAnswers;
+        score = progress.score;
+        questionAnswered = false;
+    } else {
+        // 진행 상황이 없으면 새로 시작
+        shuffledQuizData = shuffleArray(quizData.map((q, index) => ({...q, originalIndex: index + 1})));
+        currentQuiz = 0;
+        score = 0;
+        userAnswers = [];
+        questionAnswered = false;
+    }
+} else {
+    // 새로 시작
+    shuffledQuizData = shuffleArray(quizData.map((q, index) => ({...q, originalIndex: index + 1})));
+    currentQuiz = 0;
+    score = 0;
+    userAnswers = [];
+    questionAnswered = false;
+}
 
 const quiz = document.getElementById('quiz');
 const question = document.getElementById('question');
@@ -48,6 +113,9 @@ function updateProgressBadge() {
     
     const percentage = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
     progressBadge.textContent = `${correctCount}/${answeredCount} (${percentage}%)`;
+    
+    // 진행 상황 저장
+    saveProgress();
 }
 
 function loadQuiz() {
@@ -199,6 +267,7 @@ document.addEventListener('change', (e) => {
             showFeedback(selectedAnswer);
             updateNextButtonState();
             updateProgressBadge();
+            saveProgress(); // 답안 선택 시 즉시 저장
         }
     }
 });
@@ -212,6 +281,7 @@ prevBtn.addEventListener('click', () => {
     if (currentQuiz > 0) {
         currentQuiz--;
         loadQuiz();
+        saveProgress(); // 페이지 이동 시 저장
     }
 });
 
@@ -221,9 +291,12 @@ nextBtn.addEventListener('click', () => {
             // 마지막 문제인 경우 결과 표시
             calculateScore();
             showResults();
+            // 완료 시 진행 상황 삭제  
+            localStorage.removeItem(getStorageKey());
         } else {
             currentQuiz++;
             loadQuiz();
+            saveProgress(); // 페이지 이동 시 저장
         }
     } else {
         alert('답안을 선택해주세요.');
@@ -234,6 +307,8 @@ submitBtn.addEventListener('click', () => {
     if (questionAnswered) {
         calculateScore();
         showResults();
+        // 완료 시 진행 상황 삭제
+        localStorage.removeItem(getStorageKey());
     } else {
         alert('답안을 선택해주세요.');
     }
