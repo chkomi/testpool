@@ -11,7 +11,16 @@
         <div class="quiz-header">
             <div class="header-controls">
                 <div class="progress-badge" id="progress-badge">0/0 (0%)</div>
-                <button class="home-btn" onclick="location.href='index.html'">🏠 홈</button>
+                <div class="mode-controls">
+                    <div class="mode-toggle">
+                        <input type="checkbox" id="randomMode" checked>
+                        <label for="randomMode" class="toggle-switch">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="mode-label" id="modeLabel">🔀 랜덤</span>
+                    </div>
+                    <button class="home-btn" onclick="location.href='index.html'">🏠 홈</button>
+                </div>
             </div>
             <h1>2021년 3급 승진 기초역량평가 필기시험</h1>
             <h2 id="question">Question text</h2>

@@ -9,6 +9,14 @@ function shuffleArray(array) {
     return shuffled;
 }
 
+// 순차적 배열 생성 (원래 순서 유지)
+function createSequentialArray(array) {
+    return array.map((q, index) => ({...q, originalIndex: index + 1}));
+}
+
+// 랜덤 모드 상태 관리
+let isRandomMode = localStorage.getItem('quizRandomMode') !== 'false'; // 기본값은 true
+
 // 현재 년도 추출 (파일명에서)  
 const currentYear = window.location.pathname.match(/(\d{4})-exam/)?.[1] || '2024';
 
@@ -20,16 +28,26 @@ function getStorageKey() {
     return `exam_${currentYear}_progress`; // fallback
 }
 
+// 퀴즈 데이터 초기화 함수
+function initializeQuizData() {
+    if (isRandomMode) {
+        return shuffleArray(quizData.map((q, index) => ({...q, originalIndex: index + 1})));
+    } else {
+        return createSequentialArray(quizData);
+    }
+}
+
 // 저장된 진행 상황 불러오기
 function loadProgress() {
     const saved = localStorage.getItem(getStorageKey());
     if (saved) {
         const data = JSON.parse(saved);
         return {
-            shuffledQuizData: data.shuffledQuizData || shuffleArray(quizData.map((q, index) => ({...q, originalIndex: index + 1}))),
+            shuffledQuizData: data.shuffledQuizData || initializeQuizData(),
             currentQuiz: data.currentQuiz || 0,
             userAnswers: data.userAnswers || [],
-            score: data.score || 0
+            score: data.score || 0,
+            isRandomMode: data.isRandomMode !== undefined ? data.isRandomMode : isRandomMode
         };
     }
     return null;
@@ -42,6 +60,7 @@ function saveProgress() {
         currentQuiz,
         userAnswers,
         score,
+        isRandomMode,
         total: shuffledQuizData.length,
         answered: userAnswers.filter(answer => answer).length,
         correct: userAnswers.filter((answer, index) => answer === shuffledQuizData[index]?.correct).length,
@@ -64,10 +83,11 @@ if (shouldResume) {
         currentQuiz = progress.currentQuiz;
         userAnswers = progress.userAnswers;
         score = progress.score;
+        isRandomMode = progress.isRandomMode !== undefined ? progress.isRandomMode : isRandomMode;
         questionAnswered = false;
     } else {
         // 진행 상황이 없으면 새로 시작
-        shuffledQuizData = shuffleArray(quizData.map((q, index) => ({...q, originalIndex: index + 1})));
+        shuffledQuizData = initializeQuizData();
         currentQuiz = 0;
         score = 0;
         userAnswers = [];
@@ -75,7 +95,7 @@ if (shouldResume) {
     }
 } else {
     // 새로 시작
-    shuffledQuizData = shuffleArray(quizData.map((q, index) => ({...q, originalIndex: index + 1})));
+    shuffledQuizData = initializeQuizData();
     currentQuiz = 0;
     score = 0;
     userAnswers = [];
@@ -368,4 +388,74 @@ function getDetailedResults() {
         `;
     }
     return detailedHTML;
+}
+
+// 랜덤/순차 모드 토글 기능
+function initializeModeToggle() {
+    const randomModeToggle = document.getElementById('randomMode');
+    const modeLabel = document.getElementById('modeLabel');
+    
+    if (randomModeToggle && modeLabel) {
+        // 초기 상태 설정
+        randomModeToggle.checked = isRandomMode;
+        updateModeLabel();
+        
+        // 토글 이벤트 리스너
+        randomModeToggle.addEventListener('change', function() {
+            isRandomMode = this.checked;
+            localStorage.setItem('quizRandomMode', isRandomMode.toString());
+            updateModeLabel();
+            
+            // 진행 중이면 확인 메시지 표시
+            if (userAnswers.some(answer => answer)) {
+                if (confirm('모드를 변경하면 현재 진행 상황이 초기화됩니다. 계속하시겠습니까?')) {
+                    restartQuiz();
+                } else {
+                    // 사용자가 취소하면 토글 상태 되돌리기
+                    this.checked = !isRandomMode;
+                    isRandomMode = !isRandomMode;
+                    localStorage.setItem('quizRandomMode', isRandomMode.toString());
+                    updateModeLabel();
+                }
+            } else {
+                // 아직 답변하지 않았으면 바로 모드 변경
+                restartQuiz();
+            }
+        });
+    }
+}
+
+function updateModeLabel() {
+    const modeLabel = document.getElementById('modeLabel');
+    if (modeLabel) {
+        modeLabel.textContent = isRandomMode ? '🔀 랜덤' : '📝 순차';
+    }
+}
+
+function restartQuiz() {
+    // 진행 상황 초기화
+    localStorage.removeItem(getStorageKey());
+    
+    // 퀴즈 데이터 재초기화
+    shuffledQuizData = initializeQuizData();
+    currentQuiz = 0;
+    score = 0;
+    userAnswers = [];
+    questionAnswered = false;
+    
+    // 퀴즈 다시 로드
+    loadQuiz();
+    saveProgress();
+}
+
+// 페이지 로드 시 토글 초기화
+document.addEventListener('DOMContentLoaded', function() {
+    initializeModeToggle();
+});
+
+// 이미 DOM이 로드된 경우를 위해
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeModeToggle);
+} else {
+    initializeModeToggle();
 }
