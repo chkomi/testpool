@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>간단 테스트</title>
+</head>
+<body>
+    <h1>2024년 vs 2021년 테스트</h1>
+    <div id="results"></div>
+    
+    <script>
+        console.log('테스트 시작');
+        
+        function testFile(year) {
+            return new Promise((resolve) => {
+                const script = document.createElement('script');
+                script.src = year + '-exam.js';
+                script.onload = function() {
+                    if (typeof quizData !== 'undefined') {
+                        resolve({year: year, success: true, count: quizData.length, first: quizData[0].question.substring(0, 50)});
+                        // 전역 변수 정리
+                        delete window.quizData;
+                    } else {
+                        resolve({year: year, success: false, error: 'quizData undefined'});
+                    }
+                };
+                script.onerror = function() {
+                    resolve({year: year, success: false, error: 'script load error'});
+                };
+                document.head.appendChild(script);
+            });
+        }
+        
+        async function runTests() {
+            const results = document.getElementById('results');
+            
+            // 2021년 테스트
+            const result2021 = await testFile('2021');
+            results.innerHTML += '<p>2021년: ' + JSON.stringify(result2021) + '</p>';
+            
+            // 잠시 대기
+            await new Promise(resolve => setTimeout(resolve, 100));
+            
+            // 2024년 테스트  
+            const result2024 = await testFile('2024');
+            results.innerHTML += '<p>2024년: ' + JSON.stringify(result2024) + '</p>';
+        }
+        
+        runTests();
+    </script>
+</body>
+</html>

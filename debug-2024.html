@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>2024년 파일 디버깅</title>
+</head>
+<body>
+    <h1>2024년 파일 로딩 디버깅</h1>
+    <div id="debug-info"></div>
+    
+    <script>
+        console.log('=== 디버깅 시작 ===');
+        
+        // 전역 변수 확인
+        window.addEventListener('error', function(e) {
+            console.error('전역 오류:', e.error);
+            document.getElementById('debug-info').innerHTML += '<p style="color:red">오류: ' + e.message + '</p>';
+        });
+        
+        console.log('2024-exam.js 로드 시작');
+    </script>
+    
+    <script src="2024-exam.js"></script>
+    
+    <script>
+        console.log('2024-exam.js 로드 완료');
+        
+        // quizData 확인
+        if (typeof quizData !== 'undefined') {
+            console.log('✅ quizData 존재:', typeof quizData);
+            console.log('✅ quizData 길이:', quizData.length);
+            
+            if (quizData.length > 0) {
+                console.log('✅ 첫 번째 문제:', quizData[0]);
+                console.log('✅ 첫 번째 문제 question 길이:', quizData[0].question.length);
+                
+                document.getElementById('debug-info').innerHTML = 
+                    '<h3>✅ 성공!</h3>' +
+                    '<p>문제 수: ' + quizData.length + '</p>' +
+                    '<p>첫 번째 문제 텍스트 길이: ' + quizData[0].question.length + ' 문자</p>' +
+                    '<p>선택지 a: ' + quizData[0].a + '</p>';
+            }
+        } else {
+            console.error('❌ quizData가 정의되지 않음');
+            document.getElementById('debug-info').innerHTML = '<p style="color:red">❌ quizData가 정의되지 않음</p>';
+        }
+        
+        console.log('=== 디버깅 완료 ===');
+    </script>
+</body>
+</html>

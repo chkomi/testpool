@@ -20,12 +20,9 @@ let isRandomMode = localStorage.getItem('quizRandomMode') !== 'false'; // 기본
 // 현재 년도 추출 (파일명에서)  
 const currentYear = window.location.pathname.match(/(\d{4})-exam/)?.[1] || '2024';
 
-// 사용자별 저장 키 생성
+// 저장 키 생성
 function getStorageKey() {
-    if (typeof userManager !== 'undefined' && userManager.currentUser) {
-        return userManager.getUserProgressKey(currentYear);
-    }
-    return `exam_${currentYear}_progress`; // fallback
+    return `exam_${currentYear}_progress`;
 }
 
 // 퀴즈 데이터 초기화 함수
