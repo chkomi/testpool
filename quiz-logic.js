@@ -141,6 +141,10 @@ function loadQuiz() {
     
     const currentQuizData = shuffledQuizData[currentQuiz];
     
+    // 요소들에 애니메이션 효과 추가
+    question.classList.add('slide-up');
+    document.querySelector('ul').classList.add('fade-in');
+    
     question.innerHTML = `${currentQuiz + 1}. ${currentQuizData.question}`;
     aText.innerText = currentQuizData.a;
     bText.innerText = currentQuizData.b;
@@ -154,6 +158,12 @@ function loadQuiz() {
     
     // 모든 선택지의 스타일 초기화
     resetOptionStyles();
+    
+    // 애니메이션 클래스 제거 (다음 애니메이션을 위해)
+    setTimeout(() => {
+        question.classList.remove('slide-up');
+        document.querySelector('ul').classList.remove('fade-in');
+    }, 800);
     
     // 이전에 선택한 답안이 있으면 복원하고 피드백 표시
     if (userAnswers[currentQuiz]) {

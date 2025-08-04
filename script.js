@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // 랜덤 모드 토글 초기화
     initializeRandomModeToggle();
     
+    // 스크롤 애니메이션 초기화
+    initializeScrollAnimations();
+    
 });
 
 // 랜덤 모드 토글 기능 초기화
@@ -123,5 +126,45 @@ function startExam(year) {
     
     // 첫 시작
     location.href = `${year}-exam.html`;
+}
+
+// 스크롤 애니메이션 초기화
+function initializeScrollAnimations() {
+    // 애니메이션할 요소들에 클래스 추가
+    const elementsToAnimate = document.querySelectorAll('.exam-selection, .mode-setting, .exam-btn');
+    elementsToAnimate.forEach(element => {
+        element.classList.add('animate-on-scroll');
+    });
+    
+    // Intersection Observer 설정
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // 요소들을 관찰 시작
+    elementsToAnimate.forEach(element => {
+        observer.observe(element);
+    });
+    
+    // 페이지 로드 시 즉시 보이는 요소들은 바로 애니메이션 적용
+    setTimeout(() => {
+        const visibleElements = document.querySelectorAll('.animate-on-scroll');
+        visibleElements.forEach(element => {
+            const rect = element.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                element.classList.add('visible');
+            }
+        });
+    }, 100);
 }
 
