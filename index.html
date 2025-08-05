@@ -11,20 +11,19 @@
         <div class="quiz-header">
             <div class="header-center">
                 <h1>직무역량 평가 문제풀이</h1>
+                <div class="header-toggle">
+                    <div class="mode-toggle-container-small">
+                        <input type="checkbox" id="randomModeHome" class="mode-checkbox-small">
+                        <label for="randomModeHome" class="mode-toggle-switch-small">
+                            <span class="mode-slider-small"></span>
+                        </label>
+                        <span class="mode-status-text-small" id="modeStatusText">일반모드</span>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="container">
             <div class="exam-selection">
-                <div class="mode-setting">
-                    <label class="mode-label-text">문제 출제 방식:</label>
-                    <div class="mode-toggle-container">
-                        <input type="checkbox" id="randomModeHome" class="mode-checkbox">
-                        <label for="randomModeHome" class="mode-toggle-switch">
-                            <span class="mode-slider"></span>
-                        </label>
-                        <span class="mode-status-text" id="modeStatusText">일반모드</span>
-                    </div>
-                </div>
                 <div class="exam-buttons">
                     <button onclick="startExam('2021')" class="exam-btn">'21년 3급승진 기초역량평가 필기기출</button>
                     <button onclick="startExam('2022')" class="exam-btn">'22년 3급승진 기초역량평가 필기기출</button>

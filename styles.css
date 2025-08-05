@@ -53,11 +53,95 @@ body {
     position: relative;
 }
 
+.header-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 .header-center h1 {
     margin: 0;
     font-size: 1.5rem;
     font-weight: 700;
     text-align: center;
+    flex: 1;
+}
+
+.header-toggle {
+    display: flex;
+    align-items: center;
+}
+
+/* 작은 토글 버튼 스타일 */
+.mode-toggle-container-small {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mode-checkbox-small {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.mode-toggle-switch-small {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.mode-slider-small {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--pure-white);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mode-slider-small:before {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 28px;
+    left: 2px;
+    bottom: 2px;
+    background: var(--primary-blue);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.mode-checkbox-small:checked + .mode-toggle-switch-small .mode-slider-small {
+    background: var(--pure-white);
+}
+
+.mode-checkbox-small:checked + .mode-toggle-switch-small .mode-slider-small:before {
+    background: var(--accent-orange);
+    transform: translateX(30px);
+}
+
+/* 작은 모드 상태 표시 텍스트 */
+.mode-status-text-small {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--pure-white);
+    min-width: 50px;
+    text-align: left;
+    display: flex;
+    align-items: center;
 }
 
 .header-left h1 {
