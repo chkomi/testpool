@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+    <title>2021년 3급 승진 기초역량평가 필기시험</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="quiz-container" id="quiz">
+        <div class="quiz-header">
+            <div class="header-left">
+                <h1>2021년 3급 승진 기초역량평가 필기시험</h1>
+            </div>
+            <div class="header-right">
+                <div class="header-controls">
+                    <div class="progress-badge" id="progress-badge">0/0 (0%)</div>
+                    <button class="home-btn" onclick="location.href='index.html'">🏠 홈</button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div id="question" class="question-card">Question text</div>
+            <ul>
+                <li>
+                    <input type="radio" name="answer" id="1" class="answer">
+                    <label for="1" id="a_text">Answer</label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" id="2" class="answer">
+                    <label for="2" id="b_text">Answer</label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" id="3" class="answer">
+                    <label for="3" id="c_text">Answer</label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" id="4" class="answer">
+                    <label for="4" id="d_text">Answer</label>
+                </li>
+            </ul>
+        </div>
+        </div>
+        <div class="quiz-controls">
+            <button id="prev">이전</button>
+            <span id="question-counter">1 / 50</span>
+            <button id="next">다음</button>
+        </div>
+        <button id="submit">제출</button>
+        <div id="result" class="result hidden"></div>
+    </div>
+    <script src="2021-exam.js"></script>
+    <script src="quiz-logic.js"></script>
+</body>
+</html>

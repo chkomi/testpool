@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+    <title>2025년 사전공개문제</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Subject Selection Modal -->
+    <div id="subject-modal" class="modal">
+        <div class="modal-content">
+            <h2>과목 선택</h2>
+            <p>학습하실 과목을 선택해주세요:</p>
+            <div class="subject-grid">
+                <button class="subject-btn" onclick="selectSubject('농어촌정비법')">
+                    농어촌정비법<br>
+                    <span class="subject-count">(134문제)</span>
+                </button>
+                <button class="subject-btn" onclick="selectSubject('공운법')">
+                    공운법<br>
+                    <span class="subject-count">(91문제)</span>
+                </button>
+                <button class="subject-btn" onclick="selectSubject('공사법')">
+                    공사법<br>
+                    <span class="subject-count">(102문제)</span>
+                </button>
+                <button class="subject-btn" onclick="selectSubject('직제규정')">
+                    직제규정<br>
+                    <span class="subject-count">(27문제)</span>
+                </button>
+                <button class="subject-btn" onclick="selectSubject('취업규칙')">
+                    취업규칙<br>
+                    <span class="subject-count">(47문제)</span>
+                </button>
+                <button class="subject-btn" onclick="selectSubject('인사규정')">
+                    인사규정<br>
+                    <span class="subject-count">(56문제)</span>
+                </button>
+                <button class="subject-btn" onclick="selectSubject('행동강령')">
+                    행동강령<br>
+                    <span class="subject-count">(21문제)</span>
+                </button>
+                <button class="subject-btn" onclick="selectSubject('회계기준')">
+                    회계기준<br>
+                    <span class="subject-count">(56문제)</span>
+                </button>
+                <button class="subject-btn home-grid-btn" onclick="location.href='index.html'">
+                    🏠<br>
+                    <span class="subject-count">메인으로</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="quiz-container" id="quiz" style="display: none;">
+        <div class="quiz-header">
+            <div class="header-left">
+                <h1 id="quiz-title">2025년 사전공개문제</h1>
+            </div>
+            <div class="header-right">
+                <div class="header-controls">
+                    <div class="progress-badge" id="progress-badge">0/0 (0%)</div>
+                    <button class="home-btn" onclick="location.href='index.html'">🏠 홈</button>
+                    <button class="subject-change-btn" onclick="showSubjectModal()">📚 과목변경</button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div id="question" class="question-card">Question text</div>
+            <ul>
+                <li>
+                    <input type="radio" name="answer" id="1" class="answer">
+                    <label for="1" id="a_text">Answer</label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" id="2" class="answer">
+                    <label for="2" id="b_text">Answer</label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" id="3" class="answer">
+                    <label for="3" id="c_text">Answer</label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" id="4" class="answer">
+                    <label for="4" id="d_text">Answer</label>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="quiz-controls">
+            <button id="prev">이전</button>
+            <span id="question-counter">1 / 50</span>
+            <button id="next">다음</button>
+        </div>
+        <button id="submit">제출</button>
+        <div id="result" class="result hidden"></div>
+    </div>
+    
+    <!-- 동적 스크립트 로딩을 위한 컨테이너 -->
+    <div id="dynamic-scripts"></div>
+    
+    <script src="quiz-logic.js"></script>
+    
+    <script>
+        // 과목별 파일 매핑
+        const subjectFileMap = {
+            '농어촌정비법': '2025-data-농어촌정비법.js',
+            '공운법': '2025-data-공운법.js',
+            '공사법': '2025-data-공사법.js',
+            '직제규정': '2025-data-직제규정.js',
+            '취업규칙': '2025-data-취업규칙.js',
+            '인사규정': '2025-data-인사규정.js',
+            '행동강령': '2025-data-행동강령.js',
+            '회계기준': '2025-data-회계기준.js'
+        };
+
+        // 로딩 상태 관리
+        let loadedSubjects = {};
+        let currentLoadingSubject = null;
+
+        // 동적 스크립트 로딩 함수
+        function loadSubjectScript(subject) {
+            return new Promise((resolve, reject) => {
+                console.log(`=== 스크립트 로딩 시작: ${subject} ===`);
+                
+                // 이미 로드된 경우
+                if (loadedSubjects[subject]) {
+                    console.log(`${subject} 이미 로드됨:`, loadedSubjects[subject].length + '문제');
+                    resolve(loadedSubjects[subject]);
+                    return;
+                }
+
+                const fileName = subjectFileMap[subject];
+                if (!fileName) {
+                    console.error(`파일 매핑에서 ${subject} 찾을 수 없음`);
+                    reject(new Error(`${subject} 과목 파일을 찾을 수 없습니다.`));
+                    return;
+                }
+
+                console.log(`파일 로딩 시도: ${fileName}`);
+                
+                // 기존 currentSubjectQuestions 초기화
+                if (typeof currentSubjectQuestions !== 'undefined') {
+                    console.log('기존 currentSubjectQuestions 삭제');
+                    window.currentSubjectQuestions = undefined;
+                }
+                
+                // 기존에 로드된 스크립트 제거
+                const existingScript = document.querySelector('script[data-subject]');
+                if (existingScript) {
+                    console.log('기존 스크립트 제거:', existingScript.src);
+                    existingScript.remove();
+                }
+
+                const script = document.createElement('script');
+                script.src = fileName;
+                script.setAttribute('data-subject', subject);
+                
+                script.onload = () => {
+                    console.log(`${subject} 스크립트 파일 로드 완료`);
+                    console.log('currentSubjectQuestions 타입:', typeof currentSubjectQuestions);
+                    console.log('currentSubjectQuestions 값:', currentSubjectQuestions);
+                    
+                    // 약간의 지연을 주고 다시 확인
+                    setTimeout(() => {
+                        if (typeof currentSubjectQuestions !== 'undefined' && Array.isArray(currentSubjectQuestions)) {
+                            console.log(`${subject}: ${currentSubjectQuestions.length}문제 로드됨`);
+                            loadedSubjects[subject] = [...currentSubjectQuestions]; // 깊은 복사
+                            console.log('캐시에 저장 완료:', loadedSubjects[subject].length + '문제');
+                            resolve(loadedSubjects[subject]);
+                        } else {
+                            console.error(`${subject} 데이터 형식 오류:`, typeof currentSubjectQuestions, currentSubjectQuestions);
+                            reject(new Error(`${subject} 데이터 형식이 올바르지 않습니다. (타입: ${typeof currentSubjectQuestions})`));
+                        }
+                    }, 50);
+                };
+                
+                script.onerror = (errorEvent) => {
+                    console.error(`=== ${subject} 파일 로딩 실패 ===`);
+                    console.error('파일명:', fileName);
+                    console.error('에러 이벤트:', errorEvent);
+                    console.error('========================');
+                    reject(new Error(`${subject} 파일을 불러올 수 없습니다: ${fileName}`));
+                };
+
+                console.log('스크립트 태그를 DOM에 추가');
+                document.head.appendChild(script);
+            });
+        }
+
+        function showSubjectModal() {
+            // 모달을 원래 상태로 복원하고 진행상태 표시
+            const modal = document.getElementById('subject-modal');
+            
+            // 과목별 문제 수 정의
+            const subjectInfo = {
+                '농어촌정비법': 134,
+                '공운법': 91,
+                '공사법': 102,
+                '직제규정': 27,
+                '취업규칙': 47,
+                '인사규정': 56,
+                '행동강령': 21,
+                '회계기준': 56
+            };
+            
+            // 각 과목의 진행상태 확인
+            const getProgressInfo = (subject) => {
+                try {
+                    const progressKey = `exam_2025_${subject}_progress`;
+                    const savedProgress = localStorage.getItem(progressKey);
+                    if (savedProgress) {
+                        const progressData = JSON.parse(savedProgress);
+                        const percentage = Math.round((progressData.answered / progressData.total) * 100);
+                        return `<span class="progress-info">진행률: ${progressData.answered}/${progressData.total} (${percentage}%)</span>`;
+                    }
+                } catch (error) {
+                    console.warn('Progress load error for', subject, ':', error);
+                }
+                return '';
+            };
+            
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h2>과목 선택</h2>
+                    <p>학습하실 과목을 선택해주세요:</p>
+                    <div class="subject-grid">
+                        <button class="subject-btn" onclick="selectSubject('농어촌정비법')">
+                            농어촌정비법<br>
+                            <span class="subject-count">(134문제)</span>
+                            ${getProgressInfo('농어촌정비법')}
+                        </button>
+                        <button class="subject-btn" onclick="selectSubject('공운법')">
+                            공운법<br>
+                            <span class="subject-count">(91문제)</span>
+                            ${getProgressInfo('공운법')}
+                        </button>
+                        <button class="subject-btn" onclick="selectSubject('공사법')">
+                            공사법<br>
+                            <span class="subject-count">(102문제)</span>
+                            ${getProgressInfo('공사법')}
+                        </button>
+                        <button class="subject-btn" onclick="selectSubject('직제규정')">
+                            직제규정<br>
+                            <span class="subject-count">(27문제)</span>
+                            ${getProgressInfo('직제규정')}
+                        </button>
+                        <button class="subject-btn" onclick="selectSubject('취업규칙')">
+                            취업규칙<br>
+                            <span class="subject-count">(47문제)</span>
+                            ${getProgressInfo('취업규칙')}
+                        </button>
+                        <button class="subject-btn" onclick="selectSubject('인사규정')">
+                            인사규정<br>
+                            <span class="subject-count">(56문제)</span>
+                            ${getProgressInfo('인사규정')}
+                        </button>
+                        <button class="subject-btn" onclick="selectSubject('행동강령')">
+                            행동강령<br>
+                            <span class="subject-count">(21문제)</span>
+                            ${getProgressInfo('행동강령')}
+                        </button>
+                        <button class="subject-btn" onclick="selectSubject('회계기준')">
+                            회계기준<br>
+                            <span class="subject-count">(56문제)</span>
+                            ${getProgressInfo('회계기준')}
+                        </button>
+                        <button class="subject-btn home-grid-btn" onclick="location.href='index.html'">
+                            🏠<br>
+                            <span class="subject-count">메인으로</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            modal.style.display = 'block';
+            document.getElementById('quiz').style.display = 'none';
+        }
+
+        async function selectSubject(subject) {
+            let originalContent;
+            try {
+                console.log(`=== 과목 선택 시작: ${subject} ===`);
+                
+                // 로딩 표시
+                const modal = document.getElementById('subject-modal');
+                originalContent = modal.innerHTML;
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <h2>데이터 로딩 중...</h2>
+                        <p>${subject} 문제를 불러오고 있습니다. 잠시만 기다려주세요.</p>
+                        <div style="text-align: center; margin: 20px;">
+                            <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                        </div>
+                        <style>
+                            @keyframes spin {
+                                0% { transform: rotate(0deg); }
+                                100% { transform: rotate(360deg); }
+                            }
+                        </style>
+                    </div>
+                `;
+
+                currentLoadingSubject = subject;
+
+                console.log('데이터 로딩 시작...');
+                // 데이터 로딩
+                const questions = await loadSubjectScript(subject);
+                console.log('데이터 로딩 완료:', questions ? questions.length + '문제' : '없음');
+                
+                if (currentLoadingSubject !== subject) {
+                    console.log('다른 과목이 선택됨, 무시');
+                    return;
+                }
+
+                if (!questions || questions.length === 0) {
+                    throw new Error(`${subject} 과목에 문제가 없습니다.`);
+                }
+
+                console.log('URL 업데이트 및 UI 변경...');
+                // URL 업데이트
+                const newUrl = new URL(window.location);
+                newUrl.searchParams.set('subject', subject);
+                window.history.pushState({}, '', newUrl);
+
+                // UI 업데이트
+                document.getElementById('subject-modal').style.display = 'none';
+                document.getElementById('quiz').style.display = 'block';
+                document.getElementById('quiz-title').textContent = `2025년 ${subject} 문제풀이`;
+
+                // 퀴즈 엔진 시작 (약간의 지연 후)
+                console.log('퀴즈 엔진 시작 준비...');
+                setTimeout(() => {
+                    try {
+                        console.log('startQuizEngine 타입 확인:', typeof startQuizEngine);
+                        if (typeof startQuizEngine !== 'function') {
+                            throw new Error('quiz-logic.js가 로드되지 않았습니다.');
+                        }
+                        
+                        console.log(`startQuizEngine 호출: ${questions.length}문제`);
+                        startQuizEngine(questions);
+                        console.log('퀴즈 엔진 시작 완료');
+                    } catch (engineError) {
+                        console.error('=== 퀴즈 엔진 시작 실패 ===');
+                        console.error('오류 객체:', engineError);
+                        console.error('오류 스택:', engineError.stack);
+                        console.error('========================');
+                        alert(`퀴즈 시작 중 오류가 발생했습니다: ${engineError.message}\n\n개발자 도구(F12)의 Console 탭을 확인해주세요.`);
+                    }
+                }, 150);
+
+            } catch (error) {
+                console.error(`=== ${subject} 로딩 실패 ===`);
+                console.error('오류 객체:', error);
+                console.error('오류 스택:', error.stack);
+                console.error('========================');
+                
+                // 에러 시 원래 모달로 복원
+                if (originalContent) {
+                    document.getElementById('subject-modal').innerHTML = originalContent;
+                }
+                alert(`${subject} 데이터를 불러올 수 없습니다: ${error.message}\n\n개발자 도구(F12)의 Console 탭에서 자세한 오류를 확인할 수 있습니다.`);
+            }
+        }
+
+        // 페이지 로드 시 초기화
+        window.addEventListener('load', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const subject = urlParams.get('subject');
+            
+            if (subject && subjectFileMap[subject]) {
+                selectSubject(subject);
+            } else {
+                showSubjectModal();
+            }
+        });
+    </script>
+
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 20px;
+            border-radius: 12px;
+            width: 95%;
+            max-width: 800px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-height: 95vh;
+            overflow-y: auto;
+        }
+
+        .modal-content h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .subject-btn {
+            background: #FFFCF0; /* 연한 상아색 (Light Ivory) */
+            color: #1565C0; /* 진한 파란색 */
+            border: 2px solid #1976D2; /* 파란색 테두리 */
+            border-radius: 8px;
+            padding: 15px 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.2);
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .subject-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(25, 118, 210, 0.3);
+            background: #FAF8F0; /* 호버 시 약간 더 어두운 연한 상아색 */
+            border-color: #1565C0; /* 호버 시 더 진한 파란색 테두리 */
+        }
+
+        .home-grid-btn {
+            background: #6c757d;
+            color: white !important; /* 텍스트 흰색으로 명시 */
+            grid-column: 1 / 3; /* 2열 전체를 차지 */
+        }
+
+        .home-grid-btn:hover {
+            background: #5a6268;
+            color: white !important; /* 호버 시에도 텍스트 흰색 유지 */
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .subject-count {
+            font-size: 10px;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        .subject-change-btn {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .subject-change-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(17, 153, 142, 0.3);
+        }
+
+        /* 2025년 시험 페이지 헤더 */
+        .quiz-header {
+            padding: 1.5rem;
+            background: var(--primary-blue);
+            color: white;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .header-right {
+            align-self: flex-end;
+            order: 1;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-left {
+            text-align: center;
+            order: 2;
+            flex: 1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 0.2rem;
+        }
+
+        .header-left h1 {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.3;
+            word-break: keep-all;
+        }
+
+        .progress-badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        .home-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .home-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* 진행상태 정보 스타일 */
+        .progress-info {
+            display: block;
+            font-size: 11px;
+            color: #666;
+            margin-top: 2px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 3px;
+            padding: 2px 6px;
+            border: 1px solid #ddd;
+        }
+
+        .subject-btn:hover .progress-info {
+            color: #333;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* 모바일 최적화 */
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 1% auto;
+                padding: 15px;
+                width: 98%;
+                max-height: 98vh;
+                border-radius: 8px;
+            }
+
+            .modal-content h2 {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+            }
+
+            .modal-content p {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+
+            .subject-grid {
+                gap: 8px;
+                margin-top: 15px;
+            }
+
+            .subject-btn {
+                padding: 12px 6px;
+                font-size: 12px;
+                min-height: 70px;
+                border-radius: 6px;
+            }
+
+            .subject-count {
+                font-size: 9px;
+                margin-top: 1px;
+            }
+
+            .progress-info {
+                font-size: 9px;
+                padding: 1px 4px;
+                margin-top: 1px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                margin: 0.5% auto;
+                padding: 12px;
+                width: 99%;
+                max-height: 99vh;
+            }
+
+            .modal-content h2 {
+                font-size: 1.1rem;
+                margin-bottom: 12px;
+            }
+
+            .modal-content p {
+                font-size: 0.85rem;
+                margin-bottom: 12px;
+            }
+
+            .subject-grid {
+                gap: 6px;
+                margin-top: 12px;
+            }
+
+            .subject-btn {
+                padding: 10px 4px;
+                font-size: 11px;
+                min-height: 65px;
+                border-width: 1px;
+            }
+
+            .subject-count {
+                font-size: 8px;
+            }
+
+            .progress-info {
+                font-size: 8px;
+                padding: 1px 3px;
+            }
+
+            .home-grid-btn {
+                font-size: 10px;
+            }
+        }
+    </style>
+</body>
+</html>

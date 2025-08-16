@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+    <title>직무역량 평가</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="quiz-container" id="quiz">
+        <div class="quiz-header">
+            <div class="header-center">
+                <h1>직무역량 평가 문제풀이</h1>
+                <div class="header-toggle">
+                    <div class="mode-toggle-container-small">
+                        <input type="checkbox" id="randomModeHome" class="mode-checkbox-small">
+                        <label for="randomModeHome" class="mode-toggle-switch-small">
+                            <span class="mode-slider-small"></span>
+                        </label>
+                        <span class="mode-status-text-small" id="modeStatusText">일반모드</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="exam-selection">
+                <div class="exam-buttons">
+                    <button onclick="startExam('2021')" class="exam-btn">'21년 3급승진 기초역량평가 필기기출</button>
+                    <button onclick="startExam('2022')" class="exam-btn">'22년 3급승진 기초역량평가 필기기출</button>
+                    <button onclick="startExam('2023')" class="exam-btn">'23년 3급승진 기초역량평가 필기기출</button>
+                    <button onclick="startExam('2024')" class="exam-btn">'24년 3급승진 기초역량평가 필기기출</button>
+                    <button onclick="location.href='2025-exam.html'" class="exam-btn" id="exam-btn-2025">2025년 사전공개문제</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <!-- Powered by badge -->
+    <div class="powered-by-badge">
+        powered by 2170153
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
