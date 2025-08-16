@@ -1078,14 +1078,15 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
 .law-modal-content {
     background: white;
     border-radius: 8px;
-    width: 99%;
-    max-width: 2000px; /* 대형 iframe 수용을 위한 최대 너비 확장 */
-    max-height: 98vh; /* 거의 전체 화면 높이 */
-    min-width: 1400px; /* 더 큰 최소 너비 */
+    width: 95vw; /* 뷰포트 기준 너비 */
+    height: 90vh; /* 뷰포트 기준 높이 */
+    max-width: 1800px; /* 최대 너비 제한 */
+    max-height: 95vh; /* 최대 높이 제한 */
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
+    margin: auto;
 }
 
 .law-modal-header {
@@ -1160,38 +1161,22 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
 }
 
 .law-iframe {
-    width: 2800px !important; /* 고정 너비로 충분한 공간 확보 */
-    height: 1500px !important; /* 고정 높이로 충분한 공간 확보 */
-    min-width: 2800px !important; /* 최소 너비 대폭 증가 */
-    min-height: 1500px !important; /* 최소 높이 대폭 증가 */
-    max-width: none !important;
-    max-height: none !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 1200px !important; /* 최소 너비로 스크롤 강제 생성 */
     border: none !important;
     background: white;
     display: block !important;
     position: absolute;
     top: 0;
     left: 0;
-    /* iframe 스크롤 완전 활성화 */
+    /* 스크롤 설정 */
     overflow: auto !important;
-    overflow-x: auto !important;
-    overflow-y: auto !important;
     -webkit-overflow-scrolling: touch;
-    /* 스크롤바 강제 표시 */
-    scrollbar-width: auto !important;
-    /* 확대축소 허용 */
-    zoom: 1;
-    transform-origin: 0 0;
-    /* 모든 이벤트 허용 */
+    /* 이벤트 허용 */
     pointer-events: auto !important;
-    user-select: auto !important;
-    /* 터치 액션 모두 허용 */
-    touch-action: manipulation !important;
-    /* CSS 제약 제거 */
-    contain: none !important;
-    isolation: auto !important;
-    /* 콘텐츠가 iframe 크기를 초과하지 않도록 */
-    box-sizing: content-box !important;
+    /* 박스 크기 설정 */
+    box-sizing: border-box !important;
 }
 
 .law-loading {
@@ -1214,22 +1199,12 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
     to { transform: rotate(360deg); }
 }
 
-/* 모바일 대응 */
-@media (max-width: 768px) {
+/* 태블릿 대응 */
+@media (max-width: 1024px) {
     .law-modal-content {
-        width: 95%;
-        height: 90vh;
+        width: 98vw;
+        height: 85vh;
         max-width: none;
-        min-width: auto; /* 모바일에서는 최소 너비 제한 해제 */
-    }
-    
-    .reference-buttons {
-        gap: 6px;
-    }
-    
-    .reference-btn {
-        padding: 5px 10px;
-        font-size: 0.75rem;
     }
     
     .law-modal-header {
@@ -1237,57 +1212,121 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
     }
     
     .law-modal-title {
-        font-size: 1rem;
+        font-size: 1.1rem;
+    }
+    
+    .zoom-btn {
+        min-width: 30px;
+        height: 25px;
+        padding: 4px 8px;
+        font-size: 0.8rem;
     }
     
     .law-iframe {
-        width: 100% !important;
-        height: 100% !important;
-        min-width: 100vw !important; /* 모바일에서는 뷰포트 너비 사용 */
-        min-height: 100% !important;
-        border: none;
-    }
-    
-    .law-modal-body {
-        flex-grow: 1;
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
+        min-width: 1100px !important; /* 태블릿에서도 최소 너비 유지 */
     }
 }
 
-@media (max-width: 480px) {
+/* 모바일 대응 */
+@media (max-width: 768px) {
     .law-modal-content {
-        width: 98%;
-        height: 92vh;
-        border-radius: 8px;
-        min-width: auto;
+        width: 100vw;
+        height: 100vh;
+        max-width: none;
+        max-height: none;
+        border-radius: 0;
+        margin: 0;
     }
     
     .law-modal-header {
         padding: 12px;
+        min-height: 50px;
     }
     
     .law-modal-title {
-        font-size: 0.9rem;
+        font-size: 1rem;
+    }
+    
+    .law-modal-controls {
+        gap: 4px;
+    }
+    
+    .zoom-btn {
+        min-width: 28px;
+        height: 24px;
+        padding: 2px 6px;
+        font-size: 0.7rem;
+    }
+    
+    .law-modal-close {
+        width: 24px;
+        height: 24px;
+        font-size: 1.2rem;
+    }
+    
+    .law-modal-body {
+        flex: 1;
+        overflow: auto !important; /* 스크롤 강제 활성화 */
+        -webkit-overflow-scrolling: touch;
     }
     
     .law-iframe {
-        width: 100% !important;
-        height: 100% !important;
-        min-width: 100vw !important;
-        min-height: 100% !important;
-        border: none;
+        min-width: 1000px !important; /* 모바일에서도 최소 너비 유지 */
+        width: 1200px !important; /* 고정 너비로 스크롤 생성 */
+    }
+    
+    .reference-buttons {
+        gap: 4px;
+        flex-wrap: wrap;
     }
     
     .reference-btn {
         padding: 4px 8px;
         font-size: 0.7rem;
     }
+}
+
+/* 초소형 모바일 */
+@media (max-width: 480px) {
+    .law-modal-header {
+        padding: 8px;
+        min-height: 45px;
+    }
     
-    .law-modal-body {
-        flex-grow: 1;
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
+    .law-modal-title {
+        font-size: 0.9rem;
+    }
+    
+    .zoom-btn {
+        min-width: 24px;
+        height: 22px;
+        padding: 1px 4px;
+        font-size: 0.6rem;
+    }
+    
+    .law-modal-close {
+        width: 22px;
+        height: 22px;
+        font-size: 1.1rem;
+    }
+    
+    .law-iframe {
+        min-width: 800px !important; /* 초소형에서도 최소 너비 유지 */
+        width: 1000px !important; /* 더 작은 고정 너비 */
+    }
+    
+    .reference-btn {
+        padding: 3px 6px;
+        font-size: 0.65rem;
+    }
+}
+
+/* 대형 모니터 */
+@media (min-width: 1920px) {
+    .law-modal-content {
+        width: 85vw;
+        height: 85vh;
+        max-width: 2400px;
     }
 }
 

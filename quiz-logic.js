@@ -533,126 +533,40 @@ function openLawModal(url, title) {
     // 모달 표시
     modal.classList.add('active');
     
-    // iframe 로드
+    // iframe 로드 (안정화)
     setTimeout(() => {
+        console.log('법령 URL 로딩 시작:', url);
         modalBody.innerHTML = `<iframe class="law-iframe" 
                                      src="${url}" 
                                      title="법령 참조" 
-                                     scrolling="yes" 
-                                     frameborder="0" 
-                                     allowfullscreen
-                                     sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                                     frameborder="0"
+                                     scrolling="auto"
                                      loading="eager"></iframe>`;
         
         // iframe 로드 완료 후 스크롤 강제 활성화
         const iframe = modalBody.querySelector('.law-iframe');
         if (iframe) {
-            // 즉시 iframe 스타일 설정 - 대형 크기로
-            iframe.style.minWidth = '2800px';
-            iframe.style.minHeight = '1500px';
-            iframe.style.width = '2800px';
-            iframe.style.height = '1500px';
-            iframe.style.overflow = 'auto';
-            iframe.style.overflowX = 'auto';
-            iframe.style.overflowY = 'auto';
+            console.log('iframe 생성됨, URL:', url);
             
+            // 즉시 기본 스타일만 설정
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.minWidth = '1200px'; // 기본 최소 너비 설정
+            iframe.style.border = 'none';
+            
+            // 로드 완료 이벤트
             iframe.onload = function() {
-                try {
-                    console.log('iframe 로딩 완료 - 대형 크기로 설정');
-                    
-                    // iframe 크기를 법령사이트 전체 크기에 맞게 대형으로 설정
-                    iframe.style.minWidth = '2800px';
-                    iframe.style.minHeight = '1500px';
-                    iframe.style.width = '2800px';
-                    iframe.style.height = '1500px';
-                    iframe.style.maxWidth = 'none';
-                    iframe.style.maxHeight = 'none';
-                    
-                    // 스크롤 영역 확보
-                    const modalBodyElement = iframe.parentElement;
-                    if (modalBodyElement) {
-                        modalBodyElement.style.overflowX = 'auto';
-                        modalBodyElement.style.overflowY = 'auto';
-                        console.log('모달 body 스크롤 활성화');
-                    }
-                    
-                    // iframe 내부 document에 접근 가능한 경우 스크롤 활성화
-                    if (iframe.contentDocument) {
-                        const iframeDoc = iframe.contentDocument;
-                        const body = iframeDoc.body;
-                        if (body) {
-                            body.style.overflow = 'auto';
-                            body.style.overflowX = 'auto';
-                            body.style.overflowY = 'auto';
-                            body.style.minWidth = '2800px';
-                            body.style.width = '2800px';
-                            console.log('iframe 내부 body 스타일 설정 완료');
-                        }
-                        
-                        const html = iframeDoc.documentElement;
-                        if (html) {
-                            html.style.overflow = 'auto';
-                            html.style.overflowX = 'auto';
-                            html.style.overflowY = 'auto';
-                            html.style.minWidth = '2800px';
-                            html.style.width = '2800px';
-                            console.log('iframe 내부 html 스타일 설정 완료');
-                        }
-                        
-                        // 콘텐츠 크기 동적 감지 시도 (여러 번 시도)
-                        const checkContentSize = () => {
-                            try {
-                                const contentWidth = Math.max(
-                                    iframeDoc.body.scrollWidth,
-                                    iframeDoc.body.offsetWidth,
-                                    iframeDoc.documentElement.clientWidth,
-                                    iframeDoc.documentElement.scrollWidth,
-                                    iframeDoc.documentElement.offsetWidth
-                                );
-                                
-                                const contentHeight = Math.max(
-                                    iframeDoc.body.scrollHeight,
-                                    iframeDoc.body.offsetHeight,
-                                    iframeDoc.documentElement.clientHeight,
-                                    iframeDoc.documentElement.scrollHeight,
-                                    iframeDoc.documentElement.offsetHeight
-                                );
-                                
-                                console.log(`감지된 콘텐츠 크기: ${contentWidth}x${contentHeight}px`);
-                                
-                                // 콘텐츠가 더 크면 iframe 크기 확장
-                                if (contentWidth > 2800) {
-                                    const newWidth = contentWidth + 300;
-                                    console.log(`콘텐츠 너비 ${contentWidth}px > 2800px, iframe을 ${newWidth}px로 확장`);
-                                    iframe.style.width = `${newWidth}px`;
-                                    iframe.style.minWidth = `${newWidth}px`;
-                                }
-                                
-                                if (contentHeight > 1500) {
-                                    const newHeight = contentHeight + 200;
-                                    console.log(`콘텐츠 높이 ${contentHeight}px > 1500px, iframe을 ${newHeight}px로 확장`);
-                                    iframe.style.height = `${newHeight}px`;
-                                    iframe.style.minHeight = `${newHeight}px`;
-                                }
-                            } catch (sizeError) {
-                                console.log('콘텐츠 크기 감지 실패:', sizeError.message);
-                            }
-                        };
-                        
-                        // 여러 시점에서 크기 감지
-                        setTimeout(checkContentSize, 500);
-                        setTimeout(checkContentSize, 1500);
-                        setTimeout(checkContentSize, 3000);
-                    }
-                } catch (e) {
-                    console.log('iframe 내부 접근 제한 (CORS):', e.message);
-                    // CORS 제한이 있어도 iframe 자체 스크롤은 설정
-                    iframe.style.minWidth = '2800px';
-                    iframe.style.width = '2800px';
-                    iframe.style.height = '1500px';
-                    iframe.style.overflow = 'auto';
-                    console.log('CORS 제한으로 iframe 외부 설정만 적용');
-                }
+                console.log('iframe 로딩 완료');
+                // 로딩 완료 후 간단한 확인만
+                setTimeout(() => {
+                    console.log('iframe 콘텐츠 로드 확인 완료');
+                }, 500);
+            };
+            
+            // 에러 이벤트
+            iframe.onerror = function(e) {
+                console.error('iframe 로딩 실패:', e);
+                modalBody.innerHTML = '<div class="law-loading">법령 내용을 불러올 수 없습니다. 네트워크를 확인해주세요.</div>';
             };
         }
     }, 500);
@@ -707,19 +621,11 @@ let currentZoomLevel = 1.0;
 function zoomLawFrame(delta) {
     const iframe = document.querySelector('.law-iframe');
     if (iframe) {
-        currentZoomLevel = Math.max(0.3, Math.min(3.0, currentZoomLevel + delta)); // 더 작은 축소 허용
+        currentZoomLevel = Math.max(0.5, Math.min(3.0, currentZoomLevel + delta));
         iframe.style.transform = `scale(${currentZoomLevel})`;
         iframe.style.transformOrigin = '0 0';
         
-        // 대형 기본 크기를 유지하면서 zoom 적용
-        const baseWidth = 2800;
-        const baseHeight = 1500;
-        iframe.style.width = `${baseWidth / currentZoomLevel}px`;
-        iframe.style.minWidth = `${baseWidth}px`;
-        iframe.style.height = `${baseHeight / currentZoomLevel}px`;
-        iframe.style.minHeight = `${baseHeight}px`;
-        
-        console.log(`줌 레벨: ${currentZoomLevel}, iframe 크기: ${baseWidth / currentZoomLevel}px`);
+        console.log(`줌 레벨: ${currentZoomLevel}`);
     }
 }
 
@@ -728,12 +634,9 @@ function resetZoomLawFrame() {
     if (iframe) {
         currentZoomLevel = 1.0;
         iframe.style.transform = 'scale(1)';
-        iframe.style.width = '2800px';
-        iframe.style.minWidth = '2800px';
-        iframe.style.height = '1500px';
-        iframe.style.minHeight = '1500px';
+        iframe.style.transformOrigin = '0 0';
         
-        console.log('줌 리셋: 2800x1500px');
+        console.log('줌 리셋: 기본 크기로 복원');
     }
 }
 
