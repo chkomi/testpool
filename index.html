@@ -29,7 +29,7 @@
                     <button onclick="startExam('2022')" class="exam-btn">'22년 3급승진 기초역량평가 필기기출</button>
                     <button onclick="startExam('2023')" class="exam-btn">'23년 3급승진 기초역량평가 필기기출</button>
                     <button onclick="startExam('2024')" class="exam-btn">'24년 3급승진 기초역량평가 필기기출</button>
-                    <button onclick="location.href='2025-exam.html'" class="exam-btn" id="exam-btn-2025">2025년 사전공개문제</button>
+                    <button onclick="showMaintenanceNotice()" class="exam-btn disabled" id="exam-btn-2025" disabled>2025년 사전공개문제 (점검중)</button>
                 </div>
             </div>
         </div>
@@ -42,5 +42,67 @@
     </div>
     
     <script src="script.js"></script>
+    
+    <!-- 점검 안내 모달 -->
+    <div id="maintenance-modal" class="maintenance-modal">
+        <div class="maintenance-modal-content">
+            <div class="maintenance-modal-header">
+                <h3>시스템 점검 안내</h3>
+                <button class="maintenance-modal-close" onclick="closeMaintenanceModal()">&times;</button>
+            </div>
+            <div class="maintenance-modal-body">
+                <div class="maintenance-icon">🔧</div>
+                <p><strong>2025년 문제생성 오류로 보수작업중</strong></p>
+                <p>현재 2025년 시험 문제에 기술적 오류가 발생하여 점검 작업을 진행하고 있습니다.</p>
+                <p>빠른 시일 내에 정상화하여 서비스를 재개하겠습니다.</p>
+                <p>이용에 불편을 드려 죄송합니다.</p>
+            </div>
+            <div class="maintenance-modal-footer">
+                <button onclick="closeMaintenanceModal()" class="maintenance-ok-btn">확인</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 2025년 버튼 클릭 시 점검 안내 모달 표시
+        function showMaintenanceNotice() {
+            document.getElementById('maintenance-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // 점검 안내 모달 닫기
+        function closeMaintenanceModal() {
+            document.getElementById('maintenance-modal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        
+        // 모달 배경 클릭 시 닫기
+        document.getElementById('maintenance-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeMaintenanceModal();
+            }
+        });
+        
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMaintenanceModal();
+            }
+        });
+        
+        // 페이지 로드 시 점검 안내 모달 자동 표시
+        window.addEventListener('load', function() {
+            // localStorage에서 오늘 이미 봤는지 확인
+            const today = new Date().toDateString();
+            const lastShown = localStorage.getItem('maintenanceNoticeShown');
+            
+            if (lastShown !== today) {
+                setTimeout(() => {
+                    showMaintenanceNotice();
+                    localStorage.setItem('maintenanceNoticeShown', today);
+                }, 1000); // 1초 후 표시
+            }
+        });
+    </script>
 </body>
 </html>
