@@ -585,7 +585,7 @@ function createLawModal() {
                     <button class="zoom-btn" onclick="zoomLawFrame(-0.1)" title="축소">🔍−</button>
                     <button class="zoom-btn" onclick="resetZoomLawFrame()" title="원본크기">🔄</button>
                     <button class="zoom-btn" onclick="zoomLawFrame(0.1)" title="확대">🔍+</button>
-                    <button class="law-modal-close" onclick="closeLawModal()">×</button>
+                    <button class="law-modal-close" onclick="closeLawModal()" title="닫기">×</button>
                 </div>
             </div>
             <div class="law-modal-body">
@@ -594,9 +594,23 @@ function createLawModal() {
         </div>
     `;
     
-    // 모달 배경 클릭 시 닫기
+    // 모달 배경 클릭 시 닫기 (터치 친화적)
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
+            closeLawModal();
+        }
+    });
+    
+    // 터치 이벤트 처리 (모바일 최적화)
+    modal.addEventListener('touchstart', (e) => {
+        if (e.target === modal) {
+            e.preventDefault();
+        }
+    });
+    
+    modal.addEventListener('touchend', (e) => {
+        if (e.target === modal) {
+            e.preventDefault();
             closeLawModal();
         }
     });
@@ -644,6 +658,38 @@ function resetZoomLawFrame() {
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeLawModal();
+    }
+});
+
+// 모바일 스와이프 제스처로 모달 닫기 (위에서 아래로 스와이프)
+let startY = 0;
+let startX = 0;
+
+document.addEventListener('touchstart', (e) => {
+    const modal = document.getElementById('law-modal');
+    if (modal && modal.classList.contains('active')) {
+        startY = e.touches[0].clientY;
+        startX = e.touches[0].clientX;
+    }
+});
+
+document.addEventListener('touchmove', (e) => {
+    const modal = document.getElementById('law-modal');
+    if (modal && modal.classList.contains('active')) {
+        const currentY = e.touches[0].clientY;
+        const currentX = e.touches[0].clientX;
+        const diffY = currentY - startY;
+        const diffX = currentX - startX;
+        
+        // 위에서 아래로 스와이프하고, 수직 이동이 수평 이동보다 클 때
+        if (diffY > 100 && Math.abs(diffY) > Math.abs(diffX)) {
+            // 모달 헤더 영역에서 시작한 스와이프만 처리
+            const modalHeader = modal.querySelector('.law-modal-header');
+            const headerRect = modalHeader.getBoundingClientRect();
+            if (startY >= headerRect.top && startY <= headerRect.bottom) {
+                closeLawModal();
+            }
+        }
     }
 });
 
