@@ -836,7 +836,7 @@ window.currentSubjectQuestions = [
             "b": "",
             "c": "",
             "d": "",
-            "correct": "b",
+            "correct": "d",
             "explanation": "법 제37조(기금의 회계기관)",
             "urls": [
                     "https://www.law.go.kr/법령/한국농어촌공사 및 농지관리기금법/(20220218,18403,20210817)/제37조"
@@ -848,7 +848,7 @@ window.currentSubjectQuestions = [
             "b": "",
             "c": "",
             "d": "",
-            "correct": "a",
+            "correct": "b",
             "explanation": "법 제34조 / 농어촌정비법 제2조",
             "urls": [
                     "https://www.law.go.kr/법령/한국농어촌공사 및 농지관리기금법/(20220218,18403,20210817)/제34조",
