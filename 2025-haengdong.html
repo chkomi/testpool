@@ -47,8 +47,133 @@
         </div>
         <button id="submit">제출</button>
         <div id="result" class="result hidden"></div>
+        
+        <!-- 홈으로 가기 버튼 추가 -->
+        <div style="text-align: center; margin-top: 30px;">
+            <button onclick="location.href='index.html'" class="home-btn" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%); padding: 15px 30px; font-size: 16px;">
+                🏠 홈으로 가기
+            </button>
+        </div>
     </div>
     <script src="2025-haengdong.js"></script>
-    <script src="quiz-logic.js"></script>
+    <script>
+        // 행동강령 전용 퀴즈 로직
+        let currentQuestion = 0;
+        let userAnswers = [];
+        let score = 0;
+        
+        // 문제 데이터 로드
+        const questions = quizData;
+        const totalQuestions = questions.length;
+        
+        // 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            displayQuestion();
+            updateProgress();
+        });
+        
+        // 문제 표시
+        function displayQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('question').textContent = question.question;
+            document.getElementById('a_text').textContent = question.a;
+            document.getElementById('b_text').textContent = question.b;
+            document.getElementById('c_text').textContent = question.c;
+            document.getElementById('d_text').textContent = question.d;
+            
+            // 이전 답변 복원
+            if (userAnswers[currentQuestion] !== undefined) {
+                document.getElementById(userAnswers[currentQuestion]).checked = true;
+            } else {
+                // 라디오 버튼 초기화
+                document.querySelectorAll('input[name="answer"]').forEach(radio => {
+                    radio.checked = false;
+                });
+            }
+            
+            updateQuestionCounter();
+        }
+        
+        // 진행률 업데이트
+        function updateProgress() {
+            const answeredCount = userAnswers.filter(answer => answer !== undefined).length;
+            const percentage = totalQuestions > 0 ? Math.round((answeredCount / totalQuestions) * 100) : 0;
+            document.getElementById('progress-badge').textContent = `${answeredCount}/${totalQuestions} (${percentage}%)`;
+        }
+        
+        // 문제 카운터 업데이트
+        function updateQuestionCounter() {
+            document.getElementById('question-counter').textContent = `${currentQuestion + 1} / ${totalQuestions}`;
+        }
+        
+        // 이전 버튼
+        document.getElementById('prev').addEventListener('click', function() {
+            if (currentQuestion > 0) {
+                saveAnswer();
+                currentQuestion--;
+                displayQuestion();
+            }
+        });
+        
+        // 다음 버튼
+        document.getElementById('next').addEventListener('click', function() {
+            if (currentQuestion < totalQuestions - 1) {
+                saveAnswer();
+                currentQuestion++;
+                displayQuestion();
+            }
+        });
+        
+        // 답변 저장
+        function saveAnswer() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            if (selectedAnswer) {
+                userAnswers[currentQuestion] = selectedAnswer.id;
+                updateProgress();
+            }
+        }
+        
+        // 제출 버튼
+        document.getElementById('submit').addEventListener('click', function() {
+            saveAnswer();
+            showResults();
+        });
+        
+        // 결과 표시
+        function showResults() {
+            const answeredCount = userAnswers.filter(answer => answer !== undefined).length;
+            if (answeredCount < totalQuestions) {
+                if (confirm(`${totalQuestions - answeredCount}개의 문제를 풀지 않았습니다. 정말 제출하시겠습니까?`)) {
+                    calculateScore();
+                }
+            } else {
+                calculateScore();
+            }
+        }
+        
+        // 점수 계산
+        function calculateScore() {
+            score = 0;
+            for (let i = 0; i < totalQuestions; i++) {
+                if (userAnswers[i] !== undefined) {
+                    const userAnswer = userAnswers[i];
+                    const correctAnswer = questions[i].correct;
+                    if (userAnswer === correctAnswer) {
+                        score++;
+                    }
+                }
+            }
+            
+            const percentage = Math.round((score / totalQuestions) * 100);
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <h2>퀴즈 완료!</h2>
+                <p>총 ${totalQuestions}문제 중 ${score}문제 정답</p>
+                <p>정답률: ${percentage}%</p>
+                <button onclick="location.reload()" class="home-btn">다시 풀기</button>
+            `;
+            resultDiv.classList.remove('hidden');
+        }
+    </script>
 </body>
-</html> 
+</html>

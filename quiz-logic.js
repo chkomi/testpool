@@ -697,8 +697,12 @@ document.addEventListener('touchmove', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
     try {
         if (typeof quizData !== 'undefined' && typeof startQuizEngine === 'function') {
-            const is2025Exam = window.location.pathname.includes('2025-exam.html');
-            if (!is2025Exam && quizData.length > 0) {
+            const is2025Exam = window.location.pathname.includes('2025');
+            if (is2025Exam && quizData.length > 0) {
+                // 2025년 시험 페이지일 때 자동으로 퀴즈 시작
+                startQuizEngine(quizData);
+            } else if (!is2025Exam && quizData.length > 0) {
+                // 기존 시험 페이지일 때만 시작
                 startQuizEngine(quizData);
             }
         }

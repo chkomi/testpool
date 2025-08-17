@@ -1,16 +1,24 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import os
+
+def create_subject_html(subject_name, korean_name, question_count):
+    """과목별 HTML 파일을 생성합니다."""
+    
+    html_content = f'''<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
-    <title>2025년 사전공개문제 - 직제규정</title>
+    <title>2025년 사전공개문제 - {korean_name}</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="quiz-container" id="quiz">
         <div class="quiz-header">
             <div class="header-left">
-                <h1>2025년 사전공개문제 - 직제규정</h1>
+                <h1>2025년 사전공개문제 - {korean_name}</h1>
             </div>
             <div class="header-right">
                 <div class="header-controls">
@@ -55,9 +63,9 @@
             </button>
         </div>
     </div>
-    <script src="2025-jikje.js"></script>
+    <script src="2025-{subject_name}.js"></script>
     <script>
-        // 직제규정 전용 퀴즈 로직
+        // {korean_name} 전용 퀴즈 로직
         let currentQuestion = 0;
         let userAnswers = [];
         let score = 0;
@@ -67,13 +75,13 @@
         const totalQuestions = questions.length;
         
         // 초기화
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {{
             displayQuestion();
             updateProgress();
-        });
+        }});
         
         // 문제 표시
-        function displayQuestion() {
+        function displayQuestion() {{
             const question = questions[currentQuestion];
             document.getElementById('question').textContent = question.question;
             document.getElementById('a_text').textContent = question.a;
@@ -82,98 +90,129 @@
             document.getElementById('d_text').textContent = question.d;
             
             // 이전 답변 복원
-            if (userAnswers[currentQuestion] !== undefined) {
+            if (userAnswers[currentQuestion] !== undefined) {{
                 document.getElementById(userAnswers[currentQuestion]).checked = true;
-            } else {
+            }} else {{
                 // 라디오 버튼 초기화
-                document.querySelectorAll('input[name="answer"]').forEach(radio => {
+                document.querySelectorAll('input[name="answer"]').forEach(radio => {{
                     radio.checked = false;
-                });
-            }
+                }});
+            }}
             
             updateQuestionCounter();
-        }
+        }}
         
         // 진행률 업데이트
-        function updateProgress() {
+        function updateProgress() {{
             const answeredCount = userAnswers.filter(answer => answer !== undefined).length;
             const percentage = totalQuestions > 0 ? Math.round((answeredCount / totalQuestions) * 100) : 0;
-            document.getElementById('progress-badge').textContent = `${answeredCount}/${totalQuestions} (${percentage}%)`;
-        }
+            document.getElementById('progress-badge').textContent = `${{answeredCount}}/${{totalQuestions}} (${{percentage}}%)`;
+        }}
         
         // 문제 카운터 업데이트
-        function updateQuestionCounter() {
-            document.getElementById('question-counter').textContent = `${currentQuestion + 1} / ${totalQuestions}`;
-        }
+        function updateQuestionCounter() {{
+            document.getElementById('question-counter').textContent = `${{currentQuestion + 1}} / ${{totalQuestions}}`;
+        }}
         
         // 이전 버튼
-        document.getElementById('prev').addEventListener('click', function() {
-            if (currentQuestion > 0) {
+        document.getElementById('prev').addEventListener('click', function() {{
+            if (currentQuestion > 0) {{
                 saveAnswer();
                 currentQuestion--;
                 displayQuestion();
-            }
-        });
+            }}
+        }});
         
         // 다음 버튼
-        document.getElementById('next').addEventListener('click', function() {
-            if (currentQuestion < totalQuestions - 1) {
+        document.getElementById('next').addEventListener('click', function() {{
+            if (currentQuestion < totalQuestions - 1) {{
                 saveAnswer();
                 currentQuestion++;
                 displayQuestion();
-            }
-        });
+            }}
+        }});
         
         // 답변 저장
-        function saveAnswer() {
+        function saveAnswer() {{
             const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-            if (selectedAnswer) {
+            if (selectedAnswer) {{
                 userAnswers[currentQuestion] = selectedAnswer.id;
                 updateProgress();
-            }
-        }
+            }}
+        }}
         
         // 제출 버튼
-        document.getElementById('submit').addEventListener('click', function() {
+        document.getElementById('submit').addEventListener('click', function() {{
             saveAnswer();
             showResults();
-        });
+        }});
         
         // 결과 표시
-        function showResults() {
+        function showResults() {{
             const answeredCount = userAnswers.filter(answer => answer !== undefined).length;
-            if (answeredCount < totalQuestions) {
-                if (confirm(`${totalQuestions - answeredCount}개의 문제를 풀지 않았습니다. 정말 제출하시겠습니까?`)) {
+            if (answeredCount < totalQuestions) {{
+                if (confirm(`${{totalQuestions - answeredCount}}개의 문제를 풀지 않았습니다. 정말 제출하시겠습니까?`)) {{
                     calculateScore();
-                }
-            } else {
+                }}
+            }} else {{
                 calculateScore();
-            }
-        }
+            }}
+        }}
         
         // 점수 계산
-        function calculateScore() {
+        function calculateScore() {{
             score = 0;
-            for (let i = 0; i < totalQuestions; i++) {
-                if (userAnswers[i] !== undefined) {
+            for (let i = 0; i < totalQuestions; i++) {{
+                if (userAnswers[i] !== undefined) {{
                     const userAnswer = userAnswers[i];
                     const correctAnswer = questions[i].correct;
-                    if (userAnswer === correctAnswer) {
+                    if (userAnswer === correctAnswer) {{
                         score++;
-                    }
-                }
-            }
+                    }}
+                }}
+            }}
             
             const percentage = Math.round((score / totalQuestions) * 100);
             const resultDiv = document.getElementById('result');
             resultDiv.innerHTML = `
                 <h2>퀴즈 완료!</h2>
-                <p>총 ${totalQuestions}문제 중 ${score}문제 정답</p>
-                <p>정답률: ${percentage}%</p>
+                <p>총 ${{totalQuestions}}문제 중 ${{score}}문제 정답</p>
+                <p>정답률: ${{percentage}}%</p>
                 <button onclick="location.reload()" class="home-btn">다시 풀기</button>
             `;
             resultDiv.classList.remove('hidden');
-        }
+        }}
     </script>
 </body>
-</html>
+</html>'''
+    
+    filename = f"2025-{subject_name}.html"
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write(html_content)
+    
+    print(f"{filename} 생성 완료")
+
+def main():
+    # 과목별 정보
+    subjects = [
+        ("nongchon", "농어촌정비법", 134),
+        ("gongun", "공공기관운영법", 91),
+        ("gongsa", "한국농어촌공사법", 102),
+        ("jikje", "직제규정", 27),
+        ("chwip", "취업규칙", 47),
+        ("insa", "인사규정", 56),
+        ("haengdong", "행동강령", 21),
+        ("hoegye", "회계기준", 56)
+    ]
+    
+    # 이미 생성된 파일들은 건너뛰기
+    existing_files = ["gongun", "gongsa"]  # 이미 수정된 파일들
+    
+    for subject_name, korean_name, question_count in subjects:
+        if subject_name not in existing_files:
+            create_subject_html(subject_name, korean_name, question_count)
+        else:
+            print(f"2025-{subject_name}.html 이미 존재함 (건너뜀)")
+
+if __name__ == "__main__":
+    main() 
