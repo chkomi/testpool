@@ -381,7 +381,9 @@ window.currentSubjectQuestions = [
             "b": "㉠ - ㉡ - ㉣ - ㉢ - ㉤",
             "c": "㉡ - ㉢ - ㉠ - ㉤ - ㉣",
             "d": "㉡ - ㉣ - ㉢ - ㉠ - ㉤",
-            "correct": "c"
+            "correct": "c",
+            "explanation": "제89조(예산의 편성)",
+            "urls": ["https://www.law.go.kr/학칙공단/(한국농어촌공사) 공기업·준정부기관회계기준 시행세칙/(9999,20250301)/제89조"]
         },
         {
             "question": "다음 중 채권관리자가 소멸시효가 완성되기 전이라도 해당 채권을 대손처리 해야 하는 경우가 아닌 것은?",
@@ -389,7 +391,7 @@ window.currentSubjectQuestions = [
             "b": "채무자인 법인에 대하여 가지는 채권이 「채무자 회생 및 파산에 관한 법률」에 따른 회생계획인가의 결정 또는 파산선고에 따라 회수불능으로 확정된 경우",
             "c": "추심에 드는 비용이 채권액을 초과하는 경우",
             "d": "연대채무자 또는 보증인 등 채무를 이행하여야 할 자가 따로 있는 경우",
-            "correct": "b",
+            "correct": "d",
             "explanation": explanationData[12].explanation,
             "urls": explanationData[12].urls
         },
@@ -399,7 +401,7 @@ window.currentSubjectQuestions = [
             "b": "파산선고를 받은 때",
             "c": "채무자의 총재산에 대하여 청산이 개시된 때",
             "d": "상속인이 한정 승인을 한 때",
-            "correct": "d",
+            "correct": "a",
             "explanation": explanationData[13].explanation,
             "urls": explanationData[13].urls
         },
@@ -419,7 +421,7 @@ window.currentSubjectQuestions = [
             "b": "㉡ - ㉢ - ㉠ - ㉣",
             "c": "㉡ - ㉠ - ㉢ - ㉣",
             "d": "㉢ - ㉣ - ㉠ - ㉡",
-            "correct": "a",
+            "correct": "c",
             "explanation": explanationData[15].explanation,
             "urls": explanationData[15].urls
         },
@@ -429,7 +431,7 @@ window.currentSubjectQuestions = [
             "b": "총괄관리자는 주요 물품의 정수책정 기준을 정하여 운영하여야 한다",
             "c": "사원숙소 및 사택취득은 총무인사처장이 주관한다.",
             "d": "부문관리자가 건당(합계기준) 취득금액이 5천만원 이상의 동산과 3억원 이상의 부동산, 자본예산에 편성되지 않은 자산의 취득시에는 자산취득요청서를 총괄관리자에게 제출하여 승인을 받아야 한다.",
-            "correct": "c",
+            "correct": "a",
             "explanation": explanationData[16].explanation,
             "urls": explanationData[16].urls
         },
@@ -439,7 +441,7 @@ window.currentSubjectQuestions = [
             "b": "본사 위원회의 안건 제안은 자산관리 담당부장이 하고, 본사 이외 위원회의 안건 제안은 자산관리 담당자가 한다.",
             "c": "위원장은 위원회의 회의를 주관하고 위원회를 대표하며, 위원장이 부득이한 사유로 직무를 수행할 수 없을 때에는 직제순에 따라 차하위자가 위원장이 된다.",
             "d": "본사 이외의 위원회는 소관자산의 운영에 대한 기본 방침, 소관자산의 불용 및 손망실 결정에 관한 사항, 그 밖의 자산관리에 필요한 사항을 심의·결정한다.",
-            "correct": "a",
+            "correct": "b",
             "explanation": explanationData[17].explanation,
             "urls": explanationData[17].urls
         },
@@ -459,7 +461,7 @@ window.currentSubjectQuestions = [
             "b": "",
             "c": "",
             "d": "",
-            "correct": "d",
+            "correct": "b",
             "explanation": explanationData[19].explanation,
             "urls": explanationData[19].urls
         },
@@ -469,7 +471,7 @@ window.currentSubjectQuestions = [
             "b": "",
             "c": "",
             "d": "",
-            "correct": "b",
+            "correct": "a",
             "explanation": explanationData[20].explanation,
             "urls": explanationData[20].urls
         },
@@ -489,7 +491,7 @@ window.currentSubjectQuestions = [
             "b": "",
             "c": "",
             "d": "",
-            "correct": "b",
+            "correct": "a",
             "explanation": explanationData[22].explanation,
             "urls": explanationData[22].urls
         },
@@ -499,7 +501,7 @@ window.currentSubjectQuestions = [
             "b": "㉡",
             "c": "㉢",
             "d": "㉣",
-            "correct": "a",
+            "correct": "d",
             "explanation": explanationData[23].explanation,
             "urls": explanationData[23].urls
         },
@@ -519,7 +521,7 @@ window.currentSubjectQuestions = [
             "b": "계약담당부서장 전액 계약상대자 수요부서장",
             "c": "지급담당자 반액 수요부서장 계약상대자",
             "d": "지급담당자 반액 계약상대자 수요부서장",
-            "correct": "c",
+            "correct": "b",
             "explanation": explanationData[25].explanation,
             "urls": explanationData[25].urls
         },
@@ -529,7 +531,7 @@ window.currentSubjectQuestions = [
             "b": "㉡, ㉣, ㉤",
             "c": "㉡, ㉢, ㉣",
             "d": "㉢, ㉣, ㉤",
-            "correct": "a",
+            "correct": "c",
             "explanation": explanationData[26].explanation,
             "urls": explanationData[26].urls
         },
@@ -539,7 +541,7 @@ window.currentSubjectQuestions = [
             "b": "위원장은 정리대상 채권의 분임채권관리자가 되고, 위원은 각 분임채권관리자 및 3급 중에서 위원장이 임명하는 자로 한다.",
             "c": "위원회는 위원장을 포함한 재적위원 과반수 이상의 출석으로 개회하여 출석위원 3분의 2 이상 찬성으로 의결한다.",
             "d": "위원회는 위원장이 소집하며, 회의개최 3일 전까지 심의안건을 간사의 확인을 받아 각 위원들에게 서면으로 고지하여야 한다.",
-            "correct": "a",
+            "correct": "b",
             "explanation": explanationData[27].explanation,
             "urls": explanationData[27].urls
         },
@@ -559,7 +561,7 @@ window.currentSubjectQuestions = [
             "b": "㉡, ㉤",
             "c": "㉣, ㉥",
             "d": "㉢, ㉤, ㉥",
-            "correct": "c",
+            "correct": "d",
             "explanation": explanationData[29].explanation,
             "urls": explanationData[29].urls
         },
@@ -569,7 +571,7 @@ window.currentSubjectQuestions = [
             "b": "㉠ 준공정산명세서  ㉡ 검사명세서      ㉢ 명세서",
             "c": "㉠ 검사명세서      ㉡ 준공정산명세서  ㉢ 명세서",
             "d": "㉠ 검사명세서      ㉡ 준공정산명세서  ㉢ 계산서",
-            "correct": "d",
+            "correct": "c",
             "explanation": explanationData[30].explanation,
             "urls": explanationData[30].urls
         },
@@ -579,7 +581,7 @@ window.currentSubjectQuestions = [
             "b": "추심에 드는 비용이 채권액을 초과하는 경우",
             "c": "채무자인 법인이 해산하여 재개의 가능성이 없다고 판단되고 강제집행에 드는 비용과 다른 우선변제채권의 합계액이 압류할 수 있는 재산의 가액과 동일한 경우",
             "d": "채무자가 사망한 경우에 강제집행에 드는 비용과 다른 우선변제채권의 합계액이 그 상속재산의 가액을 초과하는 경우",
-            "correct": "d",
+            "correct": "a",
             "explanation": explanationData[31].explanation,
             "urls": explanationData[31].urls
         },
@@ -589,7 +591,7 @@ window.currentSubjectQuestions = [
             "b": "자본예산집행이 수반되지 않는 지방자치단체장의 승인을 받은 자산의 취득",
             "c": "공공용지 편입 시 현금으로 보상 받는 경우",
             "d": "건당 합계기준 취득금액이 6천만원인 동산의 취득",
-            "correct": "d",
+            "correct": "a",
             "explanation": explanationData[32].explanation,
             "urls": explanationData[32].urls
         },
@@ -599,7 +601,7 @@ window.currentSubjectQuestions = [
             "b": "원가계산의 시행시 사전원가계산은 예산주관부서에서, 사후원가계산은 결산주관부서에서 각각 담당한다.",
             "c": "원가계산은 실제원가계산을 원칙으로 하나, 표준을 설정할 수 있는 사업과 여러 사업부문을 위해 공통적으로 발생된 간접원가를 배부하기 위해서는 표준원가계산 또는 예정원가계산을 할 수 있다.",
             "d": "원가계산의 방법은 경제성의 원칙에 따라 효과와 희생을 비교하여 선택할 수 있다.",
-            "correct": "c",
+            "correct": "a",
             "explanation": explanationData[33].explanation,
             "urls": explanationData[33].urls
         },
@@ -609,7 +611,7 @@ window.currentSubjectQuestions = [
             "b": "법적절차 등을 밟았음에도 회수가 불가능한 채권",
             "c": "회수비용이 채권액을 초과하는 채권",
             "d": "신용도 하락 등 손실발생률이 높은 채권",
-            "correct": "d",
+            "correct": "c",
             "explanation": explanationData[34].explanation,
             "urls": explanationData[34].urls
         },
@@ -619,7 +621,7 @@ window.currentSubjectQuestions = [
             "b": "㉠ - 매주 / ㉡ - 매월 말 / ㉢ - 시작일",
             "c": "㉠ - 매일 / ㉡ - 매월 말 / ㉢ - 결산일",
             "d": "㉠ - 매달 / ㉡ - 매주 말 / ㉢ - 시작일",
-            "correct": "b",
+            "correct": "d",
             "explanation": explanationData[35].explanation,
             "urls": explanationData[35].urls
         },
@@ -639,7 +641,7 @@ window.currentSubjectQuestions = [
             "b": "13일",
             "c": "20일",
             "d": "25일",
-            "correct": "c",
+            "correct": "d",
             "explanation": explanationData[37].explanation,
             "urls": explanationData[37].urls
         },
@@ -649,7 +651,7 @@ window.currentSubjectQuestions = [
             "b": "2백만원",
             "c": "3백만원",
             "d": "5백만원",
-            "correct": "d",
+            "correct": "c",
             "explanation": explanationData[38].explanation,
             "urls": explanationData[38].urls
         },
@@ -659,7 +661,7 @@ window.currentSubjectQuestions = [
             "b": "농어촌연구원 : 각 실·연구소",
             "c": "지역본부 : 지사 및 지소",
             "d": "농어촌자원개발원 : 농어촌자원개발원",
-            "correct": "a",
+            "correct": "d",
             "explanation": explanationData[39].explanation,
             "urls": explanationData[39].urls
         },
@@ -669,7 +671,7 @@ window.currentSubjectQuestions = [
             "b": "㉠ - 부문관리자 / ㉡ - 2년 / ㉢ - 2월 10일",
             "c": "㉠ - 자산관리자 / ㉡ - 1년 / ㉢ - 2월 10일",
             "d": "㉠ - 출납원     / ㉡ - 1년 / ㉢ - 1월 20일",
-            "correct": "a",
+            "correct": "b",
             "explanation": explanationData[40].explanation,
             "urls": explanationData[40].urls
         },
@@ -679,7 +681,7 @@ window.currentSubjectQuestions = [
             "b": "200만원",
             "c": "300만원",
             "d": "500만원",
-            "correct": "b",
+            "correct": "d",
             "explanation": explanationData[41].explanation,
             "urls": explanationData[41].urls
         },
@@ -689,7 +691,7 @@ window.currentSubjectQuestions = [
             "b": "채권관리자 – 납입의 고지 및 독촉",
             "c": "채권관리자 – 채권의 보전",
             "d": "분임채권관리자 – 채권의 회수계획 수립 및 관리",
-            "correct": "d",
+            "correct": "c",
             "explanation": explanationData[42].explanation,
             "urls": explanationData[42].urls
         },
@@ -709,7 +711,7 @@ window.currentSubjectQuestions = [
             "b": "“채권관리업무”란 채권의 기록관리 회수 보전 내용변경 및 소멸에 관한 모든 업무를 말한다.",
             "c": "“부동산”이란 유형자산 중 토지 및 건물․구축물과 그 부속물을 말한다.",
             "d": "“부외부채”란 재무상태표의 자산계정에 계상되지 아니한 자산을 말한다.",
-            "correct": "d",
+            "correct": "a",
             "explanation": explanationData[44].explanation,
             "urls": explanationData[44].urls
         },
@@ -729,7 +731,7 @@ window.currentSubjectQuestions = [
             "b": "㉡, ㉣",
             "c": "㉠, ㉣",
             "d": "㉢, ㉣",
-            "correct": "c",
+            "correct": "b",
             "explanation": explanationData[46].explanation,
             "urls": explanationData[46].urls
         },
@@ -739,7 +741,7 @@ window.currentSubjectQuestions = [
             "b": "품목별 구분 및 검사와 재고조사 용이",
             "c": "반납품의 품명․수량․성능",
             "d": "불용품, 폐품 및 수리품등 상태별 구분",
-            "correct": "b",
+            "correct": "d",
             "explanation": explanationData[47].explanation,
             "urls": explanationData[47].urls
         },
@@ -749,7 +751,7 @@ window.currentSubjectQuestions = [
             "b": "수의계약 적정성 심의",
             "c": "국제입찰에 의한 조달계약의 이의 신청",
             "d": "추정가격 1000만원을 초과하는 조달청 제3자단가계약 구매",
-            "correct": "c",
+            "correct": "d",
             "explanation": explanationData[48].explanation,
             "urls": explanationData[48].urls
         },
@@ -769,7 +771,7 @@ window.currentSubjectQuestions = [
             "b": "원가계산의 기간은 회계연도와 같이 한다.",
             "c": "원가계산은 비교성의 원칙에 따라 기간비교와 회계단위별 비교가 가능하도록 하여야 한다.",
             "d": "사전원가계산에 필요한 자료는 분기보고를 원칙으로 하고, 사후원가계산에 필요한 자료는 반기보고를 원칙으로 한다.",
-            "correct": "d",
+            "correct": "a",
             "explanation": explanationData[50].explanation,
             "urls": explanationData[50].urls
         },
@@ -779,7 +781,7 @@ window.currentSubjectQuestions = [
             "b": "",
             "c": "",
             "d": "",
-            "correct": "a",
+            "correct": "c",
             "explanation": explanationData[51].explanation,
             "urls": explanationData[51].urls
         },
@@ -789,7 +791,7 @@ window.currentSubjectQuestions = [
             "b": "",
             "c": "",
             "d": "",
-            "correct": "d",
+            "correct": "b",
             "explanation": explanationData[52].explanation,
             "urls": explanationData[52].urls
         },
@@ -799,7 +801,7 @@ window.currentSubjectQuestions = [
             "b": "",
             "c": "",
             "d": "",
-            "correct": "a",
+            "correct": "c",
             "explanation": explanationData[53].explanation,
             "urls": explanationData[53].urls
         },
@@ -809,7 +811,7 @@ window.currentSubjectQuestions = [
             "b": "미결 및 진행내역",
             "c": "검사조서철",
             "d": "물품납품서",
-            "correct": "a",
+            "correct": "d",
             "explanation": explanationData[54].explanation,
             "urls": explanationData[54].urls
         },
@@ -819,7 +821,7 @@ window.currentSubjectQuestions = [
             "b": "㉠, ㉣",
             "c": "㉠, ㉢",
             "d": "㉡, ㉥",
-            "correct": "c",
+            "correct": "d",
             "explanation": explanationData[55].explanation,
             "urls": explanationData[55].urls
         }
