@@ -22,31 +22,38 @@
         <div class="container">
             <div class="exam-selection">
                 <div class="exam-buttons">
-                    <button onclick="location.href='2025-nongchon.html'" class="exam-btn">
+                    <button onclick="location.href='2025-nongchon.html'" class="exam-btn" data-subject="농어촌정비법">
                         농어촌정비법<br><small>(134문제)</small>
                     </button>
-                    <button onclick="location.href='2025-gongun.html'" class="exam-btn">
+                    <button onclick="location.href='2025-gongun.html'" class="exam-btn" data-subject="공운법">
                         공공기관운영법<br><small>(91문제)</small>
                     </button>
-                    <button onclick="location.href='2025-gongsa.html'" class="exam-btn">
+                    <button onclick="location.href='2025-gongsa.html'" class="exam-btn" data-subject="공사법">
                         한국농어촌공사법<br><small>(102문제)</small>
                     </button>
-                    <button onclick="location.href='2025-jikje.html'" class="exam-btn">
+                    <button onclick="location.href='2025-jikje.html'" class="exam-btn" data-subject="직제규정">
                         직제규정<br><small>(27문제)</small>
                     </button>
-                    <button onclick="location.href='2025-chwip.html'" class="exam-btn">
+                    <button onclick="location.href='2025-chwip.html'" class="exam-btn" data-subject="취업규칙">
                         취업규칙<br><small>(47문제)</small>
                     </button>
-                    <button onclick="location.href='2025-insa.html'" class="exam-btn">
+                    <button onclick="location.href='2025-insa.html'" class="exam-btn" data-subject="인사규정">
                         인사규정<br><small>(56문제)</small>
                     </button>
-                    <button onclick="location.href='2025-haengdong.html'" class="exam-btn">
+                    <button onclick="location.href='2025-haengdong.html'" class="exam-btn" data-subject="행동강령">
                         행동강령<br><small>(21문제)</small>
                     </button>
-                    <button onclick="location.href='2025-hoegye.html'" class="exam-btn">
+                    <button onclick="location.href='2025-hoegye.html'" class="exam-btn" data-subject="회계기준">
                         회계기준<br><small>(56문제)</small>
                     </button>
                 </div>
+            </div>
+            
+            <!-- 홈으로 가기 버튼 -->
+            <div style="text-align: center; margin-top: 30px;">
+                <button onclick="location.href='index.html'" class="home-btn" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%); padding: 15px 30px; font-size: 16px;">
+                    🏠 홈으로 가기
+                </button>
             </div>
         </div>
     </div>
@@ -65,26 +72,29 @@
         
         function update2025SubjectProgress() {
             const subjects = [
-                { key: '농어촌정비법', selector: 'button[onclick*="2025-nongchon.html"]' },
-                { key: '공운법', selector: 'button[onclick*="2025-gongun.html"]' },
-                { key: '공사법', selector: 'button[onclick*="2025-gongsa.html"]' },
-                { key: '직제규정', selector: 'button[onclick*="2025-jikje.html"]' },
-                { key: '취업규칙', selector: 'button[onclick*="2025-chwip.html"]' },
-                { key: '인사규정', selector: 'button[onclick*="2025-insa.html"]' },
-                { key: '행동강령', selector: 'button[onclick*="2025-haengdong.html"]' },
-                { key: '회계기준', selector: 'button[onclick*="2025-hoegye.html"]' }
+                { key: '농어촌정비법', total: 134 },
+                { key: '공운법', total: 91 },
+                { key: '공사법', total: 102 },
+                { key: '직제규정', total: 27 },
+                { key: '취업규칙', total: 47 },
+                { key: '인사규정', total: 56 },
+                { key: '행동강령', total: 21 },
+                { key: '회계기준', total: 56 }
             ];
             
             subjects.forEach(subject => {
                 const progressKey = `exam_2025_${subject.key}_progress`;
                 const savedProgress = localStorage.getItem(progressKey);
-                const button = document.querySelector(subject.selector);
+                const button = document.querySelector(`button[data-subject="${subject.key}"]`);
                 
                 if (savedProgress && button) {
                     try {
                         const progressData = JSON.parse(savedProgress);
                         if (progressData.answered > 0) {
-                            const percentage = Math.round((progressData.correct / progressData.answered) * 100);
+                            const correctCount = progressData.correct || 0;
+                            const answeredCount = progressData.answered || 0;
+                            const totalQuestions = progressData.total || subject.total;
+                            const percentage = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
                             
                             // 기존 진행률 표시 제거
                             const existingProgress = button.querySelector('.progress-indicator');
@@ -95,7 +105,7 @@
                             // 새로운 진행률 표시 추가
                             const progressSpan = document.createElement('span');
                             progressSpan.className = 'progress-indicator';
-                            progressSpan.innerHTML = `<br><small>진행률: ${progressData.answered}/${progressData.total} (${percentage}%)</small>`;
+                            progressSpan.innerHTML = `<br><small>진행률: ${answeredCount}/${totalQuestions} (${percentage}%)</small>`;
                             button.appendChild(progressSpan);
                         }
                     } catch (error) {
@@ -104,6 +114,18 @@
                 }
             });
         }
+        
+        // 페이지 포커스시 진행률 업데이트
+        window.addEventListener('focus', function() {
+            update2025SubjectProgress();
+        });
+        
+        // 페이지 표시시 진행률 업데이트
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                update2025SubjectProgress();
+            }
+        });
     </script>
 </body>
 </html>
