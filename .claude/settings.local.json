@@ -9,7 +9,14 @@
       "Bash(git commit:*)",
       "Bash(git fetch:*)",
       "Bash(git checkout:*)",
-      "Bash(git merge:*)"
+      "Bash(git merge:*)",
+      "Bash(for:*)",
+      "Bash(done)",
+      "Bash(grep:*)",
+      "Bash(node:*)",
+      "Bash(do)",
+      "Bash(echo \"=== $file ===\")",
+      "Bash(rm:*)"
     ],
     "deny": [],
     "ask": []
