@@ -325,7 +325,6 @@ function startQuizEngine(quizData) {
             }).join('');
             
             referenceButtonsHtml = `<div class="reference-buttons" style="margin-top: 10px;">${buttons}</div>`;
-            console.log(`Question ${currentQuizData.questionNumber || currentQuiz + 1}: Generated ${urlsToProcess.length} reference button(s)`);
         }
         
         feedbackDiv.innerHTML = `
