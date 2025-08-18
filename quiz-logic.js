@@ -293,8 +293,17 @@ function startQuizEngine(quizData) {
         
         // 참조 버튼 HTML 생성
         let referenceButtonsHtml = '';
-        if (currentQuizData.urls && currentQuizData.urls.length > 0) {
-            const buttons = currentQuizData.urls.map((url, index) => {
+        
+        // urls 배열 또는 url 단일 필드 처리
+        let urlsToProcess = [];
+        if (currentQuizData.urls && Array.isArray(currentQuizData.urls) && currentQuizData.urls.length > 0) {
+            urlsToProcess = currentQuizData.urls;
+        } else if (currentQuizData.url && typeof currentQuizData.url === 'string') {
+            urlsToProcess = [currentQuizData.url];
+        }
+        
+        if (urlsToProcess.length > 0) {
+            const buttons = urlsToProcess.map((url, index) => {
                 // URL에서 조문 추출
                 const articleMatch = url.match(/제(\d+(?:조의?\d*)?(?:조)?)/);
                 const chapterMatch = url.match(/제(\d+장)/);
