@@ -89,9 +89,13 @@ function startQuizEngine(quizData) {
         const pathSegments = window.location.pathname.split('/');
         const currentPage = pathSegments[pathSegments.length - 1];
         
-        // 2025년 시험인지 확인
-        if (currentPage.includes('2025-exam.html')) {
-            // URL에서 과목명 추출 또는 전역 변수 사용
+        // 2025년 시험인지 확인 (개별 과목 페이지들)
+        if (currentPage.includes('2025-') && currentPage.endsWith('.html')) {
+            // window.quizSubject 전역 변수 사용 (각 과목 HTML에서 설정)
+            const subjectName = subject || window.quizSubject || 'unknown';
+            return `exam_2025_${subjectName}_progress`;
+        } else if (currentPage.includes('2025-exam.html')) {
+            // 통합 2025년 페이지 (사용되지 않지만 호환성 유지)
             if (!subject) {
                 const urlParams = new URLSearchParams(window.location.search);
                 subject = urlParams.get('subject') || 'unknown';
