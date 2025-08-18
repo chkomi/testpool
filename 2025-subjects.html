@@ -5,6 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
     <title>2025년 사전공개문제 - 과목 선택</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .exam-btn {
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.4;
+            position: relative;
+        }
+        
+        .home-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 800px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+        }
+        
+        .home-bottom-btn {
+            background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
+            color: #333;
+            border: none;
+            border-radius: 12px;
+            padding: 20px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .home-bottom-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #7BC4E8 0%, #A5D8E3 100%);
+        }
+        
+        .progress-indicator {
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .subjects-grid {
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .exam-btn {
+                padding: 20px 15px;
+                font-size: 16px;
+                min-height: 100px;
+            }
+            
+            .home-grid {
+                padding: 0 15px;
+            }
+            
+            .home-bottom-btn {
+                padding: 18px 35px;
+                font-size: 16px;
+                min-height: 70px;
+            }
+            
+            .progress-indicator {
+                font-size: 13px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="quiz-container" id="quiz">
@@ -20,38 +108,36 @@
             </div>
         </div>
         <div class="container">
-            <div class="exam-selection">
-                <div class="exam-buttons">
-                    <button onclick="location.href='2025-nongchon.html'" class="exam-btn" data-subject="농어촌정비법">
-                        농어촌정비법<br><small>(134문제)</small>
-                    </button>
-                    <button onclick="location.href='2025-gongun.html'" class="exam-btn" data-subject="공운법">
-                        공공기관운영법<br><small>(91문제)</small>
-                    </button>
-                    <button onclick="location.href='2025-gongsa.html'" class="exam-btn" data-subject="공사법">
-                        한국농어촌공사법<br><small>(102문제)</small>
-                    </button>
-                    <button onclick="location.href='2025-jikje.html'" class="exam-btn" data-subject="직제규정">
-                        직제규정<br><small>(27문제)</small>
-                    </button>
-                    <button onclick="location.href='2025-chwip.html'" class="exam-btn" data-subject="취업규칙">
-                        취업규칙<br><small>(47문제)</small>
-                    </button>
-                    <button onclick="location.href='2025-insa.html'" class="exam-btn" data-subject="인사규정">
-                        인사규정<br><small>(56문제)</small>
-                    </button>
-                    <button onclick="location.href='2025-haengdong.html'" class="exam-btn" data-subject="행동강령">
-                        행동강령<br><small>(21문제)</small>
-                    </button>
-                    <button onclick="location.href='2025-hoegye.html'" class="exam-btn" data-subject="회계기준">
-                        회계기준<br><small>(56문제)</small>
-                    </button>
-                </div>
+            <div class="subjects-grid">
+                <button onclick="location.href='2025-nongchon.html'" class="exam-btn" data-subject="농어촌정비법" data-total="134">
+                    농어촌정비법<br><small>(134문제)</small>
+                </button>
+                <button onclick="location.href='2025-gongun.html'" class="exam-btn" data-subject="공운법" data-total="91">
+                    공공기관운영법<br><small>(91문제)</small>
+                </button>
+                <button onclick="location.href='2025-gongsa.html'" class="exam-btn" data-subject="공사법" data-total="102">
+                    한국농어촌공사법<br><small>(102문제)</small>
+                </button>
+                <button onclick="location.href='2025-jikje.html'" class="exam-btn" data-subject="직제규정" data-total="27">
+                    직제규정<br><small>(27문제)</small>
+                </button>
+                <button onclick="location.href='2025-chwip.html'" class="exam-btn" data-subject="취업규칙" data-total="47">
+                    취업규칙<br><small>(47문제)</small>
+                </button>
+                <button onclick="location.href='2025-insa.html'" class="exam-btn" data-subject="인사규정" data-total="56">
+                    인사규정<br><small>(56문제)</small>
+                </button>
+                <button onclick="location.href='2025-haengdong.html'" class="exam-btn" data-subject="행동강령" data-total="21">
+                    행동강령<br><small>(21문제)</small>
+                </button>
+                <button onclick="location.href='2025-hoegye.html'" class="exam-btn" data-subject="회계기준" data-total="56">
+                    회계기준<br><small>(56문제)</small>
+                </button>
             </div>
             
             <!-- 홈으로 가기 버튼 -->
-            <div style="text-align: center; margin-top: 30px;">
-                <button onclick="location.href='index.html'" class="home-btn" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%); padding: 15px 30px; font-size: 16px;">
+            <div class="home-grid">
+                <button onclick="location.href='index.html'" class="home-bottom-btn">
                     🏠 홈으로 가기
                 </button>
             </div>
@@ -71,29 +157,22 @@
         });
         
         function update2025SubjectProgress() {
-            const subjects = [
-                { key: '농어촌정비법', total: 134 },
-                { key: '공운법', total: 91 },
-                { key: '공사법', total: 102 },
-                { key: '직제규정', total: 27 },
-                { key: '취업규칙', total: 47 },
-                { key: '인사규정', total: 56 },
-                { key: '행동강령', total: 21 },
-                { key: '회계기준', total: 56 }
-            ];
+            const buttons = document.querySelectorAll('button[data-subject]');
             
-            subjects.forEach(subject => {
-                const progressKey = `exam_2025_${subject.key}_progress`;
+            buttons.forEach(button => {
+                const subject = button.getAttribute('data-subject');
+                const totalFromButton = parseInt(button.getAttribute('data-total')) || 0;
+                const progressKey = `exam_2025_${subject}_progress`;
                 const savedProgress = localStorage.getItem(progressKey);
-                const button = document.querySelector(`button[data-subject="${subject.key}"]`);
                 
-                if (savedProgress && button) {
+                if (savedProgress) {
                     try {
                         const progressData = JSON.parse(savedProgress);
                         if (progressData.answered > 0) {
                             const correctCount = progressData.correct || 0;
                             const answeredCount = progressData.answered || 0;
-                            const totalQuestions = progressData.total || subject.total;
+                            // 저장된 데이터의 total을 우선 사용하고, 없으면 data-total 사용
+                            const totalQuestions = progressData.total || totalFromButton;
                             const percentage = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
                             
                             // 기존 진행률 표시 제거
@@ -107,9 +186,17 @@
                             progressSpan.className = 'progress-indicator';
                             progressSpan.innerHTML = `<br><small>진행률: ${answeredCount}/${totalQuestions} (${percentage}%)</small>`;
                             button.appendChild(progressSpan);
+                            
+                            console.log(`${subject}: ${answeredCount}/${totalQuestions} (${percentage}%)`);
                         }
                     } catch (error) {
-                        console.warn(`${subject.key} 진행률 로드 오류:`, error);
+                        console.warn(`${subject} 진행률 로드 오류:`, error);
+                    }
+                } else {
+                    // 진행 상황이 없는 경우 기존 진행률 표시 제거
+                    const existingProgress = button.querySelector('.progress-indicator');
+                    if (existingProgress) {
+                        existingProgress.remove();
                     }
                 }
             });
