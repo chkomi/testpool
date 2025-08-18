@@ -298,54 +298,34 @@ function startQuizEngine(quizData) {
         let urlsToProcess = [];
         if (currentQuizData.urls && Array.isArray(currentQuizData.urls) && currentQuizData.urls.length > 0) {
             urlsToProcess = currentQuizData.urls;
-            console.log('URLs found in urls array:', urlsToProcess);
-        } else if (currentQuizData.url && typeof currentQuizData.url === 'string') {
+        } else if (currentQuizData.url && typeof currentQuizData.url === 'string' && currentQuizData.url.trim().length > 0) {
             urlsToProcess = [currentQuizData.url];
-            console.log('URL found in url field:', currentQuizData.url);
-        } else {
-            console.log('No URLs found for question:', currentQuizData.questionNumber || currentQuiz + 1);
-            console.log('Current quiz data URL fields:', {
-                url: currentQuizData.url,
-                urls: currentQuizData.urls,
-                hasUrl: !!currentQuizData.url,
-                hasUrls: !!currentQuizData.urls,
-                urlType: typeof currentQuizData.url,
-                urlsType: typeof currentQuizData.urls
-            });
         }
         
         if (urlsToProcess.length > 0) {
-            console.log('Processing URLs for buttons:', urlsToProcess);
             const buttons = urlsToProcess.map((url, index) => {
-                console.log(`Processing URL ${index + 1}:`, url);
-                
                 // URL에서 조문 추출
                 const articleMatch = url.match(/제(\d+(?:조의?\d*)?(?:조)?)/);
                 const chapterMatch = url.match(/제(\d+장)/);
                 let buttonText = '';
                 
-                console.log('Regex matches:', { articleMatch, chapterMatch });
-                
                 if (articleMatch) {
                     buttonText = articleMatch[1].includes('조') ? articleMatch[1] : `${articleMatch[1]}조`;
-                    console.log('Article button text:', buttonText);
                 } else if (chapterMatch) {
                     buttonText = chapterMatch[1];
-                    console.log('Chapter button text:', buttonText);
                 } else {
                     buttonText = `참조${index + 1}`;
-                    console.log('Default button text:', buttonText);
                 }
                 
-                const buttonHtml = `<button class="reference-btn" onclick="openLawModal('${url}', '${buttonText}')">📖 ${buttonText}</button>`;
-                console.log('Generated button HTML:', buttonHtml);
-                return buttonHtml;
+                // URL을 안전하게 escape 처리
+                const escapedUrl = url.replace(/'/g, "\\'");
+                const escapedButtonText = buttonText.replace(/'/g, "\\'");
+                
+                return `<button class="reference-btn" onclick="openLawModal('${escapedUrl}', '${escapedButtonText}')">📖 ${buttonText}</button>`;
             }).join('');
             
             referenceButtonsHtml = `<div class="reference-buttons" style="margin-top: 10px;">${buttons}</div>`;
-            console.log('Final reference buttons HTML:', referenceButtonsHtml);
-        } else {
-            console.log('No URLs to process for reference buttons');
+            console.log(`Question ${currentQuizData.questionNumber || currentQuiz + 1}: Generated ${urlsToProcess.length} reference button(s)`);
         }
         
         feedbackDiv.innerHTML = `
