@@ -327,13 +327,17 @@ function startQuizEngine(quizData) {
             referenceButtonsHtml = `<div class="reference-buttons" style="margin-top: 10px;">${buttons}</div>`;
         }
         
+        // 개행 처리: 설명 문자열의 \n 을 <br>로 변환하여 가독성 개선
+        const explanationRaw = currentQuizData.explanation || '해설이 없습니다.';
+        const explanationHtml = explanationRaw.replace(/\n/g, '<br>');
+
         feedbackDiv.innerHTML = `
             <div class="feedback-content">
                 <span class="feedback-icon">${isCorrect ? '✓' : '✗'}</span>
                 <span class="feedback-text">${isCorrect ? '정답입니다!' : `오답입니다. 정답: ${correctAnswer.toUpperCase()}`}</span>
             </div>
             <div class="explanation-content">
-                <p><strong>해설:</strong> ${currentQuizData.explanation || '해설이 없습니다.'}</p>
+                <p><strong>해설:</strong> ${explanationHtml}</p>
                 ${referenceButtonsHtml}
             </div>
         `;
@@ -378,12 +382,13 @@ function startQuizEngine(quizData) {
             const userAnswer = userAnswers[i];
             const isCorrect = userAnswer === questionData.correct;
             const options = { a: questionData.a, b: questionData.b, c: questionData.c, d: questionData.d };
+            const expHtml = (questionData.explanation || '해설이 없습니다.').replace(/\n/g, '<br>');
             detailedHTML += `
                 <div class="question-result ${isCorrect ? 'correct' : 'incorrect'}">
                     <p><strong>문제 ${i + 1} (원래 ${questionData.originalIndex}번):</strong> ${isCorrect ? '정답' : '오답'}</p>
                     <p><strong>정답:</strong> ${questionData.correct.toUpperCase()}. ${options[questionData.correct]}</p>
                     ${userAnswer ? `<p><strong>선택한 답:</strong> ${userAnswer.toUpperCase()}. ${options[userAnswer]}</p>` : '<p><strong>선택한 답:</strong> 미선택</p>'}
-                    <p><strong>해설:</strong> ${questionData.explanation || '해설이 없습니다.'}</p>
+                    <p><strong>해설:</strong> ${expHtml}</p>
                 </div>
             `;
         });

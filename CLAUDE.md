@@ -2,6 +2,11 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+Important: Follow AGENTS.md
+- Primary contributor guide is `AGENTS.md`. Read it before making changes.
+- Preserve reference buttons: keep `url` or `urls` fields on each 2025 question so `quiz-logic.js` renders law-reference buttons correctly.
+- Explanations for 2025 subjects must cite only PDFs in `2025/근거` and `2025/법령집`, using the format 「법령명」 제○조제○항.
+
 ## Repository Overview
 
 Web-based quiz application for Korean Agricultural and Rural Infrastructure Corporation (한국농어촌공사) 3급 승진 기초역량평가 필기시험 문제풀이. Built with vanilla HTML/CSS/JavaScript for maximum compatibility and ease of deployment.
