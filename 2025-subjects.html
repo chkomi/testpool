@@ -39,6 +39,20 @@
             z-index: 10;
         }
         
+        .progress-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 4px 8px;
+            font-size: 11px;
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(255, 193, 7, 0.3);
+            z-index: 10;
+        }
+        
         .home-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -137,6 +151,7 @@
                     직제규정<br><small>(27문제)</small>
                 </button>
                 <button onclick="location.href='2025-chwip.html'" class="exam-btn" data-subject="취업규칙" data-total="47">
+                    <span class="progress-badge">해설진행중</span>
                     취업규칙<br><small>(47문제)</small>
                 </button>
                 <button onclick="location.href='2025-insa.html'" class="exam-btn" data-subject="인사규정" data-total="56">
