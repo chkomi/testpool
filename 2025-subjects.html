@@ -135,9 +135,13 @@
             }
             
             .exam-btn {
-                padding: 20px 15px;
+                padding: 15px 12px;
+                font-size: 14px;
+                min-height: 90px;
+            }
+            
+            .subject-title {
                 font-size: 16px;
-                min-height: 100px;
             }
             
             .home-grid {
@@ -151,7 +155,7 @@
             }
             
             .progress-indicator {
-                font-size: 13px;
+                font-size: 12px;
             }
         }
     </style>
@@ -220,6 +224,7 @@
                 </button>
                 <button onclick="location.href='2025-hoegye.html'" class="exam-btn" data-subject="회계기준" data-total="56">
                     <span class="count-badge">56문제</span>
+                    <span class="completion-badge">해설완료</span>
                     <div class="btn-inner">
                         <div class="subject-title">회계기준</div>
                     </div>
@@ -262,9 +267,10 @@
                         if (progressData.answered > 0) {
                             const correctCount = progressData.correct || 0;
                             const answeredCount = progressData.answered || 0;
-                            // 저장된 데이터의 total을 우선 사용하고, 없으면 data-total 사용
-                            const totalQuestions = progressData.total || totalFromButton;
-                            const percentage = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+                            // 항상 data-total 속성의 값을 사용하여 정확한 총 문제수 표시
+                            const totalQuestions = totalFromButton;
+                            // 정확도(percentage) 대신 진행률 표시 (answered/total)
+                            const progressPercentage = totalQuestions > 0 ? Math.round((answeredCount / totalQuestions) * 100) : 0;
                             
                             // 기존 진행률 표시 제거
                             const existingProgress = button.querySelector('.progress-indicator');
@@ -275,7 +281,7 @@
                             // 새로운 진행률 표시 추가
                             const progressSpan = document.createElement('span');
                             progressSpan.className = 'progress-indicator';
-                            progressSpan.textContent = `진행률: ${answeredCount}/${totalQuestions} (${percentage}%)`;
+                            progressSpan.textContent = `진행률: ${answeredCount}/${totalQuestions} (${progressPercentage}%)`;
 
                             const titleEl = button.querySelector('.subject-title');
                             if (titleEl) {
@@ -284,7 +290,7 @@
                                 button.appendChild(progressSpan);
                             }
                             
-                            console.log(`${subject}: ${answeredCount}/${totalQuestions} (${percentage}%)`);
+                            console.log(`${subject}: ${answeredCount}/${totalQuestions} (${progressPercentage}%)`);
                         }
                     } catch (error) {
                         console.warn(`${subject} 진행률 로드 오류:`, error);
