@@ -25,6 +25,20 @@
             position: relative;
         }
         
+        .completion-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 4px 8px;
+            font-size: 11px;
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.3);
+            z-index: 10;
+        }
+        
         .home-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -110,6 +124,7 @@
         <div class="container">
             <div class="subjects-grid">
                 <button onclick="location.href='2025-nongchon.html'" class="exam-btn" data-subject="농어촌정비법" data-total="134">
+                    <span class="completion-badge">해설완료</span>
                     농어촌정비법<br><small>(134문제)</small>
                 </button>
                 <button onclick="location.href='2025-gongun.html'" class="exam-btn" data-subject="공운법" data-total="91">
@@ -125,6 +140,7 @@
                     취업규칙<br><small>(47문제)</small>
                 </button>
                 <button onclick="location.href='2025-insa.html'" class="exam-btn" data-subject="인사규정" data-total="56">
+                    <span class="completion-badge">해설완료</span>
                     인사규정<br><small>(56문제)</small>
                 </button>
                 <button onclick="location.href='2025-haengdong.html'" class="exam-btn" data-subject="행동강령" data-total="21">
