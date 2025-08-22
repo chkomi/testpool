@@ -25,6 +25,20 @@
             position: relative;
         }
         
+        .count-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 4px 8px;
+            font-size: 11px;
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+        
         .completion-badge {
             position: absolute;
             top: 8px;
@@ -61,7 +75,19 @@
             margin: 20px auto 0;
             padding: 0 20px;
         }
-        
+
+        .btn-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .subject-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
         .home-bottom-btn {
             background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
             color: #333;
@@ -138,28 +164,56 @@
         <div class="container">
             <div class="subjects-grid">
                 <button onclick="location.href='2025-nongchon.html'" class="exam-btn" data-subject="농어촌정비법" data-total="134">
+                    <span class="count-badge">134문제</span>
                     <span class="completion-badge">해설완료</span>
-                    농어촌정비법<br><small>(134문제)</small>
+                    <div class="btn-inner">
+                        <div class="subject-title">농어촌정비법</div>
+                    </div>
                 </button>
                 <button onclick="location.href='2025-gongun.html'" class="exam-btn" data-subject="공운법" data-total="91">
-                    공공기관운영법<br><small>(91문제)</small>
+                    <span class="count-badge">91문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">공공기관운영법</div>
+                    </div>
                 </button>
                 <button onclick="location.href='2025-gongsa.html'" class="exam-btn" data-subject="공사법" data-total="102">
-                    한국농어촌공사법<br><small>(102문제)</small>
+                    <span class="count-badge">102문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">한국농어촌공사법</div>
+                    </div>
                 </button>
                 <button onclick="location.href='2025-jikje.html'" class="exam-btn" data-subject="직제규정" data-total="27">
-                    직제규정<br><small>(27문제)</small>
-                </button>
-                <a href="2025-chwip.html" class="btn btn-lg btn-outline-primary subject-btn">8. 취업규칙<span class="completed-badge">해설완료</span></a>
-                <button onclick="location.href='2025-insa.html'" class="exam-btn" data-subject="인사규정" data-total="56">
+                    <span class="count-badge">27문제</span>
                     <span class="completion-badge">해설완료</span>
-                    인사규정<br><small>(56문제)</small>
+                    <div class="btn-inner">
+                        <div class="subject-title">직제규정</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-chwip.html'" class="exam-btn" data-subject="취업규칙" data-total="47">
+                    <span class="count-badge">47문제</span>
+                    <span class="completion-badge">해설완료</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">취업규칙</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-insa.html'" class="exam-btn" data-subject="인사규정" data-total="56">
+                    <span class="count-badge">56문제</span>
+                    <span class="completion-badge">해설완료</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">인사규정</div>
+                    </div>
                 </button>
                 <button onclick="location.href='2025-haengdong.html'" class="exam-btn" data-subject="행동강령" data-total="21">
-                    행동강령<br><small>(21문제)</small>
+                    <span class="count-badge">21문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">행동강령</div>
+                    </div>
                 </button>
                 <button onclick="location.href='2025-hoegye.html'" class="exam-btn" data-subject="회계기준" data-total="56">
-                    회계기준<br><small>(56문제)</small>
+                    <span class="count-badge">56문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">회계기준</div>
+                    </div>
                 </button>
             </div>
             
@@ -212,8 +266,14 @@
                             // 새로운 진행률 표시 추가
                             const progressSpan = document.createElement('span');
                             progressSpan.className = 'progress-indicator';
-                            progressSpan.innerHTML = `<br><small>진행률: ${answeredCount}/${totalQuestions} (${percentage}%)</small>`;
-                            button.appendChild(progressSpan);
+                            progressSpan.textContent = `진행률: ${answeredCount}/${totalQuestions} (${percentage}%)`;
+
+                            const titleEl = button.querySelector('.subject-title');
+                            if (titleEl) {
+                                titleEl.insertAdjacentElement('afterend', progressSpan);
+                            } else {
+                                button.appendChild(progressSpan);
+                            }
                             
                             console.log(`${subject}: ${answeredCount}/${totalQuestions} (${percentage}%)`);
                         }
