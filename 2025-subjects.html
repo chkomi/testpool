@@ -25,15 +25,23 @@
             position: relative;
         }
         
+        :root {
+            --badge-font: clamp(10px, 1.8vw, 12px);
+            --badge-pad-y: clamp(2px, 0.6vw, 4px);
+            --badge-pad-x: clamp(6px, 1.2vw, 10px);
+            --badge-radius: 12px;
+            --badge-offset: clamp(6px, 1.2vw, 10px);
+        }
+
         .count-badge {
             position: absolute;
-            top: 8px;
-            left: 8px;
+            top: var(--badge-offset);
+            left: var(--badge-offset);
             background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
             color: white;
-            border-radius: 12px;
-            padding: 4px 8px;
-            font-size: 11px;
+            border-radius: var(--badge-radius);
+            padding: var(--badge-pad-y) var(--badge-pad-x);
+            font-size: var(--badge-font);
             font-weight: 600;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
             z-index: 10;
@@ -41,13 +49,13 @@
         
         .completion-badge {
             position: absolute;
-            top: 8px;
-            right: 8px;
+            top: var(--badge-offset);
+            right: var(--badge-offset);
             background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
             color: white;
-            border-radius: 12px;
-            padding: 4px 8px;
-            font-size: 11px;
+            border-radius: var(--badge-radius);
+            padding: var(--badge-pad-y) var(--badge-pad-x);
+            font-size: var(--badge-font);
             font-weight: 600;
             box-shadow: 0 2px 6px rgba(40, 167, 69, 0.3);
             z-index: 10;
@@ -55,13 +63,13 @@
         
         .progress-badge {
             position: absolute;
-            top: 8px;
-            right: 8px;
+            top: var(--badge-offset);
+            right: var(--badge-offset);
             background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
             color: white;
-            border-radius: 12px;
-            padding: 4px 8px;
-            font-size: 11px;
+            border-radius: var(--badge-radius);
+            padding: var(--badge-pad-y) var(--badge-pad-x);
+            font-size: var(--badge-font);
             font-weight: 600;
             box-shadow: 0 2px 6px rgba(255, 193, 7, 0.3);
             z-index: 10;
@@ -172,6 +180,7 @@
                 </button>
                 <button onclick="location.href='2025-gongun.html'" class="exam-btn" data-subject="공운법" data-total="91">
                     <span class="count-badge">91문제</span>
+                    <span class="completion-badge">해설완료</span>
                     <div class="btn-inner">
                         <div class="subject-title">공공기관운영법</div>
                     </div>
