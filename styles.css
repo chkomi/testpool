@@ -897,10 +897,6 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
         font-size: 11px;
     }
     
-    .quiz-controls {
-        padding: 0.875rem 1rem;
-    }
-    
     .quiz-controls button {
         padding: 0.625rem 1rem;
         font-size: 0.85rem;
@@ -1328,17 +1324,9 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
     }
     
     .reference-btn {
-        padding: 6px 10px;
+        padding: 5px 8px;
         font-size: 0.75rem;
-        min-height: 32px;
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-    }
-    
-    .reference-btn:active {
-        transform: translateY(1px);
+        min-height: 28px;
     }
 }
 
@@ -1409,4 +1397,13 @@ ul li.selected-incorrect input[type="radio"]:checked + label:after {
 button, input, select, textarea, label, span {
     font-family: 'ROKG', 'Noto Sans KR', sans-serif !important;
 }
-
+.completed-badge {
+    background-color: #28a745; /* Green */
+    color: #fff;
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.75em;
+    font-weight: 700;
+    margin-left: 8px;
+    vertical-align: middle;
+}
