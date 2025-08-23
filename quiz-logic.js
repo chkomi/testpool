@@ -317,6 +317,12 @@ function startQuizEngine(quizData) {
                     buttonText = `참조${index + 1}`;
                 }
                 
+                // 시행령 링크인 경우 라벨에 '시행령' 표기 추가
+                const isDecree = /시행령/.test(url);
+                if (isDecree) {
+                    buttonText = `시행령 ${buttonText}`;
+                }
+                
                 // URL을 안전하게 escape 처리
                 const escapedUrl = url.replace(/'/g, "\\'");
                 const escapedButtonText = buttonText.replace(/'/g, "\\'");
