@@ -228,7 +228,8 @@ function startQuizEngine(quizData) {
                 throw new Error(`Invalid question data at index ${currentQuiz}`);
             }
 
-            question.innerHTML = `${currentQuiz + 1}. ${currentQuizData.question}`;
+            // 질문은 텍스트로 렌더링하고 CSS의 white-space: pre-line으로 줄바꿈 표시
+            question.textContent = `${currentQuiz + 1}. ${currentQuizData.question}`;
             aText.innerText = currentQuizData.a || '';
             bText.innerText = currentQuizData.b || '';
             cText.innerText = currentQuizData.c || '';

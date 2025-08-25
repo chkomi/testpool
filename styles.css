@@ -390,6 +390,8 @@ h2 {
     font-weight: 500;
     text-align: justify;
     text-justify: inter-word;
+    /* 질문 본문에 포함된 \n 개행을 실제 줄바꿈으로 렌더링 */
+    white-space: pre-line;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
