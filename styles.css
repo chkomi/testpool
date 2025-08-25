@@ -348,6 +348,7 @@ h2 {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 .exam-btn:hover:not(:disabled), .exam-btn:focus:not(:disabled) {
@@ -356,6 +357,26 @@ h2 {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     outline: none;
+}
+
+/* 초기화면 시험 버튼용 뱃지 */
+.exam-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #28a745;
+    color: #fff;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.exam-btn:hover .exam-badge,
+.exam-btn:focus .exam-badge {
+    background: #1e7e34;
 }
 
 .exam-btn.disabled, .exam-btn:disabled {
