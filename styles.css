@@ -4,6 +4,13 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Maiyuan';
+    src: url('./font/maiyuan.ttf') format('truetype'),
+         url('./font/Maiyuan.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 :root {
     --primary-blue: #0047AB;
@@ -19,12 +26,12 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'ROKG', 'Noto Sans KR', sans-serif !important;
+    font-family: 'ROKG', 'Maiyuan', 'Noto Sans KR', sans-serif !important;
 }
 
 body {
     background: var(--page-bg);
-    font-family: 'ROKG', 'Noto Sans KR', sans-serif;
+    font-family: 'ROKG', 'Maiyuan', 'Noto Sans KR', sans-serif;
     color: var(--text-color);
     min-height: 100vh;
     line-height: 1.6;
@@ -693,6 +700,18 @@ input[type="radio"]:checked + label:after {
     font-weight: 500;
     font-size: 1rem;
     color: var(--pure-black);
+}
+
+/* Ensure Hanja render with Maiyuan as fallback across key UI elements */
+.exam-btn,
+.home-btn,
+.progress-badge,
+ul li label,
+.result button,
+.feedback-text,
+#question,
+body {
+    font-family: 'ROKG', 'Maiyuan', 'Noto Sans KR', sans-serif !important;
 }
 
 .explanation-content {
