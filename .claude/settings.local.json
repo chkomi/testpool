@@ -16,7 +16,9 @@
       "Bash(node:*)",
       "Bash(do)",
       "Bash(echo \"=== $file ===\")",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(python3:*)",
+      "Bash(open /Users/yunhyungchang/Documents/project/testpool/testpool/test-hanja.html)"
     ],
     "deny": [],
     "ask": []
