@@ -32,7 +32,9 @@ function startQuizEngine(quizData) {
 
     // --- State Variables ---
     let shuffledQuizData, currentQuiz, score, userAnswers, questionAnswered;
-    let isRandomMode = localStorage.getItem('quizRandomMode') !== 'false';
+    // 기본값: 일반모드(false). 저장값이 'true'일 때만 랜덤모드 활성.
+    const storedRandom = localStorage.getItem('quizRandomMode');
+    let isRandomMode = storedRandom ? storedRandom === 'true' : false;
 
     // --- Helper Functions ---
     const shuffleArray = (array) => {
@@ -45,6 +47,61 @@ function startQuizEngine(quizData) {
     };
 
     const createSequentialArray = (array) => array.map((q, index) => ({...q, originalIndex: index + 1}));
+
+    // 항상 originalIndex를 보장한 뒤 셔플/순서 결정
+    const prepareQuizData = (data, randomMode) => {
+        const withIndex = data.map((q, idx) => ({ ...q, originalIndex: (q && q.originalIndex) ? q.originalIndex : idx + 1 }));
+        return randomMode ? shuffleArray(withIndex) : withIndex;
+    };
+
+    // URL q 파라미터 처리: 기본은 원문항 번호 기반, qMode=current면 현재 순서 기반
+    function applyDeepLinkIndex() {
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const qRaw = urlParams.get('q');
+            if (!qRaw) return; // no-op
+            const q = parseInt(qRaw, 10);
+            if (isNaN(q)) return;
+            const qMode = urlParams.get('qMode');
+
+            let targetIndex = null;
+            if (qMode === 'current') {
+                // 현재 순서(1-based)
+                targetIndex = Math.max(0, Math.min(q - 1, shuffledQuizData.length - 1));
+            } else {
+                // 기본: 원문항 번호로 매핑
+                const idx = shuffledQuizData.findIndex(item => (item && item.originalIndex) === q);
+                if (idx >= 0) targetIndex = idx;
+            }
+            if (targetIndex !== null) {
+                currentQuiz = targetIndex;
+            }
+        } catch (e) {
+            console.warn('applyDeepLinkIndex error:', e);
+        }
+    }
+
+    // 현재 문항에 맞게 URL의 q 파라미터를 동기화 (히스토리 누적 방지: replaceState)
+    function syncUrlWithCurrentQuestion() {
+        try {
+            const url = new URL(window.location.href);
+            const params = url.searchParams;
+            const current = shuffledQuizData[currentQuiz];
+            const qMode = params.get('qMode');
+
+            if (qMode === 'current') {
+                params.set('q', String(currentQuiz + 1));
+            } else {
+                // 기본: 원문항 번호
+                const original = current && current.originalIndex ? current.originalIndex : (currentQuiz + 1);
+                params.set('q', String(original));
+            }
+            url.search = params.toString();
+            window.history.replaceState(null, '', url.toString());
+        } catch (e) {
+            console.warn('syncUrlWithCurrentQuestion error:', e);
+        }
+    }
 
     // --- Error Handling Functions ---
     function showError(message) {
@@ -186,7 +243,7 @@ function startQuizEngine(quizData) {
                     } else {
                         // 새로 시작하기로 선택한 경우
                         clearProgress();
-                        shuffledQuizData = isRandomMode ? shuffleArray(quizData) : createSequentialArray(quizData);
+                        shuffledQuizData = prepareQuizData(quizData, isRandomMode);
                         currentQuiz = 0;
                         score = 0;
                         userAnswers = [];
@@ -196,12 +253,15 @@ function startQuizEngine(quizData) {
                 }
             } else {
                 // 저장된 진행상태가 없으면 새로 시작
-                shuffledQuizData = isRandomMode ? shuffleArray(quizData) : createSequentialArray(quizData);
+                shuffledQuizData = prepareQuizData(quizData, isRandomMode);
                 currentQuiz = 0;
                 score = 0;
                 userAnswers = [];
             }
-            
+
+            // 딥링크(q) 적용: 데이터 준비 후 현재 인덱스 조정
+            applyDeepLinkIndex();
+
             questionAnswered = false;
             // Clear any previous results
             const resultDiv = document.getElementById('result');
@@ -254,6 +314,8 @@ function startQuizEngine(quizData) {
             submitBtn.style.display = currentQuiz === shuffledQuizData.length - 1 ? 'inline-block' : 'none';
             updateNextButtonState();
             updateProgressBadge();
+            // URL에 현재 문항 반영
+            syncUrlWithCurrentQuestion();
         } catch (error) {
             console.error('Load quiz error:', error);
             showError('문제를 불러오는 중 오류가 발생했습니다.');

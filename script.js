@@ -36,8 +36,8 @@ function initializeRandomModeToggle() {
     const modeStatusText = document.getElementById('modeStatusText');
     
     if (randomModeToggle && modeStatusText) {
-        // 저장된 설정 불러오기 (기본값: true - 랜덤 모드)
-        const isRandomMode = localStorage.getItem('quizRandomMode') !== 'false';
+        // 저장된 설정 불러오기 (기본값: false - 일반 모드)
+        const isRandomMode = localStorage.getItem('quizRandomMode') === 'true';
         randomModeToggle.checked = isRandomMode;
         
         // 초기 상태 텍스트 설정
@@ -274,5 +274,4 @@ function initializeScrollAnimations() {
         });
     }, 100);
 }
-
 
