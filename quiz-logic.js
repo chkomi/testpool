@@ -228,12 +228,12 @@ function startQuizEngine(quizData) {
                 throw new Error(`Invalid question data at index ${currentQuiz}`);
             }
 
-            // 질문은 텍스트로 렌더링하고 CSS의 white-space: pre-line으로 줄바꿈 표시
-            question.textContent = `${currentQuiz + 1}. ${currentQuizData.question}`;
-            aText.innerText = currentQuizData.a || '';
-            bText.innerText = currentQuizData.b || '';
-            cText.innerText = currentQuizData.c || '';
-            dText.innerText = currentQuizData.d || '';
+            // 질문과 선택지는 HTML로 렌더링하여 hanja span 태그 지원
+            question.innerHTML = `${currentQuiz + 1}. ${currentQuizData.question}`;
+            aText.innerHTML = currentQuizData.a || '';
+            bText.innerHTML = currentQuizData.b || '';
+            cText.innerHTML = currentQuizData.c || '';
+            dText.innerHTML = currentQuizData.d || '';
             questionCounter.innerText = `${currentQuiz + 1} / ${shuffledQuizData.length}`;
 
             // 참조 버튼 추가 (질문 로드시에는 불필요 - 해설에서만 표시)
