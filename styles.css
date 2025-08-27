@@ -6,10 +6,29 @@
 }
 @font-face {
     font-family: 'Maiyuan';
-    src: url('./font/maiyuan.ttf') format('truetype'),
-         url('./font/Maiyuan.ttf') format('truetype');
+    src: url('./font/Maiyuan.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    unicode-range: U+4E00-9FFF;
+    font-display: block;
+}
+
+/* Specific fallback for CJK characters */
+.hanja, .chinese-char {
+    font-family: 'Maiyuan', 'Noto Sans CJK KR', 'Apple SD Gothic Neo', sans-serif !important;
+}
+
+/* Force Maiyuan font for all CJK Unified Ideographs */
+@supports (unicode-range: U+4E00-9FFF) {
+    * {
+        font-family: 'ROKG', 'Maiyuan', 'Noto Sans CJK KR', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif !important;
+    }
+}
+
+/* Alternative method: target specific characters */
+*:lang(zh), *:lang(ja), 
+*[lang="zh"], *[lang="ja"] {
+    font-family: 'Maiyuan', 'Noto Sans CJK KR', 'Apple SD Gothic Neo', sans-serif !important;
 }
 
 :root {
@@ -26,12 +45,12 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'ROKG', 'Maiyuan', 'Noto Sans KR', sans-serif !important;
+    font-family: 'ROKG', 'Maiyuan', 'Noto Sans CJK KR', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif !important;
 }
 
 body {
     background: var(--page-bg);
-    font-family: 'ROKG', 'Maiyuan', 'Noto Sans KR', sans-serif;
+    font-family: 'ROKG', 'Maiyuan', 'Noto Sans CJK KR', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
     color: var(--text-color);
     min-height: 100vh;
     line-height: 1.6;
@@ -711,7 +730,7 @@ ul li label,
 .feedback-text,
 #question,
 body {
-    font-family: 'ROKG', 'Maiyuan', 'Noto Sans KR', sans-serif !important;
+    font-family: 'ROKG', 'Maiyuan', 'Noto Sans CJK KR', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif !important;
 }
 
 .explanation-content {
