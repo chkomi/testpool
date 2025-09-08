@@ -57,5 +57,83 @@
     </div>
     
     <script src="script.js"></script>
+    
+    <!-- Cache Refresh Popup Script -->
+    <script>
+        // Cache Refresh Popup Functions for index.html
+        function showCacheRefreshPopup() {
+            // Check if popup was dismissed today
+            const dismissedDate = localStorage.getItem('cachePopupDismissedDate');
+            const today = new Date().toDateString();
+            
+            if (dismissedDate === today) {
+                return; // Don't show popup if dismissed today
+            }
+            
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            const popupHTML = `
+                <div class="cache-popup-overlay" id="cachePopupOverlay">
+                    <div class="cache-popup">
+                        <div class="cache-popup-header">
+                            <span class="cache-popup-icon">🔄</span>
+                            <h2>페이지 새로고침 안내</h2>
+                        </div>
+                        <div class="cache-popup-content">
+                            <p>문제나 해설이 제대로 표시되지 않는다면 <strong>하드 리프레시</strong>를 해보세요!</p>
+                            
+                            <div class="cache-refresh-instructions">
+                                <h4>새로고침 방법:</h4>
+                                <ul>
+                                    <li><strong>Windows:</strong> Ctrl + F5 또는 Ctrl + Shift + R</li>
+                                    <li><strong>Mac:</strong> Cmd + Shift + R 또는 Cmd + Option + R</li>
+                                    <li class="mobile"><strong>모바일:</strong> 브라우저 앱을 완전히 종료한 후 새 창에서 다시 접속</li>
+                                </ul>
+                            </div>
+                            
+                            ${isMobile ? '<p><strong>📱 모바일 사용자:</strong> 브라우저 앱을 끄고 새 창에서 접속하시면 최신 내용을 확인할 수 있습니다.</p>' : ''}
+                            
+                            <p>이렇게 하면 브라우저 캐시를 무시하고 최신 내용을 불러올 수 있습니다.</p>
+                        </div>
+                        <div class="cache-popup-buttons">
+                            <button class="cache-popup-btn secondary" onclick="dismissCachePopupForToday()">오늘 하루 안보기</button>
+                            <button class="cache-popup-btn primary" onclick="closeCachePopup()">닫기</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', popupHTML);
+            
+            // Close popup when clicking overlay
+            document.getElementById('cachePopupOverlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeCachePopup();
+                }
+            });
+        }
+
+        function closeCachePopup() {
+            const overlay = document.getElementById('cachePopupOverlay');
+            if (overlay) {
+                overlay.style.animation = 'fadeOut 0.3s ease-out';
+                setTimeout(() => {
+                    overlay.remove();
+                }, 300);
+            }
+        }
+
+        function dismissCachePopupForToday() {
+            const today = new Date().toDateString();
+            localStorage.setItem('cachePopupDismissedDate', today);
+            closeCachePopup();
+        }
+
+        // Show popup when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Delay popup show to avoid interference with page initialization
+            setTimeout(showCacheRefreshPopup, 1500);
+        });
+    </script>
 </body>
 </html>
