@@ -209,15 +209,81 @@ function startPreviewExam() {
     location.href = 'preview-exam.html';
 }
 
+// 컴팩트 확인 모달 함수
+function showCompactConfirm(title, message, confirmText = '확인', cancelText = '취소') {
+    return new Promise((resolve) => {
+        // 기존 모달이 있다면 제거
+        const existingModal = document.querySelector('.compact-confirm-overlay');
+        if (existingModal) {
+            existingModal.remove();
+        }
+
+        // 모달 HTML 생성
+        const modalHTML = `
+            <div class="compact-confirm-overlay">
+                <div class="compact-confirm-modal">
+                    <div class="compact-confirm-title">${title}</div>
+                    <div class="compact-confirm-message">${message}</div>
+                    <div class="compact-confirm-buttons">
+                        <button class="compact-confirm-btn primary" data-action="confirm">${confirmText}</button>
+                        <button class="compact-confirm-btn secondary" data-action="cancel">${cancelText}</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // 모달을 body에 추가
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        const overlay = document.querySelector('.compact-confirm-overlay');
+
+        // 애니메이션을 위해 약간의 지연 후 active 클래스 추가
+        setTimeout(() => {
+            overlay.classList.add('active');
+        }, 10);
+
+        // 버튼 이벤트 리스너
+        overlay.addEventListener('click', (e) => {
+            if (e.target.closest('[data-action="confirm"]')) {
+                closeModal(true);
+            } else if (e.target.closest('[data-action="cancel"]') || e.target === overlay) {
+                closeModal(false);
+            }
+        });
+
+        // 모달 닫기 함수
+        function closeModal(result) {
+            overlay.classList.remove('active');
+            setTimeout(() => {
+                overlay.remove();
+                resolve(result);
+            }, 300);
+        }
+
+        // ESC 키로 닫기
+        function handleKeyDown(e) {
+            if (e.key === 'Escape') {
+                document.removeEventListener('keydown', handleKeyDown);
+                closeModal(false);
+            }
+        }
+        document.addEventListener('keydown', handleKeyDown);
+    });
+}
+
 // 시험 시작 전 확인 및 이어하기 옵션
-function startExam(year) {
+async function startExam(year) {
     const progressKey = `exam_${year}_progress`;
     const progress = localStorage.getItem(progressKey);
     
     if (progress) {
         const progressData = JSON.parse(progress);
         if (progressData.answered > 0) {
-            const resumeChoice = confirm(`${year}년 시험에 진행 중인 내용이 있습니다.\n\n이어서 풀기: 확인\n처음부터 시작: 취소`);
+            const resumeChoice = await showCompactConfirm(
+                `${year}년 시험 진행 중`,
+                '진행 중인 내용이 있습니다.',
+                '이어서 풀기',
+                '처음부터'
+            );
             
             if (resumeChoice) {
                 // 이어하기
