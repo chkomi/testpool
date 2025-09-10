@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+    <title>2025년 사전공개문제 - 과목 선택</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .exam-btn {
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.4;
+            position: relative;
+        }
+        
+        :root {
+            --badge-font: clamp(10px, 1.8vw, 12px);
+            --badge-pad-y: clamp(2px, 0.6vw, 4px);
+            --badge-pad-x: clamp(6px, 1.2vw, 10px);
+            --badge-radius: 12px;
+            --badge-offset: clamp(6px, 1.2vw, 10px);
+        }
+
+        .count-badge {
+            position: absolute;
+            top: var(--badge-offset);
+            left: var(--badge-offset);
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            color: white;
+            border-radius: var(--badge-radius);
+            padding: var(--badge-pad-y) var(--badge-pad-x);
+            font-size: var(--badge-font);
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+        
+        .completion-badge {
+            position: absolute;
+            top: var(--badge-offset);
+            right: var(--badge-offset);
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border-radius: var(--badge-radius);
+            padding: var(--badge-pad-y) var(--badge-pad-x);
+            font-size: var(--badge-font);
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.3);
+            z-index: 10;
+        }
+        
+        .progress-badge {
+            position: absolute;
+            top: var(--badge-offset);
+            right: var(--badge-offset);
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+            color: white;
+            border-radius: var(--badge-radius);
+            padding: var(--badge-pad-y) var(--badge-pad-x);
+            font-size: var(--badge-font);
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(255, 193, 7, 0.3);
+            z-index: 10;
+        }
+        
+        .home-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 800px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+        }
+
+        .btn-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .subject-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .home-bottom-btn {
+            background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
+            color: #333;
+            border: none;
+            border-radius: 12px;
+            padding: 20px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .home-bottom-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #7BC4E8 0%, #A5D8E3 100%);
+        }
+        
+        .progress-indicator {
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .subjects-grid {
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .exam-btn {
+                padding: 15px 12px;
+                font-size: 14px;
+                min-height: 90px;
+            }
+            
+            .subject-title {
+                font-size: 16px;
+            }
+            
+            .home-grid {
+                padding: 0 15px;
+            }
+            
+            .home-bottom-btn {
+                padding: 18px 35px;
+                font-size: 16px;
+                min-height: 70px;
+            }
+            
+            .progress-indicator {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container" id="quiz">
+        <div class="quiz-header">
+            <div class="header-left">
+                <h1>2025년 사전공개문제</h1>
+                <p class="subtitle">과목을 선택하세요</p>
+            </div>
+            <div class="header-right">
+                <div class="header-controls">
+                    <button class="home-btn" onclick="location.href='index.html'">🏠 홈</button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="subjects-grid">
+                <button onclick="location.href='2025-nongchon.html'" class="exam-btn" data-subject="농어촌정비법" data-total="134">
+                    <span class="count-badge">134문제</span>
+                    <span class="completion-badge">해설완료</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">농어촌정비법</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-gongun.html'" class="exam-btn" data-subject="공운법" data-total="91">
+                    <span class="count-badge">91문제</span>
+                    <span class="completion-badge">해설완료</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">공공기관운영법</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-gongsa.html'" class="exam-btn" data-subject="공사법" data-total="102">
+                    <span class="count-badge">102문제</span>
+                    <span class="completion-badge">해설완료</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">한국농어촌공사법</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-jikje.html'" class="exam-btn" data-subject="직제규정" data-total="27">
+                    <span class="count-badge">27문제</span>
+                    <span class="completion-badge">해설완료</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">직제규정</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-chwip.html'" class="exam-btn" data-subject="취업규칙" data-total="47">
+                    <span class="count-badge">47문제</span>
+                    <span class="completion-badge">해설완료</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">취업규칙</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-insa.html'" class="exam-btn" data-subject="인사규정" data-total="56">
+                    <span class="count-badge">56문제</span>
+                    <span class="completion-badge">해설완료</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">인사규정</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-haengdong.html'" class="exam-btn" data-subject="행동강령" data-total="21">
+                    <span class="count-badge">21문제</span>
+                    <span class="completion-badge">해설완료</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">행동강령</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-hoegye.html'" class="exam-btn" data-subject="회계기준" data-total="56">
+                    <span class="count-badge">56문제</span>
+                    <span class="completion-badge">해설완료</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">회계기준</div>
+                    </div>
+                </button>
+            </div>
+            
+            <!-- 홈으로 가기 버튼 -->
+            <div class="home-grid">
+                <button onclick="location.href='index.html'" class="home-bottom-btn">
+                    🏠 홈으로 가기
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Powered by badge -->
+    <div class="powered-by-badge">
+        powered by 2170153
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // 2025년 과목별 진행률 표시
+        document.addEventListener('DOMContentLoaded', function() {
+            update2025SubjectProgress();
+        });
+        
+        function update2025SubjectProgress() {
+            const buttons = document.querySelectorAll('button[data-subject]');
+            
+            buttons.forEach(button => {
+                const subject = button.getAttribute('data-subject');
+                const totalFromButton = parseInt(button.getAttribute('data-total')) || 0;
+                const progressKey = `exam_2025_${subject}_progress`;
+                const savedProgress = localStorage.getItem(progressKey);
+                
+                if (savedProgress) {
+                    try {
+                        const progressData = JSON.parse(savedProgress);
+                        if (progressData.answered > 0) {
+                            const correctCount = progressData.correct || 0;
+                            const answeredCount = progressData.answered || 0;
+                            // 항상 data-total 속성의 값을 사용하여 정확한 총 문제수 표시
+                            const totalQuestions = totalFromButton;
+                            // 정확도(percentage) 대신 진행률 표시 (answered/total)
+                            const progressPercentage = totalQuestions > 0 ? Math.round((answeredCount / totalQuestions) * 100) : 0;
+                            
+                            // 기존 진행률 표시 제거
+                            const existingProgress = button.querySelector('.progress-indicator');
+                            if (existingProgress) {
+                                existingProgress.remove();
+                            }
+                            
+                            // 새로운 진행률 표시 추가
+                            const progressSpan = document.createElement('span');
+                            progressSpan.className = 'progress-indicator';
+                            progressSpan.textContent = `진행률: ${answeredCount}/${totalQuestions} (${progressPercentage}%)`;
+
+                            const titleEl = button.querySelector('.subject-title');
+                            if (titleEl) {
+                                titleEl.insertAdjacentElement('afterend', progressSpan);
+                            } else {
+                                button.appendChild(progressSpan);
+                            }
+                            
+                            console.log(`${subject}: ${answeredCount}/${totalQuestions} (${progressPercentage}%)`);
+                        }
+                    } catch (error) {
+                        console.warn(`${subject} 진행률 로드 오류:`, error);
+                    }
+                } else {
+                    // 진행 상황이 없는 경우 기존 진행률 표시 제거
+                    const existingProgress = button.querySelector('.progress-indicator');
+                    if (existingProgress) {
+                        existingProgress.remove();
+                    }
+                }
+            });
+        }
+        
+        // 페이지 포커스시 진행률 업데이트
+        window.addEventListener('focus', function() {
+            update2025SubjectProgress();
+        });
+        
+        // 페이지 표시시 진행률 업데이트
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                update2025SubjectProgress();
+            }
+        });
+    </script>
+</body>
+</html>

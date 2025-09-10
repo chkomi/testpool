@@ -2,19 +2,25 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
     <title>2022년 3급 승진 기초역량평가 필기시험</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="quiz-container" id="quiz">
         <div class="quiz-header">
-            <div class="header-controls">
-                <div class="progress-badge" id="progress-badge">0/0 (0%)</div>
-                <button class="home-btn" onclick="location.href='index.html'">🏠 홈</button>
+            <div class="header-left">
+                <h1>2022년 3급 승진 기초역량평가 필기시험</h1>
             </div>
-            <h1>2022년 3급 승진 기초역량평가 필기시험</h1>
-            <h2 id="question">Question text</h2>
+            <div class="header-right">
+                <div class="header-controls">
+                    <div class="progress-badge" id="progress-badge">0/0 (0%)</div>
+                    <button class="home-btn" onclick="location.href='index.html'">🏠 홈</button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div id="question" class="question-card">Question text</div>
             <ul>
                 <li>
                     <input type="radio" name="answer" id="1" class="answer">
@@ -33,6 +39,7 @@
                     <label for="4" id="d_text">Answer</label>
                 </li>
             </ul>
+        </div>
         </div>
         <div class="quiz-controls">
             <button id="prev">이전</button>

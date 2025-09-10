@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+    <title>행동강령</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="quiz-container" id="quiz">
+        <div class="quiz-header">
+            <div class="header-left">
+                <h1>행동강령</h1>
+            </div>
+            <div class="header-right">
+                <div class="header-controls">
+                    <div class="progress-badge" id="progress-badge">0/0 (0%)</div>
+                    <button class="home-btn" onclick="location.href='2025-subjects.html'">← 과목선택</button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div id="question" class="question-card">Question text</div>
+            <ul>
+                <li>
+                    <input type="radio" name="answer" id="1" class="answer">
+                    <label for="1" id="a_text">Answer</label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" id="2" class="answer">
+                    <label for="2" id="b_text">Answer</label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" id="3" class="answer">
+                    <label for="3" id="c_text">Answer</label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" id="4" class="answer">
+                    <label for="4" id="d_text">Answer</label>
+                </li>
+            </ul>
+        </div>
+        <div class="quiz-controls">
+            <button id="prev">이전</button>
+            <span id="question-counter">1 / 0</span>
+            <button id="next">다음</button>
+        </div>
+        <button id="submit">제출</button>
+        <div id="result" class="result hidden"></div>
+        
+        <!-- 홈으로 가기 버튼 추가 -->
+        <div style="text-align: center; margin-top: 30px;">
+            <button onclick="location.href='index.html'" class="home-btn" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%); padding: 15px 30px; font-size: 16px;">
+                🏠 홈으로 가기
+            </button>
+        </div>
+    </div>
+    <script src="2025-haengdong.js"></script>
+    <script src="quiz-logic.js"></script>
+    <script>
+        // 과목별 고유 식별자 설정 (진행률 저장을 위해)
+        window.quizSubject = '행동강령';
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git remote add:*)",
+      "Bash(git config:*)",
+      "Bash(git push:*)",
+      "Bash(git commit:*)",
+      "Bash(git fetch:*)",
+      "Bash(git checkout:*)",
+      "Bash(git merge:*)",
+      "Bash(for:*)",
+      "Bash(done)",
+      "Bash(grep:*)",
+      "Bash(node:*)",
+      "Bash(do)",
+      "Bash(echo \"=== $file ===\")",
+      "Bash(rm:*)",
+      "Bash(python3:*)",
+      "Bash(open /Users/yunhyungchang/Documents/project/testpool/testpool/test-hanja.html)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
