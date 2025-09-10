@@ -80,20 +80,13 @@
                             <h2>페이지 새로고침 안내</h2>
                         </div>
                         <div class="cache-popup-content">
-                            <p>문제나 해설이 제대로 표시되지 않는다면 <strong>하드 리프레시</strong>를 해보세요!</p>
+                            <p>문제나 해설이 제대로 안보인다면 <strong>하드 리프레시</strong> 해보세요!</p>
                             
                             <div class="cache-refresh-instructions">
-                                <h4>새로고침 방법:</h4>
-                                <ul>
-                                    <li><strong>Windows:</strong> Ctrl + F5 또는 Ctrl + Shift + R</li>
-                                    <li><strong>Mac:</strong> Cmd + Shift + R 또는 Cmd + Option + R</li>
-                                    <li class="mobile"><strong>모바일:</strong> 브라우저 앱을 완전히 종료한 후 새 창에서 다시 접속</li>
-                                </ul>
+                                <div><strong>Windows:</strong> Ctrl + F5 또는 Ctrl + Shift + R</div>
+                                <div><strong>Mac:</strong> Cmd + Shift + R 또는 Cmd + Option + R</div>
+                                <div><strong>모바일:</strong> 브라우저 앱을 완전히 종료한 후 새 창에서 다시 접속</div>
                             </div>
-                            
-                            ${isMobile ? '<p><strong>📱 모바일 사용자:</strong> 브라우저 앱을 끄고 새 창에서 접속하시면 최신 내용을 확인할 수 있습니다.</p>' : ''}
-                            
-                            <p>이렇게 하면 브라우저 캐시를 무시하고 최신 내용을 불러올 수 있습니다.</p>
                         </div>
                         <div class="cache-popup-buttons">
                             <button class="cache-popup-btn secondary" onclick="dismissCachePopupForToday()">오늘 하루 안보기</button>
