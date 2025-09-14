@@ -32,11 +32,30 @@
             position: relative;
             min-height: 130px;
             padding: 28px 18px 24px; /* extra top space for badge */
+            overflow: hidden; /* for background pseudo element */
         }
         @media (max-width: 768px) {
             .exam-buttons { gap: 15px; padding: 15px; }
             .exam-btn { min-height: 110px; padding: 26px 14px 20px; }
         }
+
+        /* Subtle big-year background for legacy exam buttons (2021–2024) */
+        .exam-btn[data-year-full]::before {
+            content: attr(data-year-full);
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            letter-spacing: -2px;
+            font-size: clamp(70px, 16vw, 140px);
+            color: rgba(135, 206, 235, 0.22); /* light sky blue */
+            pointer-events: none;
+            z-index: 0;
+        }
+        /* Ensure foreground content is above background year */
+        .exam-btn > * { position: relative; z-index: 1; }
 
         /* Progress badge (top-right), like subjects page */
         :root {
@@ -84,10 +103,10 @@
                     <button onclick="location.href='2025-summaries.html'" class="exam-btn">2025 핵심요약집</button>
                     <button onclick="location.href='2025-subjects.html'" class="exam-btn">2025년 사전공개문제</button>
                     <!-- 2021~2024: 2x2 배치, 문구 간소화 -->
-                    <button onclick="startExam('2021')" class="exam-btn">'21년 필기기출</button>
-                    <button onclick="startExam('2022')" class="exam-btn">'22년 필기기출</button>
-                    <button onclick="startExam('2023')" class="exam-btn">'23년 필기기출</button>
-                    <button onclick="startExam('2024')" class="exam-btn">'24년 필기기출</button>
+                    <button onclick="startExam('2021')" class="exam-btn" data-year-full="2021">'21년 필기기출</button>
+                    <button onclick="startExam('2022')" class="exam-btn" data-year-full="2022">'22년 필기기출</button>
+                    <button onclick="startExam('2023')" class="exam-btn" data-year-full="2023">'23년 필기기출</button>
+                    <button onclick="startExam('2024')" class="exam-btn" data-year-full="2024">'24년 필기기출</button>
                 </div>
             </div>
         </div>
