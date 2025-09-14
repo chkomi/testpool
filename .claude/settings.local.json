@@ -18,7 +18,10 @@
       "Bash(echo \"=== $file ===\")",
       "Bash(rm:*)",
       "Bash(python3:*)",
-      "Bash(open /Users/yunhyungchang/Documents/project/testpool/testpool/test-hanja.html)"
+      "Bash(open /Users/yunhyungchang/Documents/project/testpool/testpool/test-hanja.html)",
+      "WebFetch(domain:alphagogogo.com)",
+      "Read(/var/folders/2_/rr8mxbc114962nyyktl3w_h00000gn/T/TemporaryItems/NSIRD_screencaptureui_E29SeO/**)",
+      "Read(/var/folders/2_/rr8mxbc114962nyyktl3w_h00000gn/T/TemporaryItems/NSIRD_screencaptureui_WR6eHH/**)"
     ],
     "deny": [],
     "ask": []

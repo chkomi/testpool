@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>간단한 퀴즈 테스트</title>
+</head>
+<body>
+    <h1>퀴즈 테스트</h1>
+    <div id="quiz">
+        <div id="question">Question text</div>
+        <ul>
+            <li>
+                <input type="radio" name="answer" id="1" class="answer">
+                <label for="1" id="a_text">Answer</label>
+            </li>
+            <li>
+                <input type="radio" name="answer" id="2" class="answer">
+                <label for="2" id="b_text">Answer</label>
+            </li>
+            <li>
+                <input type="radio" name="answer" id="3" class="answer">
+                <label for="3" id="c_text">Answer</label>
+            </li>
+            <li>
+                <input type="radio" name="answer" id="4" class="answer">
+                <label for="4" id="d_text">Answer</label>
+            </li>
+        </ul>
+        <div class="quiz-controls">
+            <button id="prev">이전</button>
+            <span id="question-counter">1 / 0</span>
+            <button id="next">다음</button>
+            <button id="submit" style="display: none;">결과 보기</button>
+        </div>
+        <div id="progress-badge">진행률</div>
+    </div>
+
+    <script>
+        // 간단한 테스트 데이터
+        const quizData = [
+            {
+                questionNumber: 1,
+                question: "테스트 문제입니다. 한자 <span class='hanja'>法</span>이 보이나요?",
+                a: "선택지 A",
+                b: "선택지 B",  
+                c: "선택지 C",
+                d: "선택지 D",
+                correct: "a",
+                explanation: "테스트 해설입니다."
+            }
+        ];
+        
+        console.log('퀴즈 데이터:', quizData);
+        console.log('퀴즈 엔진 함수 존재:', typeof startQuizEngine);
+    </script>
+    <script src="quiz-logic.js"></script>
+</body>
+</html>

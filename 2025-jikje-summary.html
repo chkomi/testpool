@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+    <title>직제규정 핵심요약</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #0b3ea8; /* deep blue */
+            --accent-color: #60a5fa;  /* sky blue */
+            --text-primary: #111111;  /* near black */
+            --text-secondary: #465161;
+            --text-muted: #94a3b8;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-soft: #f1f5f9;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 6px 16px rgba(2,6,23,0.08);
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; }
+        html, body { height: 100%; }
+        body {
+            margin: 0;
+            color: var(--text-primary);
+            background: var(--bg-page);
+            font-family: 'ROKG', 'Noto Sans KR', system-ui, -apple-system, sans-serif;
+            line-height: 1.65;
+        }
+
+        .progress-indicator { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: rgba(96,165,250,0.18); z-index: 999; }
+        .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #60a5fa, #0b3ea8); }
+
+        /* Header */
+        .site-header { background: linear-gradient(180deg, #e0f2ff 0%, rgba(224,242,255,0) 100%); border-bottom: 1px solid var(--border); }
+        .site-header .inner { max-width: 1200px; margin: 0 auto; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .brand .title { margin: 0; font-weight: 800; letter-spacing: -0.02em; color: var(--primary-color); font-size: clamp(18px, 2.6vw, 28px); }
+        .nav { display: flex; gap: 8px; }
+        .nav a { text-decoration: none; color: var(--text-secondary); padding: 8px 12px; border-radius: 8px; }
+        .nav a:hover { background: var(--bg-soft); color: var(--primary-color); }
+
+        /* Hero */
+        .hero { max-width: 1200px; margin: 0 auto; padding: 28px 24px 8px; }
+        .hero .sub { color: var(--text-secondary); font-size: 14px; }
+        .hero h1 { margin: 6px 0 8px; font-size: clamp(22px, 3.2vw, 36px); letter-spacing: -0.02em; }
+        .hero .desc { color: var(--text-secondary); max-width: 900px; }
+
+        /* Search */
+        .search-wrap { max-width: 1200px; margin: 8px auto 12px; padding: 0 24px; }
+        .search { position: relative; }
+        .search input { width: 100%; padding: 14px 16px 14px 40px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); box-shadow: var(--shadow-sm); }
+        .search input:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(96,165,250,0.2); }
+        .search .icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+        /* Two-column layout */
+        .container { max-width: 1200px; margin: 0 auto; padding: 12px 24px 48px; }
+        .grid { display: grid; grid-template-columns: minmax(0,1fr) 320px; gap: 24px; align-items: start; }
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); }
+        .card.pad { padding: 28px; }
+        .summary-card { background: transparent; border: 0; box-shadow: none; padding: 0; }
+        .summary-card h1 { font-size: 28px; margin: 12px 0 6px; }
+        .summary-card h2 { font-size: 22px; margin: 28px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--bg-soft); color: var(--primary-color); }
+        .summary-card h3 { font-size: 18px; margin: 24px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--bg-soft); }
+        .summary-card h4 { font-size: 16px; margin: 16px 0 8px; }
+        .summary-card p { margin: 8px 0 12px; }
+
+        .clean-table, .summary-table { width: 100%; border-collapse: collapse; margin: 14px 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); }
+        .clean-table th, .summary-table th { background: #e8f2ff; color: var(--text-primary); padding: 12px; font-weight: 700; text-align: center; }
+        .clean-table td, .summary-table td { padding: 10px 12px; border-top: 1px solid var(--border); }
+        .clean-table tr:nth-child(odd) td, .summary-table tr:nth-child(odd) td { background: #f9fbff; }
+
+        .section-header { margin: 18px 0 8px; padding-bottom: 6px; border-bottom: 2px solid var(--bg-soft); display: flex; align-items: baseline; gap: 8px; }
+        .section-header h4 { margin: 0; }
+        .article-badge { color: var(--primary-color); font-size: 12px; }
+        .simple-item { padding: 6px 0; }
+        .simple-item.included::before { content: '✓ '; color: #059669; font-weight: 700; }
+        .simple-item.excluded::before { content: '✗ '; color: #dc2626; font-weight: 700; }
+        .info-box, .highlight-box, .key-point { background: var(--bg-soft); border: 1px solid var(--border); padding: 12px 14px; border-radius: 10px; }
+        .info-box h5 { margin: 0 0 6px; color: var(--primary-color); }
+
+        /* Sidebar */
+        .sidebar { position: sticky; top: 72px; height: calc(100vh - 96px); overflow: auto; }
+        .sidebar .section { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: 16px; }
+        .sidebar .section + .section { margin-top: 16px; }
+        .toc-title { font-weight: 700; margin: 0 0 8px; font-size: 14px; color: var(--text-secondary); }
+        .toc-list { list-style: none; padding: 0; margin: 0; }
+        .toc-list li { margin: 4px 0; }
+        .toc-list a { display: block; padding: 6px 8px; border-radius: 8px; color: var(--text-secondary); text-decoration: none; font-size: 14px; }
+        .toc-list a:hover { background: var(--bg-soft); color: var(--primary-color); }
+        .toc-list a.active { background: #e8f2ff; color: var(--primary-color); border: 1px solid var(--accent-color); }
+
+        .quick-cards { display: grid; grid-template-columns: 1fr; gap: 8px; }
+        .quick-card { display: block; padding: 10px 12px; border: 1px dashed var(--border); border-radius: 10px; text-decoration: none; color: var(--text-secondary); background: var(--bg-soft); }
+        .quick-card:hover { background: #e8f2ff; color: var(--primary-color); border-color: var(--accent-color); }
+
+        .summary-toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin: 1rem 0; padding: 0; background: transparent; }
+        .toolbar-btn { background: var(--primary-color); color: #fff; border: none; border-radius: 10px; padding: 10px 14px; font-size: 0.9rem; font-weight: 600; cursor: pointer; box-shadow: var(--shadow-sm); }
+        .toolbar-btn:hover { background: #0a2f85; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+
+        @media (max-width: 992px) {
+            .grid { grid-template-columns: 1fr; }
+            .sidebar { position: static; height: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-indicator"><div class="progress-bar" id="progress-bar"></div></div>
+
+    <header class="site-header">
+        <div class="inner">
+            <div class="brand">
+                <h1 class="title">직제규정 핵심요약</h1>
+            </div>
+            <nav class="nav">
+                <a href="2025-summaries.html">요약집</a>
+                <a href="index.html">홈</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="sub">2025 대비 · 직제규정 전범위 핵심 정리</div>
+        <h1>직제규정 완전 정리</h1>
+        <p class="desc">요청하신 두 칼럼(본문+목차) 레이아웃으로, 진한 파랑/하늘색 톤과 대한민국정부상징체 폰트를 적용했습니다.</p>
+    </section>
+
+    <div class="search-wrap">
+        <div class="search">
+            <span class="icon">🔎</span>
+            <input id="search-box" type="text" placeholder="키워드로 빠르게 찾기 (예: 조직, 직무, 위임)">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            <main>
+                <div class="card pad">
+                    <div class="summary-meta" style="color: var(--text-muted); font-size: 14px; margin-bottom: 8px;">출처: 직제규정 요약 텍스트 · 최신</div>
+                    <div id="summary-content" class="summary-card" data-static="true">직제규정 핵심요약 — 2025년 대비
+
+## 📋 개요
+이 페이지는 제공하신 직제규정 요약 내용을 두 칼럼 블로그형 레이아웃으로 읽기 쉽게 보여줍니다.
+
+> 팁: 파일 형태의 원문이 있다면 우측 도구의 "로컬 불러오기"로 .txt를 불러오세요.
+
+## 🎯 핵심 목차 예시
+
+### 1. 총칙
+- 적용범위, 목적, 용어 정의
+
+### 2. 조직과 기능
+- 본부·국·과 체계, 주요 기능 배분
+
+### 3. 직위와 직무
+- 보직, 대행, 직무대리, 겸임 등
+
+### 4. 위임·위탁
+- 권한 위임 범위와 절차, 예외
+
+### 5. 부칙
+- 시행일, 경과조치
+
+## 🧭 사용 방법
+- 상단 검색창으로 즉시 필터링할 수 있습니다.
+- 오른쪽 사이드바의 ‘목차’에서 원하는 절로 이동하세요.
+- ‘로컬 불러오기’로 .txt 파일을 선택하면 해당 내용을 본문에 자동 파싱하여 표시합니다.
+
+                    </div>
+                    <div class="summary-toolbar">
+                        <button class="toolbar-btn" id="btn-copy">내용 복사</button>
+                        <button class="toolbar-btn" id="btn-top">맨 위로</button>
+                        <button class="toolbar-btn" id="btn-load-local">로컬 불러오기</button>
+                        <input id="file-input" type="file" accept=".txt" style="display:none">
+                    </div>
+                </div>
+            </main>
+            <aside class="sidebar">
+                <div class="section">
+                    <p class="toc-title">바로가기</p>
+                    <div class="quick-cards">
+                        <!-- 동적으로 채워짐 -->
+                    </div>
+                </div>
+                <div class="section">
+                    <p class="toc-title">목차</p>
+                    <ul id="toc-list" class="toc-list"></ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script src="2025-jikje-summary.js"></script>
+</body>
+</html>
+
