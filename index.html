@@ -43,13 +43,14 @@
         .exam-btn[data-year-full]::before {
             content: attr(data-year-full);
             position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            left: 50%;
+            bottom: -8px; /* centered horizontally, slightly below center vertically */
+            transform: translateX(-50%);
             font-weight: 900;
             letter-spacing: -2px;
-            font-size: clamp(70px, 16vw, 140px);
+            line-height: 1;
+            white-space: nowrap;
+            font-size: clamp(56px, 12vw, 110px);
             color: rgba(135, 206, 235, 0.22); /* light sky blue */
             pointer-events: none;
             z-index: 0;
