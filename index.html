@@ -27,8 +27,15 @@
             margin: 0 auto;
             padding: 20px;
         }
+        /* Home exam individual button sizing to avoid badge overlap */
+        .exam-btn {
+            position: relative;
+            min-height: 130px;
+            padding: 28px 18px 24px; /* extra top space for badge */
+        }
         @media (max-width: 768px) {
             .exam-buttons { gap: 15px; padding: 15px; }
+            .exam-btn { min-height: 110px; padding: 26px 14px 20px; }
         }
 
         /* Progress badge (top-right), like subjects page */
