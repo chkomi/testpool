@@ -177,56 +177,48 @@
             <div class="subjects-grid">
                 <button onclick="location.href='2025-nongchon.html'" class="exam-btn" data-subject="농어촌정비법" data-total="134">
                     <span class="count-badge">134문제</span>
-                    <span class="completion-badge">해설완료</span>
                     <div class="btn-inner">
                         <div class="subject-title">농어촌정비법</div>
                     </div>
                 </button>
                 <button onclick="location.href='2025-gongun.html'" class="exam-btn" data-subject="공운법" data-total="91">
                     <span class="count-badge">91문제</span>
-                    <span class="completion-badge">해설완료</span>
                     <div class="btn-inner">
                         <div class="subject-title">공공기관운영법</div>
                     </div>
                 </button>
                 <button onclick="location.href='2025-gongsa.html'" class="exam-btn" data-subject="공사법" data-total="102">
                     <span class="count-badge">102문제</span>
-                    <span class="completion-badge">해설완료</span>
                     <div class="btn-inner">
                         <div class="subject-title">한국농어촌공사법</div>
                     </div>
                 </button>
                 <button onclick="location.href='2025-jikje.html'" class="exam-btn" data-subject="직제규정" data-total="27">
                     <span class="count-badge">27문제</span>
-                    <span class="completion-badge">해설완료</span>
                     <div class="btn-inner">
                         <div class="subject-title">직제규정</div>
                     </div>
                 </button>
                 <button onclick="location.href='2025-chwip.html'" class="exam-btn" data-subject="취업규칙" data-total="47">
                     <span class="count-badge">47문제</span>
-                    <span class="completion-badge">해설완료</span>
                     <div class="btn-inner">
                         <div class="subject-title">취업규칙</div>
                     </div>
                 </button>
                 <button onclick="location.href='2025-insa.html'" class="exam-btn" data-subject="인사규정" data-total="56">
                     <span class="count-badge">56문제</span>
-                    <span class="completion-badge">해설완료</span>
                     <div class="btn-inner">
                         <div class="subject-title">인사규정</div>
                     </div>
                 </button>
                 <button onclick="location.href='2025-haengdong.html'" class="exam-btn" data-subject="행동강령" data-total="21">
                     <span class="count-badge">21문제</span>
-                    <span class="completion-badge">해설완료</span>
                     <div class="btn-inner">
                         <div class="subject-title">행동강령</div>
                     </div>
                 </button>
                 <button onclick="location.href='2025-hoegye.html'" class="exam-btn" data-subject="회계기준" data-total="56">
                     <span class="count-badge">56문제</span>
-                    <span class="completion-badge">해설완료</span>
                     <div class="btn-inner">
                         <div class="subject-title">회계기준</div>
                     </div>
@@ -249,7 +241,7 @@
     
     <script src="script.js"></script>
     <script>
-        // 2025년 과목별 진행률 표시
+        // 2025년 과목별 진행률 표시 (뱃지 치환)
         document.addEventListener('DOMContentLoaded', function() {
             update2025SubjectProgress();
         });
@@ -263,6 +255,12 @@
                 const progressKey = `exam_2025_${subject}_progress`;
                 const savedProgress = localStorage.getItem(progressKey);
                 
+                // 기존 진행률 텍스트 제거 및 기존 뱃지 제거
+                const existingProgressText = button.querySelector('.progress-indicator');
+                if (existingProgressText) existingProgressText.remove();
+                const existingCompletionBadge = button.querySelector('.completion-badge');
+                if (existingCompletionBadge) existingCompletionBadge.remove();
+
                 if (savedProgress) {
                     try {
                         const progressData = JSON.parse(savedProgress);
@@ -273,36 +271,18 @@
                             const totalQuestions = totalFromButton;
                             // 정확도(percentage) 대신 진행률 표시 (answered/total)
                             const progressPercentage = totalQuestions > 0 ? Math.round((answeredCount / totalQuestions) * 100) : 0;
-                            
-                            // 기존 진행률 표시 제거
-                            const existingProgress = button.querySelector('.progress-indicator');
-                            if (existingProgress) {
-                                existingProgress.remove();
-                            }
-                            
-                            // 새로운 진행률 표시 추가
-                            const progressSpan = document.createElement('span');
-                            progressSpan.className = 'progress-indicator';
-                            progressSpan.textContent = `진행률: ${answeredCount}/${totalQuestions} (${progressPercentage}%)`;
-
-                            const titleEl = button.querySelector('.subject-title');
-                            if (titleEl) {
-                                titleEl.insertAdjacentElement('afterend', progressSpan);
-                            } else {
-                                button.appendChild(progressSpan);
-                            }
-                            
-                            console.log(`${subject}: ${answeredCount}/${totalQuestions} (${progressPercentage}%)`);
+                            // 진행률 뱃지 추가 (해설완료 뱃지 대체)
+                            const badge = document.createElement('span');
+                            badge.className = 'completion-badge';
+                            badge.textContent = `${answeredCount}/${totalQuestions} (${progressPercentage}%)`;
+                            button.appendChild(badge);
+                            console.log(`[진행률] ${subject}: ${answeredCount}/${totalQuestions} (${progressPercentage}%)`);
                         }
                     } catch (error) {
                         console.warn(`${subject} 진행률 로드 오류:`, error);
                     }
                 } else {
-                    // 진행 상황이 없는 경우 기존 진행률 표시 제거
-                    const existingProgress = button.querySelector('.progress-indicator');
-                    if (existingProgress) {
-                        existingProgress.remove();
-                    }
+                    // 진행 상황이 없는 경우 뱃지 미표시 (아무 것도 하지 않음)
                 }
             });
         }
