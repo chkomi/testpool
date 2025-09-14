@@ -85,23 +85,23 @@ function updateProgressIndicators() {
                 if (answeredQuestions > 0 && totalQuestions > 0) {
                     const percentage = Math.round((correctAnswers / answeredQuestions) * 100);
                     
-                    // 기존 진행 상황 제거
-                    const existingProgress = button.querySelector('.progress-indicator');
-                    if (existingProgress) {
-                        existingProgress.remove();
-                    }
-                    
-                    // 진행 상황 표시 요소 추가
-                    const progressSpan = document.createElement('span');
-                    progressSpan.className = 'progress-indicator';
-                    progressSpan.innerHTML = `<br><small>진행률: ${answeredQuestions}/${totalQuestions} (${percentage}%)</small>`;
-                    button.appendChild(progressSpan);
+                    // 기존 진행 상황 표시 제거 (텍스트/뱃지 모두)
+                    const existingProgressText = button.querySelector('.progress-indicator');
+                    if (existingProgressText) existingProgressText.remove();
+                    const existingBadge = button.querySelector('.completion-badge');
+                    if (existingBadge) existingBadge.remove();
+
+                    // 진행률 뱃지로 표시
+                    const badge = document.createElement('span');
+                    badge.className = 'completion-badge';
+                    badge.textContent = `${answeredQuestions}/${totalQuestions} (${percentage}%)`;
+                    button.appendChild(badge);
                 } else {
-                    // 데이터가 있지만 answeredQuestions가 0인 경우 진행률 제거
-                    const existingProgress = button.querySelector('.progress-indicator');
-                    if (existingProgress) {
-                        existingProgress.remove();
-                    }
+                    // 데이터가 있지만 answeredQuestions가 0인 경우 표시 제거
+                    const existingProgressText = button.querySelector('.progress-indicator');
+                    if (existingProgressText) existingProgressText.remove();
+                    const existingBadge = button.querySelector('.completion-badge');
+                    if (existingBadge) existingBadge.remove();
                 }
             } catch (error) {
                 console.warn(`${year}년 진행률 데이터 파싱 오류:`, error);
@@ -111,10 +111,10 @@ function updateProgressIndicators() {
         } else {
             // 진행 상황 데이터가 없는 경우 기존 진행률 표시 제거
             if (button) {
-                const existingProgress = button.querySelector('.progress-indicator');
-                if (existingProgress) {
-                    existingProgress.remove();
-                }
+                const existingProgressText = button.querySelector('.progress-indicator');
+                if (existingProgressText) existingProgressText.remove();
+                const existingBadge = button.querySelector('.completion-badge');
+                if (existingBadge) existingBadge.remove();
             }
         }
     });
@@ -340,4 +340,3 @@ function initializeScrollAnimations() {
         });
     }, 100);
 }
-
