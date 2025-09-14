@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+    <title>2025 핵심요약집 - 과목 선택</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .exam-btn {
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.4;
+            position: relative;
+        }
+
+        .badge-ready {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #28a745;
+            color: #fff;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .badge-soon {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #6c757d;
+            color: #fff;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .btn-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .subject-title { font-size: 18px; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            .subjects-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 12px; }
+            .exam-btn { padding: 10px 8px; font-size: 12px; min-height: 76px; }
+            .subject-title { font-size: 13px; }
+            .badge-ready, .badge-soon { padding: 3px 8px; font-size: 10px; top: 6px; right: 6px; }
+        }
+
+        @media (max-width: 420px) {
+            .subjects-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px; }
+            .exam-btn { padding: 8px 6px; font-size: 11px; min-height: 68px; }
+            .subject-title { font-size: 12px; }
+            .progress-indicator { font-size: 11px; }
+            .badge-ready, .badge-soon { padding: 2px 7px; font-size: 9px; }
+        }
+    </style>
+    </head>
+<body>
+    <div class="quiz-container" id="quiz">
+        <div class="quiz-header">
+            <div class="header-left">
+                <h1>2025 핵심요약집</h1>
+                <p class="subtitle">과목을 선택하세요</p>
+            </div>
+            <div class="header-right">
+                <div class="header-controls">
+                    <button class="home-btn" onclick="location.href='index.html'">🏠 홈</button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="subjects-grid">
+                <button onclick="location.href='2025-nongchon-glossary.html'" class="exam-btn">
+                    <span class="badge-ready">열람가능</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">농어촌정비법</div>
+                        <span class="progress-indicator">핵심요약 정리본</span>
+                    </div>
+                </button>
+
+                <button onclick="location.href='2025-gongun-glossary.html'" class="exam-btn">
+                    <span class="badge-ready">열람가능</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">공공기관운영법</div>
+                        <span class="progress-indicator">핵심요약 정리본</span>
+                    </div>
+                </button>
+
+                <button class="exam-btn" disabled>
+                    <span class="badge-soon">준비중</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">한국농어촌공사법</div>
+                        <span class="progress-indicator">핵심요약 정리본</span>
+                    </div>
+                </button>
+
+                <button class="exam-btn" disabled>
+                    <span class="badge-soon">준비중</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">직제규정</div>
+                        <span class="progress-indicator">핵심요약 정리본</span>
+                    </div>
+                </button>
+
+                <button class="exam-btn" disabled>
+                    <span class="badge-soon">준비중</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">취업규칙</div>
+                        <span class="progress-indicator">핵심요약 정리본</span>
+                    </div>
+                </button>
+
+                <button class="exam-btn" disabled>
+                    <span class="badge-soon">준비중</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">인사규정</div>
+                        <span class="progress-indicator">핵심요약 정리본</span>
+                    </div>
+                </button>
+
+                <button onclick="location.href='2025-haengdong-glossary.html'" class="exam-btn">
+                    <span class="badge-ready">열람가능</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">행동강령</div>
+                        <span class="progress-indicator">핵심요약 정리본</span>
+                    </div>
+                </button>
+
+                <button onclick="location.href='2025-hoegye-glossary.html'" class="exam-btn">
+                    <span class="badge-ready">열람가능</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">회계규칙</div>
+                        <span class="progress-indicator">핵심요약 정리본</span>
+                    </div>
+                </button>
+            </div>
+
+            <div class="home-grid">
+                <button onclick="location.href='index.html'" class="home-bottom-btn">🏠 홈으로 가기</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="powered-by-badge">powered by 2170153</div>
+</body>
+</html>

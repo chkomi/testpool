@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+    <title>행동강령 용어집 — 핵심요약</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --deep-blue: #0b3ea8;   /* 진한 파랑 */
+            --sky-blue: #e8f2ff;    /* 하늘색 배경 */
+            --text-black: #111111;  /* 검은색 글자 */
+        }
+
+        body { background: #f8fafc; color: var(--text-black); }
+
+        .page-wrap { max-width: 1200px; margin: 0 auto; padding: 20px 16px 40px; }
+        .page-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+        .page-title { margin: 0; color: var(--deep-blue); font-size: clamp(20px, 3vw, 28px); font-weight: 800; letter-spacing: -0.02em; }
+        .page-desc { margin: 6px 0 14px; color: #465161; }
+
+        .nav-actions { display: flex; gap: 8px; }
+        .nav-actions .btn { background: var(--deep-blue); color: #fff; border: none; padding: 10px 14px; border-radius: 10px; cursor: pointer; font-weight: 700; }
+        .nav-actions .btn.secondary { background: #6b7280; }
+
+        .table-wrap { background: var(--sky-blue); border: 4px solid var(--deep-blue); border-radius: 12px; overflow: hidden; box-shadow: 0 6px 16px rgba(2,6,23,0.08); }
+        .table-note { padding: 10px 12px; background: rgba(11,62,168,0.06); color: #1f2a44; font-size: 14px; border-bottom: 1px solid rgba(11,62,168,0.25); }
+
+        table.glossary-table { width: 100%; border-collapse: collapse; background: var(--sky-blue); color: var(--text-black); }
+        .glossary-table th, .glossary-table td { padding: 12px 14px; vertical-align: top; border-top: 1px solid rgba(11,62,168,0.3); }
+        .glossary-table th { background: #dbeafe; color: var(--text-black); text-align: left; font-weight: 800; border-top: none; }
+        .glossary-table tr:nth-child(odd) td { background: #f1f7ff; }
+        .law-col { width: 26%; font-weight: 700; color: #0b3a92; }
+        .core-col { width: 48%; }
+        .tip-col { width: 26%; color: #0f172a; }
+
+        @media (max-width: 900px) {
+            .law-col, .core-col, .tip-col { width: auto; display: block; }
+            .glossary-table thead { display: none; }
+            .glossary-table tr { display: block; border-top: 1px solid rgba(11,62,168,0.3); }
+            .glossary-table td { display: block; padding: 10px 12px; }
+            .glossary-table td::before { display: block; font-weight: 800; margin-bottom: 4px; color: #0b3a92; }
+            .glossary-table td.law-col::before { content: '법령 (조항)'; }
+            .glossary-table td.core-col::before { content: '문제 풀이에 필요한 핵심 내용'; }
+            .glossary-table td.tip-col::before { content: '암기 방법 (팁)'; }
+        }
+    </style>
+    </head>
+<body>
+    <div class="page-wrap">
+        <div class="page-header">
+            <h1 class="page-title">한국농어촌공사 임직원 행동강령 — 핵심요약</h1>
+            <div class="nav-actions">
+                <button class="btn" onclick="location.href='2025-summaries.html'">요약집</button>
+                <button class="btn secondary" onclick="location.href='index.html'">홈</button>
+            </div>
+        </div>
+        <p class="page-desc">행동강령 시험 학습을 위한 맞춤형 요약 노트입니다.</p>
+
+        <div class="table-wrap">
+            <div class="table-note">행동강령 조항 오름차순 정렬 · 각 행은 ‘핵심 내용’과 ‘암기 팁’을 함께 제공합니다.</div>
+            <table class="glossary-table">
+                <thead>
+                    <tr>
+                        <th>법령 (조항)</th>
+                        <th>문제 풀이에 필요한 핵심 내용</th>
+                        <th>암기 방법 (팁)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="law-col"><strong>제2조 (정의)</strong></td>
+                        <td class="core-col"><strong>'직무관련자'</strong>란 임직원의 소관 업무와 관련되는 자로서, 민원 신청 중이거나 신청하려는 자, 감사·감독 대상, 직접 이익 또는 불이익을 받는 자, 계약 체결 중인 자, 법령해석 요구자 등이 해당한다. 그러나 <strong>민원사무 처리가 완료된 개인은 더 이상 직무관련자가 아니다</strong>.</td>
+                        <td class="tip-col">직무관련자는 '진행형'이나 '영향을 받는' 자. <strong>'처리 완료된 민원인은 아님'</strong>을 구분.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제4조 (부당 지시 처리)</strong></td>
+                        <td class="core-col">임직원은 하급자에게 부당한 이익을 위한 지시를 해서는 안 된다. 부당한 지시를 받은 임직원은 <strong>그 상급자에게 소명하고 지시에 따르지 않거나 행동강령책임관과 상담</strong>해야 한다. 지시 내용 확인 과정에서 <strong>상급자가 스스로 지시를 취소/변경</strong>하면 <strong>소속부서장 보고를 생략</strong>할 수 있다.</td>
+                        <td class="tip-col"><strong>'상급자 소명 또는 책임관 상담'</strong>, <strong>'상급자 스스로 취소 시 보고 면제'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제7조 (협찬 요구 제한) 1항</strong></td>
+                        <td class="core-col">임직원은 직무관련자에게 직위를 이용하여 협찬을 요구해서는 안 되지만, <strong>직무관련자와 공동으로 행사를 진행</strong>하는 경우에는 협찬 요구가 예외적으로 허용된다.</td>
+                        <td class="tip-col"><strong>'공동 행사 협찬은 예외적으로 허용'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제8조 (사적 접촉 제한) 1·2항</strong></td>
+                        <td class="core-col">임직원은 직무와 관계없는 장소에서 직무관련자와 사적 접촉(골프, 식사, 공무 외 모임 등)을 해서는 안 된다. 다만 <strong>'정당한 이유'</strong>가 있는 경우(정책 수립 등 직무수행 필요, 보안 유지 등 불가피한 접촉, 동창회·친목모임·종교행사 등 부득이한 접촉)는 예외.</td>
+                        <td class="tip-col"><strong>'사적 접촉 금지 + 3대 정당한 이유(직무·보안·부득)'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제21조 (알선·청탁 금지) 3항 9호</strong></td>
+                        <td class="core-col">임직원은 자기 또는 타인의 부당한 이익을 위하여 직무권한 등을 행사하여 <strong>공직자가 아닌 자</strong>에게 특정 알선·청탁을 해서는 안 된다. 3항 9호의 <strong>'그 밖에'</strong> 사장이 정하는 행위는 <strong>'사장'</strong>이 판단하며, <strong>'공직자가 아닌 자'</strong>의 공정한 업무수행을 저해하는 알선·청탁 등이다.</td>
+                        <td class="tip-col"><strong>'사장'</strong>과 <strong>'공직자가 아닌 자'</strong> 키워드로 주체·대상 명확히.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제25조 (금품등 수수 금지) 1·3항</strong></td>
+                        <td class="core-col">임직원은 직무 관련 여부 및 명목과 무관하게 동일인으로부터 <strong>1회 100만원</strong> 또는 <strong>매 회계연도 300만원</strong>을 초과하는 금품등을 받거나 요구·약속해서는 안 된다. 직무와 무관한 지인이라도 연간 한도 300만원 초과는 금지.</td>
+                        <td class="tip-col"><strong>'1회 100만원, 연간 300만원 초과 금지'</strong> 숫자 명확히.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제27조 (외부강의 사례금) 1·2·3·7·8항</strong></td>
+                        <td class="core-col">외부강의 사례금은 별표 2 상한 초과 불가, <strong>1시간 초과분 총액은 1시간 상한의 150%</strong> 초과 불가. 사례금을 받는 외부강의 등은 <strong>마친 날부터 10일 이내</strong> 행동강령책임관에게 신고. 총액을 미리 알 수 없으면 해당 사항 제외 신고 후 <strong>안 날부터 5일 이내 보완</strong>. <strong>월 3회 또는 월 6시간</strong> 초과하여 대가를 받는 외부강의는 사전 검토 후 <strong>사장 승인</strong> 필요. 초과사례금 반환 비용은 <strong>증빙 첨부해 소속부서장에게 청구 가능</strong>.</td>
+                        <td class="tip-col"><strong>'150% 상한, 10일 신고, 5일 보완, 월 3회/6시간 초과 시 사장 승인, 반환비용 청구 가능'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제28조 (초과사례금 신고) 1·2항</strong></td>
+                        <td class="core-col">초과사례금을 받은 임직원은 초과사례금 수령 사실을 <strong>안 날부터 2일 이내</strong> 행동강령책임관에게 신고. 책임관은 확인 후 <strong>7일 이내</strong> 반환할 초과사례금 액수를 산정·통지.</td>
+                        <td class="tip-col"><strong>'인지 2일 신고 / 책임관 7일 통지'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제30조 (건전한 경조사 문화)</strong></td>
+                        <td class="core-col">임직원은 직무관련자에게 경조사를 통지해서는 안 된다. 다만 <strong>친족</strong>, <strong>현재/과거 근무 단체의 소속 직원</strong>, <strong>신문/방송/내부통신망 통지</strong>, <strong>소속 종교/친목단체 회원</strong>에게 알리는 경우는 예외.</td>
+                        <td class="tip-col"><strong>'직무관련자 통지 금지 + 4가지 예외(친족·직원·언론/내부망·단체회원)'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제31조 (위반 여부 상담)</strong></td>
+                        <td class="core-col">임직원은 강령 위반 여부가 불명확할 땐 <strong>행동강령책임관과 상담</strong>할 수 있으며, 책임관은 원활한 상담을 위해 <strong>전용전화·상담실 설치</strong> 등 조치를 취할 수 있다.</td>
+                        <td class="tip-col"><strong>'애매하면 책임관과 상담, 전용 전화/상담실'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제32조 (위반행위 신고·확인) 1·2항</strong></td>
+                        <td class="core-col">누구든지 강령 위반 사실을 알게 된 때엔 <strong>사장, 행동강령책임관, 국민권익위원회</strong>에 신고 가능. 신고자는 <strong>본인과 위반자 인적 사항, 위반 내용의 구체 제시</strong> 필요. <strong>익명 신고는 불가</strong>.</td>
+                        <td class="tip-col"><strong>'신고는 실명·구체적으로, 익명 불가'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제33조 (신고인의 신분보장) 3항</strong></td>
+                        <td class="core-col">제32조 신고로 본인의 부정행위가 발견된 경우 그 신고인에 대한 징계 처분 등은 <strong>감경 또는 면제</strong>할 수 있다.</td>
+                        <td class="tip-col"><strong>'자진 신고 시 감경/면제 가능'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제34조 (위반행위 조사위원회) 1·2항</strong></td>
+                        <td class="core-col">감사는 위반행위의 공정한 조사를 위해 <strong>총괄행동강령책임관을 장</strong>으로 하는 조사위원회를 구성·운영할 수 있으며, 위원회는 <strong>3인 이상</strong>으로 구성.</td>
+                        <td class="tip-col"><strong>'위원장: 총괄책임관 / 구성: 3인 이상'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제36조 (금지 금품의 신고·처리) 5항</strong></td>
+                        <td class="core-col">제공자나 주소를 알 수 없는 등 반환이 어려운 금지 금품등을 행동강령책임관이 인도받은 경우, <strong>즉시 사진 촬영 또는 영상 녹화</strong>하고 이를 <strong>기록·관리</strong>해야 한다.</td>
+                        <td class="tip-col"><strong>'불명 금품: 즉시 촬영/녹화 후 기록관리'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제37조 (교육) 1·2·3항</strong></td>
+                        <td class="core-col">사장은 임직원에 대한 부패방지 교육을 <strong>매년 1회 이상</strong> 실시하고, <strong>신규 임용 시</strong>에도 교육을 실시. 이를 위해 <strong>인재개발원에 교육과정 설치·운영</strong> 가능.</td>
+                        <td class="tip-col"><strong>'매년 1회 / 신규 임용 / 인재개발원'</strong> 3키워드.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제38조 (책임관의 지정) 2·3항</strong></td>
+                        <td class="core-col">본사 분임 행동강령책임관은 <strong>총무인사처장</strong>. 책임관 업무: <strong>교육/상담</strong>, <strong>준수 점검/평가</strong>, <strong>신고접수/조사처리 및 신고인 보호</strong>. <strong>강령 운영에 필요한 사항 제정·시행은 사장 권한</strong>.</td>
+                        <td class="tip-col"><strong>'본사 책임관=총무인사처장 / 제정·시행=사장'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제39조 (준수여부 점검) 1항</strong></td>
+                        <td class="core-col"><strong>총괄행동강령책임관</strong>은 임직원 강령 이행실태 및 준수여부 등을 <strong>매년 1회 이상 정기 점검</strong>해야 한다.</td>
+                        <td class="tip-col"><strong>'총괄책임관 / 매년 1회 이상'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제41조 (행동강령의 운영)</strong></td>
+                        <td class="core-col"><strong>사장</strong>은 이 강령의 운영에 필요한 사항을 <strong>제정하여 시행</strong>할 수 있다.</td>
+                        <td class="tip-col"><strong>'제정·시행=사장'</strong>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="powered-by-badge">powered by 2170153</div>
+</body>
+</html>
+

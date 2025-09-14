@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+    <title>회계규칙 용어집 — 핵심요약</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --deep-blue: #0b3ea8;   /* 진한 파랑 */
+            --sky-blue: #e8f2ff;    /* 하늘색 배경 */
+            --text-black: #111111;  /* 검은색 글자 */
+        }
+
+        body { background: #f8fafc; color: var(--text-black); }
+
+        .page-wrap { max-width: 1200px; margin: 0 auto; padding: 20px 16px 40px; }
+        .page-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+        .page-title { margin: 0; color: var(--deep-blue); font-size: clamp(20px, 3vw, 28px); font-weight: 800; letter-spacing: -0.02em; }
+        .page-desc { margin: 6px 0 14px; color: #465161; }
+
+        .nav-actions { display: flex; gap: 8px; }
+        .nav-actions .btn { background: var(--deep-blue); color: #fff; border: none; padding: 10px 14px; border-radius: 10px; cursor: pointer; font-weight: 700; }
+        .nav-actions .btn.secondary { background: #6b7280; }
+
+        .table-wrap { background: var(--sky-blue); border: 4px solid var(--deep-blue); border-radius: 12px; overflow: hidden; box-shadow: 0 6px 16px rgba(2,6,23,0.08); }
+        .table-note { padding: 10px 12px; background: rgba(11,62,168,0.06); color: #1f2a44; font-size: 14px; border-bottom: 1px solid rgba(11,62,168,0.25); }
+
+        table.glossary-table { width: 100%; border-collapse: collapse; background: var(--sky-blue); color: var(--text-black); }
+        .glossary-table th, .glossary-table td { padding: 12px 14px; vertical-align: top; border-top: 1px solid rgba(11,62,168,0.3); }
+        .glossary-table th { background: #dbeafe; color: var(--text-black); text-align: left; font-weight: 800; border-top: none; }
+        .glossary-table tr:nth-child(odd) td { background: #f1f7ff; }
+        .law-col { width: 24%; font-weight: 700; color: #0b3a92; }
+        .core-col { width: 50%; }
+        .tip-col { width: 26%; color: #0f172a; }
+
+        @media (max-width: 900px) {
+            .law-col, .core-col, .tip-col { width: auto; display: block; }
+            .glossary-table thead { display: none; }
+            .glossary-table tr { display: block; border-top: 1px solid rgba(11,62,168,0.3); }
+            .glossary-table td { display: block; padding: 10px 12px; }
+            .glossary-table td::before { display: block; font-weight: 800; margin-bottom: 4px; color: #0b3a92; }
+            .glossary-table td.law-col::before { content: '법령 (조항)'; }
+            .glossary-table td.core-col::before { content: '문제 풀이에 필요한 핵심 내용'; }
+            .glossary-table td.tip-col::before { content: '암기 방법 (팁)'; }
+        }
+    </style>
+    </head>
+<body>
+    <div class="page-wrap">
+        <div class="page-header">
+            <h1 class="page-title">회계규칙 — 핵심요약</h1>
+            <div class="nav-actions">
+                <button class="btn" onclick="location.href='2025-summaries.html'">요약집</button>
+                <button class="btn secondary" onclick="location.href='index.html'">홈</button>
+            </div>
+        </div>
+        <p class="page-desc">회계 시험 학습을 위한 맞춤형 요약 노트입니다.</p>
+
+        <div class="table-wrap">
+            <div class="table-note">법령 조항 오름차순 정렬 · 각 행은 ‘핵심 내용’과 ‘암기 팁’을 함께 제공합니다.</div>
+            <table class="glossary-table">
+                <thead>
+                    <tr>
+                        <th>법령 (조항)</th>
+                        <th>문제 풀이에 필요한 핵심 내용</th>
+                        <th>암기 방법 (팁)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="law-col"><strong>제2조 (정의) 6호</strong></td>
+                        <td class="core-col"><strong>불량채권의 정의</strong>는 ① 회수사유가 완료되었음에도 2년 이상 회수되지 않은 채권, ② 법적 절차 후 회수 불가능한 채권, ③ 회수비용이 채권액을 초과하는 채권이다. '신용도 하락 등 손실발생률이 높은 채권'은 포함되지 않는다.</td>
+                        <td class="tip-col"><strong>'2년 미회수, 법적불능, 비용초과'</strong> 이 3가지 키워드를 기억하고, '신용도 하락'은 불량채권이 아님을 유의합니다.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제2조 (정의) 10호</strong></td>
+                        <td class="core-col"><strong>부외부채</strong>는 재무상태표의 <strong>부채계정</strong>에 계상되지 아니한 부채를 말하며, '자산계정에 계상되지 아니한 자산'은 '부외자산'에 대한 설명이다.</td>
+                        <td class="tip-col"><strong>'부외'</strong>는 '장부 외'를 의미하며, '부외부채'는 장부 밖의 '부채'로 연결하여 이해합니다.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제5조 (회계단위간의 거래) 1항</strong></td>
+                        <td class="core-col">회계단위 간 거래에서 전산입력 오류 발견 시 <strong>즉시 수정 요청</strong>해야 하며, 다음 회계연도에 수정 요청하는 것은 옳지 않다.</td>
+                        <td class="tip-col">회계 오류는 <strong>'즉시 수정'</strong> 원칙을 기억합니다.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제5조 (회계단위간의 거래) 2항</strong></td>
+                        <td class="core-col">상대 회계단위 예산 사용 시 부문예산관리자는 지출원인행위결의서 작성 전에 상대 부문예산관리자와 <strong>협의</strong>해야 한다.</td>
+                        <td class="tip-col">예산 사용 전 <strong>'상대 부서 협의'</strong> 필수.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제5조 (회계단위간의 거래) 3항</strong></td>
+                        <td class="core-col">회계단위 폐쇄에 따른 상호간 거래는 <strong>합계잔액시산표상의 합계금액</strong>으로 처리한다.</td>
+                        <td class="tip-col">폐쇄 시 <strong>'합계잔액시산표'</strong>를 기준으로 함을 기억합니다.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제6조 (회계담당) 1항1호</strong></td>
+                        <td class="core-col"><strong>수입담당의 업무</strong>는 납입고지서의 발부와 독촉 업무, 수입금에 대한 채권보전 업무이며, 수입금의 수납 및 매출액/수입금 결정·조정 업무는 수입담당의 업무가 아니다.</td>
+                        <td class="tip-col"><strong>'고지/독촉'과 '채권보전'</strong>이 수입담당의 핵심 업무임을 기억하고, 수납이나 결정/조정은 아님을 주의합니다.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제6조 (회계담당) 1항2호</strong></td>
+                        <td class="core-col"><strong>지출담당의 업무</strong>는 수입금 수납, 현금/예금 관리, 어음/수표 행위, 기타 수납/지출 업무이다. 일상경비 청구/수령/보관/집행/정산업무는 일상경비취급담당, 수입금에 대한 채권보전 업무는 수입담당의 업무이다.</td>
+                        <td class="tip-col">지출담당의 주요 업무 네 가지를 기억하고, <strong>'일상경비'와 '채권보전'은 지출담당이 아님</strong>을 구분하여 암기합니다.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제7조 (회계관계직원의 범위 및 재정보증) 3항, 7항</strong></td>
+                        <td class="core-col">재정보증설정액은 사장이 정하며, 보증보험가입에 필요한 비용은 공사가 부담한다. 재정보증은 특별한 사유가 없으면 <strong>직위포괄계약방식</strong>의 보증보험 가입을 원칙으로 한다. <strong>회계관계직원이 재정보증 없이는 직무를 담당할 수 없는 '절대적인 규정'은 없다</strong>.</td>
+                        <td class="tip-col">재정보증은 <strong>'직위포괄 계약'</strong>이 원칙이고 <strong>'회사 부담'</strong>이며, 없다고 바로 직무를 못하는 것은 아님을 기억합니다.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제8조 (손익계산서 항목분류 및 해설) 1항</strong></td>
+                        <td class="core-col">계정과목의 배열 및 해설상의 손익계산서 계정에서 적용할 세목의 구분 및 배열은 공사의 <strong>결산지침</strong>을 따른다. '회계지침'이 아니다.</td>
+                        <td class="tip-col">손익계산서는 <strong>'결산지침'</strong>과 연결! ('회계지침' 아님)</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제10조 (전산화에 따른 회계장표의 생략) 2항</strong></td>
+                        <td class="core-col">회계업무 전산화로 생략된 회계장표라도 연말에 입력된 자료를 <strong>｢기록물관리규정｣</strong>에 따라 보존해야 한다.</td>
+                        <td class="tip-col">전산화로 장부는 생략 가능하지만, 데이터는 <strong>'기록물관리규정'에 따라 보존</strong>해야 함.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제14조 (전표의 확인) 2항</strong></td>
+                        <td class="core-col">지출담당은 전표 확인 결과 오류 발견 시 <strong>직접 수정하지 않고 전표 작성담당자에게 통보</strong>해야 한다.</td>
+                        <td class="tip-col">지출담당은 오류를 <strong>'알려주는 역할'</strong>이며, 직접 고치지 않습니다.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제15조 / 제16조 / 제18조 / 제19조</strong></td>
+                        <td class="core-col"><strong>현금 및 예금출납장은 매일 마감하고 매일 검열</strong>한다. 출납장을 <strong>2권 이상</strong>으로 분할 사용 시 주된 출납장에 누계액을 전기 마감한다. 총계정원장 및 각 계정원장의 마감방법은 <strong>영미식</strong>에 따른다. 회계연도 말 재무상태표 계정의 모든 <strong>잔액</strong>은 다음 연도 1월 1일자로 이월하며, 이월 필요한 장부는 <strong>결산일</strong>에 마감한다.</td>
+                        <td class="tip-col"><strong>'현금매일, 총계영미월말, 이월결산잔액'</strong>으로 핵심을 기억. 특히 현금 장부는 '매일' 마감하고 '매일' 검열.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제20조 (기타 증빙서류) 1항2호</strong></td>
+                        <td class="core-col"><strong>지출거래 시 추가 서류:</strong> 공사비 지급 시 <strong>준공정산명세서</strong>, 용역비 지급 시 <strong>검사명세서</strong>, 경비 지급 시 <strong>명세서</strong>가 필요. 구매대금 지급 시에는 검사조서 또는 물품납품서만 추가하며 명세서는 포함되지 않는다.</td>
+                        <td class="tip-col"><strong>'공준용검경명'</strong> (공사-준공정산, 용역-검사, 경비-명세)으로 암기. 구매대금은 제외.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제20조 (기타 증빙서류) 1항3호</strong></td>
+                        <td class="core-col"><strong>세금계산서 합계표 제출 기한</strong>은 발행일이 속하는 분기말일의 <strong>다음달 25일</strong>까지. <strong>계산서 합계표 제출 기한</strong>은 발행일이 속하는 연도의 <strong>다음 해 2월 10일</strong>까지.</td>
+                        <td class="tip-col"><strong>'세금-분기익월25일', '계산-다음해2월10일'</strong>로 기한 구분.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제26조 (금전의 과부족 보고)</strong></td>
+                        <td class="core-col">지출담당은 금전 과부족 발견 시 회계단위부서장에게 즉시 보고하며, 그 금액이 <strong>1백만원을 초과</strong>할 경우 사장과 감사에게 보고해야 한다.</td>
+                        <td class="tip-col"><strong>'1백만원'</strong> 기준으로 상위 보고 의무 발생.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제33조 (채권자계좌입금) 1항5호</strong></td>
+                        <td class="core-col">하도급 계약 대가지급 청구 시 <strong>지급사유 등을 청구서와 함께 공사에 제출</strong>해야 한다. '지급사유는 공사에, 청구서는 지명자에게 제출'은 틀린 내용.</td>
+                        <td class="tip-col"><strong>'지급사유와 청구서는 함께 공사에!'</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제34조 (잔액조회의 보고) 1항</strong></td>
+                        <td class="core-col">지출담당은 매월 말 예금잔액증명을 받아 예금원장과 대조하여 <strong>다음달 7일</strong>까지 회계단위부서장에게 보고해야 한다.</td>
+                        <td class="tip-col"><strong>'잔액조회 다음달 7일'</strong> 보고 기한 기억.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제38조 (자산관리단위) 1항</strong></td>
+                        <td class="core-col">공사의 자산관리단위 중 <strong>지역본부는 '지역본부' 자체</strong>가 관리단위이며, '지사 및 지소'는 '지사'의 관리단위에 해당한다.</td>
+                        <td class="tip-col"><strong>'지역본부는 지역본부, 지사는 지사 및 지소'</strong>로 구분.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제39조 (자산관리자) 2호</strong></td>
+                        <td class="core-col">자산관리에 관한 사무를 총괄·조정하며, 관할 지사 및 지소의 자산관리 총괄·조정·통제 업무를 관장하고, 총괄관리자에게 자산현황 등을 보고하는 관리자는 <strong>지역본부장</strong>이다.</td>
+                        <td class="tip-col"><strong>'지역본부장'</strong>은 본인 조직뿐 아니라 <strong>'산하 지사/지소 자산'</strong>까지 총괄.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제42조 (자산관리심의위원회) 3항, 5항, 7항, 8항</strong></td>
+                        <td class="core-col">자산관리심의위원회 안건 제안은 <strong>본사 위원회는 총괄관리자</strong>가, <strong>본사 외 위원회는 자산관리 담당부장</strong>이 한다. 위원장은 회의를 주관하며, 부득이한 사유 시 직제순 차하위자가 위원장이 된다. 위원회는 <strong>재적위원 3분의 2 이상 출석</strong>으로 개회하고 <strong>출석위원 과반수 찬성</strong>으로 의결.</td>
+                        <td class="tip-col"><strong>안건 제안 주체</strong> 구분과 <strong>회의 정족수</strong> 기억.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제43조 (물품수급계획) 2항</strong></td>
+                        <td class="core-col">물품수급계획은 <strong>부문관리자</strong>가 작성해야 한다. '분임관리자'가 작성한다는 설명은 옳지 않다.</td>
+                        <td class="tip-col">주체는 <strong>'부문관리자'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제44조 (정수관리) 1항</strong></td>
+                        <td class="core-col">총괄관리자는 주요 물품의 <strong>정수책정 기준</strong>을 정하여 운영해야 한다.</td>
+                        <td class="tip-col"><strong>'정수책정 기준'은 '총괄관리자'</strong>의 역할.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제45조 (자산취득) 2항</strong></td>
+                        <td class="core-col">건당 5천만원 이상 동산 또는 3억원 이상 부동산 취득, 자본예산 미편성 자산 취득 시 부문관리자는 총괄관리자에게 승인을 받아야 한다. 단, <strong>자본예산 집행이 수반되지 않고 지방자치단체장의 승인을 받은 자산의 취득은 총괄관리자 승인 없이도 가능</strong>. 공공용지 편입 시 현금 보상은 자산 취득 대상이 아니다.</td>
+                        <td class="tip-col"><strong>'자본예산 X + 지자체 승인 O'</strong>일 때만 승인 생략. 금액 기준은 승인 필요.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제49조 (보관관리)</strong></td>
+                        <td class="core-col">자산 보관·관리 유의사항은 도난/변질/재해 방지, 품목별 구분/검사/재고조사 용이, 불용품/폐품/수리품 등 상태별 구분 등이다. <strong>'반납품의 품명·수량·성능' 확인은 보관 관리 시 유의사항이 아니다</strong>.</td>
+                        <td class="tip-col">보관 관리는 <strong>'안전, 효율적 분류, 상태 구분'</strong>에 집중. '반납품 확인'은 별도 절차.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제50조 (출납관리) 2항, 3항, 4항, 5항2호</strong></td>
+                        <td class="core-col"><strong>출납원</strong>은 물품출납대장에 기록원인이 발생할 때마다 기록하고 재고량을 파악한다. 물품 출납기간은 <strong>1년 이내</strong>이며, 연장 시 자산관리자 승인을 받는다(반납 후 재출납 아님). 연도 이월 시 <strong>1월 20일</strong>까지 출납증을 갱신. 물품 반납은 <strong>공사 준공 또는 사용완료 후</strong>.</td>
+                        <td class="tip-col"><strong>'출납원 매건 기록', '1년 연장 승인', '1월 20일 갱신', '완료 후 반납'</strong>으로 요약.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제55조 (재물조사) 3항</strong></td>
+                        <td class="core-col">재물조사 후 분석·검토 사항은 과·부족품의 수량/금액/발생원인, 처리대책, 불용품의 조기처분/예방대책, 정비 물품의 경제적 활용책. <strong>'적출된 불용품의 사용자 관리방안'은 규정된 항목이 아니다</strong>.</td>
+                        <td class="tip-col">재물조사 후에는 <strong>'문제점 보완 및 시정'</strong>에 초점을 두며, '사용자 관리'는 직접 분석사항 아님.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제56조 (정기재물조사) 1항, 2항</strong></td>
+                        <td class="core-col">정기재물조사 기준은 총괄관리자가 수립하여 <strong>매년</strong> 부문관리자에게 통보(‘매월’ 아님). 기준일(6월 30일)은 <strong>총괄관리자가 변경</strong> 가능(‘부문관리자’ 아님).</td>
+                        <td class="tip-col">정기 재물조사는 <strong>'매년 통보', '총괄관리자 변경 권한'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제57조 (수시재물조사) 2항</strong></td>
+                        <td class="core-col">수시재물조사 절차 및 방법은 <strong>정기재물조사 기준 및 절차</strong>에 따른다 ('자체 기준' 아님).</td>
+                        <td class="tip-col">수시조사는 <strong>'정기조사 절차 준용'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제58조 (특별재물조사)</strong></td>
+                        <td class="core-col">특별재물조사 시 총괄관리자는 <strong>감사실과 협의</strong>하여 감사와 재물조사를 병행 실시 가능 ('감사' 아님).</td>
+                        <td class="tip-col">특별조사 시 <strong>'감사실'</strong>과 협의 필수.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제60조 (손망실) 1항, 2항, 3항, 6항</strong></td>
+                        <td class="core-col"><strong>손망실 처리 절차:</strong> ① 사고 발생 보고(부문관리자) → ② 손망실 보고서 위원회 제출 → ③ 위원회 처분결정 → ④ 변상명령서 통보(변상 시). 대상 자산 잔존가액이 <strong>500만원 이상</strong>이면 총괄관리자에게 결정 요청, <strong>500만원 미만</strong>이면 부문관리자가 결정 후 총괄관리자에게 보고.</td>
+                        <td class="tip-col"><strong>'사고-보고서-결정-통보'</strong> 절차와 <strong>'500만원'</strong> 기준 기억.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제61조 (불용결정기준)</strong></td>
+                        <td class="core-col">불용 결정 대상은 사용 불능, 수선 불가능/비경제적, 수요/재고/정수 초과, 구식화, 주된 장비 사용불능 시 부속품, 규격/모형 달라 원래 목적 사용 불가, 경영관리상 비효율적, 법률상 사용 금지/제한 자산 등. <strong>'수리하면 원래 목적대로 사용할 수 있으나 규격이 달라진 물품'은 불용 대상 아님</strong>.</td>
+                        <td class="tip-col">불용 결정은 <strong>'사용 가치 없음'</strong>이 핵심. <strong>'수리 가능하면 불용 아님'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제62조 (불용 결정 및 처분) 1항, 2항, 4항</strong></td>
+                        <td class="core-col">불용 결정 시 다른 부문관리자에게 조회하여 필요한 경우 <strong>관리전환 우선</strong>. 개당 잔존가액 <strong>5백만원 이상 동산, 5억원 이상 부동산</strong>은 총괄관리자에게 불용 결정 요청. <strong>공공사업 시행, 대체/교체 취득 승인, 농어촌정비법 승인 자산</strong>은 위원회 심의·의결 <strong>생략 가능</strong>.</td>
+                        <td class="tip-col"><strong>'조회 후 관리전환 우선'</strong>, 금액 기준 시 <strong>'총괄 요청'</strong>, 특정 사유 시 <strong>'심의 생략'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제69조 (채권관리의 원칙) 1항, 2항</strong></td>
+                        <td class="core-col">채권관리업무는 <strong>발생 원인행위 부서</strong>에서 수행이 원칙. 필요 시 다른 채권관리자에게 <strong>회수 협조 요청</strong> 가능.</td>
+                        <td class="tip-col">주체는 <strong>'원인행위 부서'</strong>, 필요 시 <strong>'협조 요청'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제71조 (채권관리자의 업무) 1항</strong></td>
+                        <td class="core-col"><strong>총괄채권관리자:</strong> 제도 정비, 통일 기준, 조정·통제·감독, 대손상각. <strong>채권관리자:</strong> 납입 고지·독촉, 채권 보전, 불량채권 정리신청, 채권 회수계획 수립 및 관리. <strong>분임채권관리자:</strong> 채권관리부 비치·기재, 채권 회수. (보기에 '회수계획 수립 및 관리'를 총괄 또는 분임으로 두면 오답)</td>
+                        <td class="tip-col"><strong>총괄:</strong> 제도·기준·조정·대손 / <strong>관리자:</strong> 고지·독촉·보전·정리신청·회수계획 / <strong>분임:</strong> 비치·기재·회수</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제73조 (채권관리부의 비치와 기재) 1호</strong></td>
+                        <td class="core-col">정산확정, 계약이행 완료, 결산확정, 기타 채권의 확정 및 채권의 소멸에 관한 사항이 발생할 경우 이를 <strong>건별로 기록·관리</strong>해야 한다.</td>
+                        <td class="tip-col">채권의 <strong>'확정/소멸'</strong> 관련 사항은 <strong>'건별 기록'</strong>이 원칙.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제75조 (연체이자의 징수) 2항1호</strong></td>
+                        <td class="core-col">연체이자 기간계산의 기산일(계약서에 없는 경우): <strong>정산급은 청구일로부터 15일째부터</strong>, <strong>기성급은 청구일로부터 8일째부터</strong>.</td>
+                        <td class="tip-col"><strong>'정산15일, 기성8일'</strong> 숫자 정확히 기억.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제81조 (이행연기)</strong></td>
+                        <td class="core-col">채권 이행기간 연장 가능 사유: ① <strong>무자력</strong>, ② 전부 일시 이행 불가+연장이 유리, ③ 손해배상/부당이득반환금 채권으로서 <strong>변제 성의</strong> 인정.</td>
+                        <td class="tip-col">연장 사유 3가지: <strong>'무자력', '불가+유리', '성의'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제82조 (이행연기의 기간)</strong></td>
+                        <td class="core-col">이행기간 연장 시 당초 이행기한으로부터 <strong>5년을 초과할 수 없다</strong>.</td>
+                        <td class="tip-col">연장 기간 최대 <strong>'5년'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제85조 (채권의 대손처리) 1항1호~4호, 3항</strong></td>
+                        <td class="core-col"><strong>소멸시효 전 대손처리 사유:</strong> ① 법인 해산/사업중지 시 강제집행비용 등 합계액이 재산가액을 <strong>초과</strong>, ② 회생인가 또는 파산선고로 <strong>회수불능 확정</strong>, ③ 채무자 사망 시 강제집행비용 등 합계액이 상속재산가액을 <strong>초과</strong>, ④ <strong>추심비용 초과</strong>. <strong>연대채무자/보증인</strong>이 따로 있으면 1~3호 적용하지 않음.</td>
+                        <td class="tip-col"><strong>'초과(법인재산·상속재산·추심비용)', '확정(회생/파산)'</strong> + <strong>'연대/보증 예외'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제87조 (불량채권심의위원회) 1·3·4·5·6·7항</strong></td>
+                        <td class="core-col">불량채권 정리를 위해 본사 수익담당부서 및 농어촌연구원 등 별로 위원회를 둔다. 위원회는 위원장 1명과 5~7명 위원(농어촌연구원 등은 3~5명) 및 간사 1명으로 구성. 위원장은 채권관리자, 간사는 정리대상 채권의 분임채권관리자. 위원장은 회의 소집, <strong>2일 전</strong> 심의안건 서면 고지. <strong>재적 2/3 이상 출석</strong>으로 개회, <strong>출석 2/3 이상 찬성</strong>으로 의결, 가부동수 시 <strong>위원장 결정권</strong>.</td>
+                        <td class="tip-col"><strong>구성 특례(3~5명)</strong>, <strong>고지 '2일 전'</strong>, <strong>정족수 '2/3'</strong>, <strong>위원장 결정권</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제88조 (원가계산) 2항</strong></td>
+                        <td class="core-col"><strong>사전원가계산</strong>은 예산주관부서, <strong>사후원가계산</strong>은 결산주관부서에서 담당.</td>
+                        <td class="tip-col"><strong>'사전은 예산, 사후는 결산'</strong>으로 구분.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제88조 (원가계산) 3항</strong></td>
+                        <td class="core-col">원가계산 기간은 회계연도와 같으나 관리목적상 <strong>월별·분기별 또는 사업기간별</strong>로 구분 가능.</td>
+                        <td class="tip-col"><strong>'월·분기·사업기간'</strong> 모두 가능.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제88조 (원가계산) 6항</strong></td>
+                        <td class="core-col">원가계산은 <strong>실제원가계산 원칙</strong>이나, <strong>표준·예정원가계산</strong>도 가능.</td>
+                        <td class="tip-col"><strong>'실제가 원칙, 표준/예정 허용'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제88조 (원가계산) 7항</strong></td>
+                        <td class="core-col"><strong>절차:</strong> ① 각 회계단위 개별비 집계 및 간접원가 배부 → ② 각 회계단위 배부 간접원가를 사업비로 집계, <strong>사업단위별 원가보고서</strong> 작성 → ③ 결산주관부서에서 각 회계단위 및 본사 원가보고서 집계, <strong>사업비별·부서별 종합 보고서</strong> 작성.</td>
+                        <td class="tip-col"><strong>'개배-사업보고-종합보고'</strong> 순서.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제88조 (원가계산) 10항</strong></td>
+                        <td class="core-col">사전원가계산 자료는 <strong>분기보고</strong> 원칙, 사후원가계산 자료는 <strong>반기보고</strong> 원칙.</td>
+                        <td class="tip-col"><strong>'사전 분기 / 사후 반기'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제89조 (예산의 편성) 1·3·4·5항</strong></td>
+                        <td class="core-col"><strong>예산편성 절차:</strong> ① 예산편성지침 작성 → ② 일반·특별회계예산 편성 → ③ 사장 결재 및 이사회 의결로 예산 확정 → ④ 확정 예산 고지.</td>
+                        <td class="tip-col"><strong>'지침-편성-확정-고지'</strong> 4단계.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제94조 (결산시행) 3항</strong></td>
+                        <td class="core-col">결산보고서 필수 첨부: <strong>합계잔액 시산표</strong>, <strong>사업원가 보고서</strong>, <strong>각 계정별 잔액명세서</strong>, <strong>사업계획대 실적보고서</strong>. <strong>'사업수행 결과보고서'</strong>는 필수 아님.</td>
+                        <td class="tip-col">필수 4가지 <strong>'시산표·원가·잔액명세·실적'</strong> 암기.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제102조 (하자담보책임) 1·2항</strong></td>
+                        <td class="core-col">물품 및 용역의 하자보수보증금률은 관계 법령에 특별 규정 없으면 계약금 또는 계약금액의 <strong>2%</strong>.</td>
+                        <td class="tip-col">물품/용역 모두 <strong>'2%'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제104조 (계약심의위원회) 1·2항</strong></td>
+                        <td class="core-col">계약심의위원회는 <strong>회계단위별</strong>로 둔다. 심의사항: 입찰참가자격 사전심사세부기준 등 제정·개정(경미 제외), 부정당업자 입찰제한, 국제입찰 조달계약 이의 신청, 수의계약 적정성 심의. <strong>'추정가격 1천만원 초과 조달청 제3자단가계약 구매'</strong>는 심의사항 아님.</td>
+                        <td class="tip-col">심의위는 <strong>'회계단위별'</strong> + <strong>'부정/수의/국제이의'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제105조 (계약의뢰) 3·6·8항</strong></td>
+                        <td class="core-col"><strong>추정가격 2천만원 이상</strong> 수의계약 절차: ① 홈페이지 <strong>5일 사전공개</strong>·의견수렴 → ② <strong>위원회 심의</strong>(이의 없으면 생략 가능) → ③ 계약담당부서장 <strong>수의계약 여부 결정</strong> → ④ 업체 <strong>퇴직자 영입현황 확인서 징구</strong> → ⑤ 수의계약 체결.</td>
+                        <td class="tip-col"><strong>'사전공개(5일)→심의→결정→확인서→체결'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제108조 (하자조치) 1·2·3항</strong></td>
+                        <td class="core-col"><strong>하자조치 순서:</strong> ① 수요부서장 → 계약상대자 <strong>하자보수 요청</strong> → ② 지정기일 미이행 시 <strong>계약담당부서장</strong> 통보 → ③ 계약담당부서장 <strong>하자보수보증금 전액 공사 귀속</strong> → ④ 계약담당부서장 <strong>수요부서장과 협의</strong>해 직영/제3자 도급 보수 후 결과를 <strong>계약상대자 통보</strong>.</td>
+                        <td class="tip-col">주체와 조치의 <strong>흐름</strong>을 기억.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제109조 (검사원의 임면) 1·2·3·4항</strong></td>
+                        <td class="core-col">부서내 <strong>부장</strong>은 검사원으로 임명된 것으로 본다. 특수 기술/경험 필요 시 <strong>전문분야 검사원</strong>(수요부서 직원 포함) 임명 가능. <strong>특수 기술/경험 불필요한 사무용 물품 검사</strong> 시 수요부서 검사원은 검사할 수 없다. 공사 현장 납품 자재는 <strong>공사 사무소장</strong>을 검사원으로 임명 가능.</td>
+                        <td class="tip-col">임면: <strong>'부장은 자동, 전문 가능, 사무용은 수요부서 불가, 현장은 사무소장'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제110조 (권한과 책임) 2항</strong></td>
+                        <td class="core-col">검사원은 검사 합격 물품에 대해 검사조서 또는 <strong>물품납품서</strong>에 기명날인하여 <strong>계약담당부서</strong>에 제출.</td>
+                        <td class="tip-col">검사 완료 후 <strong>'조서/납품서 → 계약담당'</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제111조 (사무인계) 1항</strong></td>
+                        <td class="core-col">검사원 임명해제 시 반드시 인계: <strong>검사계획서철</strong>, <strong>검사조서철</strong>, <strong>미결 및 진행내역</strong>. <strong>'물품납품서'</strong>는 인계 사항 아님.</td>
+                        <td class="tip-col">인계 3가지 <strong>'계획·조서·미결/진행'</strong>, 납품서는 제외.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제116조 (검사순위 및 방법) 1항</strong></td>
+                        <td class="core-col"><strong>검사업무 처리순서:</strong> ① 물품별 검사순위 결정 → ② 검사품 수량 점검 → ③ 시료채취 및 조사 → ④ 시험항목별 시험 → ⑤ 적합여부 결정 → ⑥ 검사대장 정리 및 검사확인.</td>
+                        <td class="tip-col"><strong>'순량시시험적대'</strong> (순위, 수량, 시료, 시험, 적합, 대장)으로 암기.</td>
+                    </tr>
+                    <tr>
+                        <td class="law-col"><strong>제124조 (중간검사) 1항</strong></td>
+                        <td class="core-col"><strong>제품 완성 전 중간검사</strong> 가능 경우: ① 생산실적 없거나 불량 우려 업체, ② 제품 성질상 생산과정 시험검사 중요, ③ 신규개발품목, ④ 기타 필요. <strong>'검사완료 후 납품 중 이상'이나 '경미한 불량'</strong>은 대상 아님.</td>
+                        <td class="tip-col">중간검사는 <strong>'문제 업체' 또는 '과정 중요'</strong>일 때 수행, 이미 납품·경미 불량은 제외.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="powered-by-badge">powered by 2170153</div>
+</body>
+</html>
+
