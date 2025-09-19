@@ -1685,3 +1685,8 @@ const quizData = [
         "url": "https://www.law.go.kr/법령/농어촌정비법/(20250621,20581,20241220)/제92조"
     }
 ];
+
+// Ensure global availability for quiz engine in case of scope issues
+if (typeof window !== 'undefined') {
+  window.quizData = quizData;
+}
