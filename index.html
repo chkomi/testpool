@@ -3,23 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
-    <title>직무역량 평가</title>
+    <title>2025년 사전공개문제 - 과목 선택</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .disabled-btn {
-            background: #ccc !important;
-            color: #666 !important;
-            cursor: not-allowed !important;
-            opacity: 0.6;
-        }
-        
-        .disabled-btn:hover {
-            transform: none !important;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
-        }
-
-        /* Home exam buttons layout */
-        .exam-buttons {
+        .subjects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
@@ -27,38 +14,17 @@
             margin: 0 auto;
             padding: 20px;
         }
-        /* Home exam individual button sizing to avoid badge overlap */
+        
         .exam-btn {
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.4;
             position: relative;
-            min-height: 130px;
-            padding: 28px 18px 24px; /* extra top space for badge */
-            overflow: hidden; /* for background pseudo element */
         }
-        @media (max-width: 768px) {
-            .exam-buttons { gap: 15px; padding: 15px; }
-            .exam-btn { min-height: 110px; padding: 26px 14px 20px; }
-        }
-
-        /* Subtle big-year background for legacy exam buttons (2021–2024) */
-        .exam-btn[data-year-full]::before {
-            content: attr(data-year-full);
-            position: absolute;
-            left: 50%;
-            bottom: -8px; /* centered horizontally, slightly below center vertically */
-            transform: translateX(-50%);
-            font-weight: 900;
-            letter-spacing: -2px;
-            line-height: 1;
-            white-space: nowrap;
-            font-size: clamp(56px, 12vw, 110px);
-            color: rgba(135, 206, 235, 0.22); /* light sky blue */
-            pointer-events: none;
-            z-index: 0;
-        }
-        /* Ensure foreground content is above background year */
-        .exam-btn > * { position: relative; z-index: 1; }
-
-        /* Progress badge (top-right), like subjects page */
+        
         :root {
             --badge-font: clamp(10px, 1.8vw, 12px);
             --badge-pad-y: clamp(2px, 0.6vw, 4px);
@@ -66,135 +32,205 @@
             --badge-radius: 12px;
             --badge-offset: clamp(6px, 1.2vw, 10px);
         }
+
+        .count-badge {
+            position: absolute;
+            top: var(--badge-offset);
+            left: var(--badge-offset);
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            color: white;
+            border-radius: var(--badge-radius);
+            padding: var(--badge-pad-y) var(--badge-pad-x);
+            font-size: var(--badge-font);
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+        
         .completion-badge {
             position: absolute;
             top: var(--badge-offset);
             right: var(--badge-offset);
             background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: #fff;
+            color: white;
             border-radius: var(--badge-radius);
             padding: var(--badge-pad-y) var(--badge-pad-x);
             font-size: var(--badge-font);
             font-weight: 600;
-            box-shadow: 0 2px 6px rgba(40,167,69,0.3);
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.3);
             z-index: 10;
+        }
+        
+        .progress-badge {
+            position: absolute;
+            top: var(--badge-offset);
+            right: var(--badge-offset);
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+            color: white;
+            border-radius: var(--badge-radius);
+            padding: var(--badge-pad-y) var(--badge-pad-x);
+            font-size: var(--badge-font);
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(255, 193, 7, 0.3);
+            z-index: 10;
+        }
+        
+        .btn-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .subject-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .progress-indicator {
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .subjects-grid {
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .exam-btn {
+                padding: 15px 12px;
+                font-size: 14px;
+                min-height: 90px;
+            }
+            
+            .subject-title {
+                font-size: 16px;
+            }
+            
+            .progress-indicator {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="quiz-container" id="quiz">
         <div class="quiz-header">
-            <div class="header-center">
-                <h1>직무역량 평가 문제풀이</h1>
-                <div class="header-toggle">
-                    <div class="mode-toggle-container-small">
-                        <input type="checkbox" id="randomModeHome" class="mode-checkbox-small">
-                        <label for="randomModeHome" class="mode-toggle-switch-small">
-                            <span class="mode-slider-small"></span>
-                        </label>
-                        <span class="mode-status-text-small" id="modeStatusText">일반모드</span>
-                    </div>
-                </div>
+            <div class="header-left">
+                <h1>2025년 사전공개문제</h1>
+                <p class="subtitle">과목을 선택하세요</p>
             </div>
         </div>
         <div class="container">
-            <div class="exam-selection">
-                <div class="exam-buttons">
-                    <!-- 2025 두 버튼: 첫 행 2x1 배치 -->
-                    <button onclick="location.href='2025-summaries.html'" class="exam-btn">2025년<br>핵심요약집</button>
-                    <button onclick="location.href='2025-subjects.html'" class="exam-btn">2025년<br>사전공개문제</button>
-                    <!-- 2021~2024: 2x2 배치, 문구 간소화 -->
-                    <button onclick="startExam('2021')" class="exam-btn" data-year-full="2021">'21년 필기기출</button>
-                    <button onclick="startExam('2022')" class="exam-btn" data-year-full="2022">'22년 필기기출</button>
-                    <button onclick="startExam('2023')" class="exam-btn" data-year-full="2023">'23년 필기기출</button>
-                    <button onclick="startExam('2024')" class="exam-btn" data-year-full="2024">'24년 필기기출</button>
-                </div>
+            <div class="subjects-grid">
+                <button onclick="location.href='2025-nongchon.html'" class="exam-btn" data-subject="농어촌정비법" data-total="134">
+                    <span class="count-badge">134문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">농어촌정비법</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-gongun.html'" class="exam-btn" data-subject="공운법" data-total="91">
+                    <span class="count-badge">91문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">공공기관운영법</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-gongsa.html'" class="exam-btn" data-subject="공사법" data-total="102">
+                    <span class="count-badge">102문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">한국농어촌공사법</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-jikje.html'" class="exam-btn" data-subject="직제규정" data-total="27">
+                    <span class="count-badge">27문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">직제규정</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-chwip.html'" class="exam-btn" data-subject="취업규칙" data-total="47">
+                    <span class="count-badge">47문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">취업규칙</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-insa.html'" class="exam-btn" data-subject="인사규정" data-total="56">
+                    <span class="count-badge">56문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">인사규정</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-haengdong.html'" class="exam-btn" data-subject="행동강령" data-total="21">
+                    <span class="count-badge">21문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">행동강령</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2025-hoegye.html'" class="exam-btn" data-subject="회계기준" data-total="56">
+                    <span class="count-badge">56문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">회계기준</div>
+                    </div>
+                </button>
             </div>
-        </div>
         </div>
     </div>
     
-    <!-- Powered by badge -->
     <div class="powered-by-badge">
         powered by 2170153
     </div>
     
     <script src="script.js"></script>
-    
-    <!-- Cache Refresh Popup Script -->
     <script>
-        // Cache Refresh Popup Functions for index.html
-        function showCacheRefreshPopup() {
-            // Check if popup was dismissed today
-            const dismissedDate = localStorage.getItem('cachePopupDismissedDate');
-            const today = new Date().toDateString();
+        document.addEventListener('DOMContentLoaded', function() {
+            update2025SubjectProgress();
+        });
+        
+        function update2025SubjectProgress() {
+            const buttons = document.querySelectorAll('button[data-subject]');
             
-            if (dismissedDate === today) {
-                return; // Don't show popup if dismissed today
-            }
-            
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            
-            const popupHTML = `
-                <div class="cache-popup-overlay" id="cachePopupOverlay">
-                    <div class="cache-popup">
-                        <div class="cache-popup-header" style="text-align: center;">
-                            <h2 style="margin: 0 auto; text-align: center;">페이지 새로고침 안내</h2>
-                        </div>
-                        <div class="cache-popup-content">
-                            <p>문제나 해설이 제대로 안보인다면 <strong>하드 리프레시</strong> 해보세요!</p>
-                            
-                            <div class="cache-refresh-instructions">
-                                <div><strong>Windows:</strong> Ctrl + F5 또는 Ctrl + Shift + R</div>
-                                <div><strong>Mac:</strong> Cmd + Shift + R 또는 Cmd + Option + R</div>
-                                <div><strong>모바일:</strong> 브라우저 앱을 완전히 종료한 후 새 창에서 다시 접속</div>
-                            </div>
+            buttons.forEach(button => {
+                const subject = button.getAttribute('data-subject');
+                const totalFromButton = parseInt(button.getAttribute('data-total')) || 0;
+                const progressKey = `exam_2025_${subject}_progress`;
+                const savedProgress = localStorage.getItem(progressKey);
+                
+                const existingProgressText = button.querySelector('.progress-indicator');
+                if (existingProgressText) existingProgressText.remove();
+                const existingCompletionBadge = button.querySelector('.completion-badge');
+                if (existingCompletionBadge) existingCompletionBadge.remove();
 
-                            <div style="margin-top:12px; padding-top:8px; border-top:1px solid rgba(0,0,0,0.06);">
-                                <p style="margin:0 0 6px 0;"><strong style="color:#dc2626;">업데이트:</strong> <span style="color:#dc2626; font-weight:800;">2025 핵심요약집</span>을 추가했습니다. 홈에서 ‘<span style="color:#dc2626; font-weight:800;">2025 핵심요약집</span>’ 버튼으로 바로 확인할 수 있어요.</p>
-                                <div style="font-size:12px; color:#7c2d12; background:#fff7ed; border:1px solid #fed7aa; padding:8px 10px; border-radius:8px; line-height:1.5;">
-                                    ⚠️ 안내: 본 요약은 <strong>2025년 사전공개문제의 해설만을 기반</strong>으로 작성되었습니다. 학습 보조용으로 활용하시고, 중요한 판단은 <strong>법령 원문과 최신 개정</strong>을 반드시 확인하세요.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cache-popup-buttons">
-                            <button class="cache-popup-btn secondary" onclick="dismissCachePopupForToday()">오늘 하루 안보기</button>
-                            <button class="cache-popup-btn primary" onclick="closeCachePopup()">닫기</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            document.body.insertAdjacentHTML('beforeend', popupHTML);
-            
-            // Close popup when clicking overlay
-            document.getElementById('cachePopupOverlay').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    closeCachePopup();
+                if (savedProgress) {
+                    try {
+                        const progressData = JSON.parse(savedProgress);
+                        if (progressData.answered > 0) {
+                            const answeredCount = progressData.answered || 0;
+                            const totalQuestions = totalFromButton;
+                            const progressPercentage = totalQuestions > 0 ? Math.round((answeredCount / totalQuestions) * 100) : 0;
+                            const badge = document.createElement('span');
+                            badge.className = 'completion-badge';
+                            badge.textContent = `${answeredCount}/${totalQuestions} (${progressPercentage}%)`;
+                            button.appendChild(badge);
+                            console.log(`[진행률] ${subject}: ${answeredCount}/${totalQuestions} (${progressPercentage}%)`);
+                        }
+                    } catch (error) {
+                        console.warn(`${subject} 진행률 로드 오류:`, error);
+                    }
                 }
             });
         }
-
-        function closeCachePopup() {
-            const overlay = document.getElementById('cachePopupOverlay');
-            if (overlay) {
-                overlay.style.animation = 'fadeOut 0.3s ease-out';
-                setTimeout(() => {
-                    overlay.remove();
-                }, 300);
+        
+        window.addEventListener('focus', function() {
+            update2025SubjectProgress();
+        });
+        
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                update2025SubjectProgress();
             }
-        }
-
-        function dismissCachePopupForToday() {
-            const today = new Date().toDateString();
-            localStorage.setItem('cachePopupDismissedDate', today);
-            closeCachePopup();
-        }
-
-        // Show popup when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            // Delay popup show to avoid interference with page initialization
-            setTimeout(showCacheRefreshPopup, 1500);
         });
     </script>
 </body>
