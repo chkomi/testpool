@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+    <title>2026년 사전공개문제 - 과목 선택</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .exam-btn {
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.4;
+            position: relative;
+        }
+
+        :root {
+            --badge-font: clamp(10px, 1.8vw, 12px);
+            --badge-pad-y: clamp(2px, 0.6vw, 4px);
+            --badge-pad-x: clamp(6px, 1.2vw, 10px);
+            --badge-radius: 12px;
+            --badge-offset: clamp(6px, 1.2vw, 10px);
+        }
+
+        .count-badge {
+            position: absolute;
+            top: var(--badge-offset);
+            left: var(--badge-offset);
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            color: white;
+            border-radius: var(--badge-radius);
+            padding: var(--badge-pad-y) var(--badge-pad-x);
+            font-size: var(--badge-font);
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .btn-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .subject-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .empty-note {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .subjects-grid {
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .exam-btn {
+                padding: 15px 12px;
+                font-size: 14px;
+                min-height: 90px;
+            }
+
+            .subject-title {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container" id="quiz">
+        <div class="quiz-header">
+            <div class="header-left">
+                <h1>2026년 사전공개문제</h1>
+                <p class="subtitle">과목을 선택하세요</p>
+            </div>
+            <div class="header-right">
+                <div class="header-controls">
+                    <button class="home-btn" onclick="location.href='index.html'">← 연도선택</button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="subjects-grid">
+                <!-- 2026년 과목 버튼을 여기에 추가하세요. 예시:
+                <button onclick="location.href='2026-nongchon.html'" class="exam-btn" data-subject="농어촌정비법" data-total="0">
+                    <span class="count-badge">0문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">농어촌정비법</div>
+                    </div>
+                </button>
+                -->
+            </div>
+            <div class="empty-note">2026년 문제는 준비 중입니다.</div>
+        </div>
+    </div>
+
+    <div class="powered-by-badge">
+        powered by 2170153
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
