@@ -47,6 +47,20 @@
             z-index: 10;
         }
 
+        .completion-badge {
+            position: absolute;
+            top: var(--badge-offset);
+            right: var(--badge-offset);
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border-radius: var(--badge-radius);
+            padding: var(--badge-pad-y) var(--badge-pad-x);
+            font-size: var(--badge-font);
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(40, 167, 69, 0.3);
+            z-index: 10;
+        }
+
         .btn-inner {
             display: flex;
             flex-direction: column;
@@ -57,15 +71,6 @@
         .subject-title {
             font-size: 18px;
             font-weight: 600;
-        }
-
-        .empty-note {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            text-align: center;
-            opacity: 0.7;
-            font-size: 16px;
         }
 
         @media (max-width: 768px) {
@@ -101,16 +106,55 @@
         </div>
         <div class="container">
             <div class="subjects-grid">
-                <!-- 2026년 과목 버튼을 여기에 추가하세요. 예시:
-                <button onclick="location.href='2026-nongchon.html'" class="exam-btn" data-subject="농어촌정비법" data-total="0">
-                    <span class="count-badge">0문제</span>
+                <button onclick="location.href='2026-nongchon.html'" class="exam-btn" data-subject="농어촌정비법" data-total="139">
+                    <span class="count-badge">139문제</span>
                     <div class="btn-inner">
                         <div class="subject-title">농어촌정비법</div>
                     </div>
                 </button>
-                -->
+                <button onclick="location.href='2026-gongun.html'" class="exam-btn" data-subject="공운법" data-total="93">
+                    <span class="count-badge">93문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">공공기관운영법</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2026-gongsa.html'" class="exam-btn" data-subject="공사법" data-total="106">
+                    <span class="count-badge">106문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">한국농어촌공사법</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2026-jikje.html'" class="exam-btn" data-subject="직제규정" data-total="28">
+                    <span class="count-badge">28문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">직제규정</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2026-chwip.html'" class="exam-btn" data-subject="취업규칙" data-total="49">
+                    <span class="count-badge">49문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">취업규칙</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2026-insa.html'" class="exam-btn" data-subject="인사규정" data-total="55">
+                    <span class="count-badge">55문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">인사규정</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2026-haengdong.html'" class="exam-btn" data-subject="행동강령" data-total="22">
+                    <span class="count-badge">22문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">행동강령</div>
+                    </div>
+                </button>
+                <button onclick="location.href='2026-hoegye.html'" class="exam-btn" data-subject="회계기준" data-total="59">
+                    <span class="count-badge">59문제</span>
+                    <div class="btn-inner">
+                        <div class="subject-title">회계기준</div>
+                    </div>
+                </button>
             </div>
-            <div class="empty-note">2026년 문제는 준비 중입니다.</div>
         </div>
     </div>
 
@@ -119,5 +163,53 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            update2026SubjectProgress();
+        });
+
+        function update2026SubjectProgress() {
+            const buttons = document.querySelectorAll('button[data-subject]');
+
+            buttons.forEach(button => {
+                const subject = button.getAttribute('data-subject');
+                const totalFromButton = parseInt(button.getAttribute('data-total')) || 0;
+                const progressKey = `exam_2026_${subject}_progress`;
+                const savedProgress = localStorage.getItem(progressKey);
+
+                const existingProgressText = button.querySelector('.progress-indicator');
+                if (existingProgressText) existingProgressText.remove();
+                const existingCompletionBadge = button.querySelector('.completion-badge');
+                if (existingCompletionBadge) existingCompletionBadge.remove();
+
+                if (savedProgress) {
+                    try {
+                        const progressData = JSON.parse(savedProgress);
+                        if (progressData.answered > 0) {
+                            const answeredCount = progressData.answered || 0;
+                            const totalQuestions = totalFromButton;
+                            const progressPercentage = totalQuestions > 0 ? Math.round((answeredCount / totalQuestions) * 100) : 0;
+                            const badge = document.createElement('span');
+                            badge.className = 'completion-badge';
+                            badge.textContent = `${answeredCount}/${totalQuestions} (${progressPercentage}%)`;
+                            button.appendChild(badge);
+                        }
+                    } catch (error) {
+                        console.warn(`${subject} 진행률 로드 오류:`, error);
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('focus', function() {
+            update2026SubjectProgress();
+        });
+
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                update2026SubjectProgress();
+            }
+        });
+    </script>
 </body>
 </html>

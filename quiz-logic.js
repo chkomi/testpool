@@ -221,11 +221,12 @@ function startQuizEngine(quizData) {
         const pathSegments = window.location.pathname.split('/');
         const currentPage = pathSegments[pathSegments.length - 1];
         
-        // 2025년 시험인지 확인 (개별 과목 페이지들)
-        if (currentPage.includes('2025-') && currentPage.endsWith('.html')) {
+        // 2025/2026년 시험인지 확인 (개별 과목 페이지들)
+        const subjectPageMatch = currentPage.match(/^(202[56])-/);
+        if (subjectPageMatch && currentPage.endsWith('.html')) {
             // window.quizSubject 전역 변수 사용 (각 과목 HTML에서 설정)
             const subjectName = subject || window.quizSubject || 'unknown';
-            return `exam_2025_${subjectName}_progress`;
+            return `exam_${subjectPageMatch[1]}_${subjectName}_progress`;
         } else if (currentPage.includes('2025-exam.html')) {
             // 통합 2025년 페이지 (사용되지 않지만 호환성 유지)
             if (!subject) {
